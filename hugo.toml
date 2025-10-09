@@ -25,7 +25,7 @@ title = "Francesco Colasurdo"
 
   [params.label]
   text = "Francesco Colasurdo"   # testo cliccabile (optional)
-  icon = "/Logo-Francesco-Website.png"             # percorso relativo alla root del sito
+  icon = "Logo-Francesco-Website.png"             # percorso relativo alla root del sito
   iconHeight = 32                # altezza in px (tweak a piacere)
 
 
