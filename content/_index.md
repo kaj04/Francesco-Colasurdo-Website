@@ -1,4 +1,4 @@
 ---
 title: "Home"
 ---
-Qui racconterai chi sei e lo scopo del sito. (Placeholder)
+Benvenuto! Questo è il mio sito personale. (test rapido)
