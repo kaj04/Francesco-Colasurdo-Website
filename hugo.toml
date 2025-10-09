@@ -28,8 +28,6 @@ title = "Francesco Colasurdo"
   icon = "Logo-Website-Francesco.svg"    
   iconHeight = 56      
 
-
-
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
