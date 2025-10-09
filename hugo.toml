@@ -18,10 +18,9 @@ canonifyURLs = true
   # Dì a PaperMod che la sezione principale è "blog"
   mainSections = ["blog"]
 
-  # Box "hero" in home (così vedi subito qualcosa)
-  [params.homeInfoParams]
-    Title = "Ciao, sono Francesco 👋"
-    Content = "CV, timeline, obiettivi e riflessioni settimanali."
+[params.homeInfoParams]
+  Title = "Ciao, sono Francesco 👋"
+  Content = "CV, timeline, obiettivi e riflessioni settimanali."
 
 [markup]
   [markup.goldmark.renderer]
