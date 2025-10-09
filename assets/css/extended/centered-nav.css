@@ -1,0 +1,21 @@
+/* Centra gli elementi del menu in PaperMod */
+.header .nav {
+  justify-content: center;           /* centra tutto */
+}
+
+/* Nasconde il titolo a sinistra per non spingere il menu a destra */
+.header .logo {
+  display: none;
+}
+
+/* Rende più uniforme la spaziatura fra voci */
+.header #menu {
+  margin: 0;
+  gap: 1.25rem; /* regola se vuoi più/meno spazio */
+}
+
+/* Su mobile: torna al layout standard (hamburger + titolo) */
+@media (max-width: 768px) {
+  .header .nav { justify-content: space-between; }
+  .header .logo { display: block; }
+}
