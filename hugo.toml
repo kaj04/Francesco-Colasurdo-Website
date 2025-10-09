@@ -26,6 +26,32 @@ title = "Francesco Colasurdo"
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
+    
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "CV"
+    url = "/content/cv/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Blog"
+    url = "/content/blog/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Timeline"
+    url = "/content/timeline/"
+    weight = 4
+
+  [[menu.main]]
+    name = "Goals"
+    url = "/content/goals/"
+    weight = 5
 
 # (facoltativo ma utile in sottocartella)
 relativeURLs = true
