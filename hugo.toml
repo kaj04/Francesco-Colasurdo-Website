@@ -1,31 +1,35 @@
 baseURL = "https://kaj04.github.io/Francesco-Colasurdo-Website/"
 languageCode = "it"
 title = "Francesco Colasurdo"
-# Hugo nuovi: paginate deprecato -> usa pagination.pagerSize
+
 [pagination]
   pagerSize = 10
 
-# Usa PaperMod via Hugo Modules (niente cartella themes/)
-theme = ["github.com/adityatelange/hugo-PaperMod"]
+# ❗ NIENTE riga theme = "PaperMod"
+# ❗ NIENTE array theme = ["github.com/..."]
+# Usa invece HUGO MODULES (import) qui sotto:
+[module]
+  [[module.imports]]
+    path = "github.com/adityatelange/hugo-PaperMod"
 
-# Fix tipici per siti in sottocartella (GitHub Pages /REPO/)
-relativeURLs = true
-canonifyURLs = true
+# Uscite: genera SEMPRE anche l'HTML della home, non solo l'RSS
+[outputs]
+  home = ["HTML", "RSS"]
 
+# Parametri PaperMod
 [params]
   defaultTheme = "auto"
   math = true
-  # Dì a PaperMod che la sezione principale è "blog"
   mainSections = ["blog"]
 
-[params.homeInfoParams]
-  Title = "Ciao, sono Francesco 👋"
-  Content = "CV, timeline, obiettivi e riflessioni settimanali."
+  [params.homeInfoParams]
+    Title = "Ciao, sono Francesco 👋"
+    Content = "CV, timeline, obiettivi e riflessioni settimanali."
 
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
 
-[outputs]
-  home = ["HTML", "RSS"]
-
+# (facoltativo ma utile in sottocartella)
+relativeURLs = true
+canonifyURLs = true
