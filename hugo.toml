@@ -1,12 +1,15 @@
 baseURL = "https://kaj04.github.io/Francesco-Colasurdo-Website/"
 languageCode = "it"
 title = "Il mio sito"
-paginate = 10
-theme = "PaperMod"        # indica il tema
 
-[module]                  # usa Hugo Modules per importare il tema
-  [[module.imports]]
-    path = "github.com/adityatelange/hugo-PaperMod"
+# NUOVO: sostituisce 'paginate'
+[pagination]
+  pagerSize = 10
+
+# IMPORTANTE: usa il path del modulo come tema
+theme = ["github.com/adityatelange/hugo-PaperMod"]
+
+# NIENTE blocco [module] qui: non serve se usi 'theme = ["github.com/..."]'
 
 [params]
   defaultTheme = "auto"
