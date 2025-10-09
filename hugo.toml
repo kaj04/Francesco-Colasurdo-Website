@@ -14,7 +14,12 @@ theme = ["github.com/adityatelange/hugo-PaperMod"]
 [params]
   defaultTheme = "auto"
   math = true
+  mainSections = ["blog"]   # <-- aggiungi questa riga
 
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
+
+[params.homeInfoParams]
+  Title = "Ciao, sono Francesco"
+  Content = "Qui condivido CV, timeline, obiettivi e riflessioni settimanali."
