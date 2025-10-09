@@ -35,22 +35,22 @@ title = "Francesco Colasurdo"
 
   [[menu.main]]
     name = "CV"
-    url = "/content/cv/"
+    url = "/cv/"
     weight = 2
 
   [[menu.main]]
     name = "Blog"
-    url = "/content/blog/"
+    url = "/blog/"
     weight = 3
 
   [[menu.main]]
     name = "Timeline"
-    url = "/content/timeline/"
+    url = "/timeline/"
     weight = 4
 
   [[menu.main]]
     name = "Goals"
-    url = "/content/goals/"
+    url = "/goals/"
     weight = 5
 
 # (facoltativo ma utile in sottocartella)
