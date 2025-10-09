@@ -2,6 +2,7 @@ baseURL = "https://kaj04.github.io/Francesco-Colasurdo-Website/"
 languageCode = "it"
 title = "Il mio sito"
 paginate = 10
+theme = "PaperMod"
 
 # Importa automaticamente il tema PaperMod (niente submodule da installare)
 [module]
