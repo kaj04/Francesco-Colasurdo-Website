@@ -1,25 +1,28 @@
 baseURL = "https://kaj04.github.io/Francesco-Colasurdo-Website/"
 languageCode = "it"
-title = "Il mio sito"
-
-# NUOVO: sostituisce 'paginate'
+title = "Francesco Colasurdo"
+# Hugo nuovi: paginate deprecato -> usa pagination.pagerSize
 [pagination]
   pagerSize = 10
 
-# IMPORTANTE: usa il path del modulo come tema
+# Usa PaperMod via Hugo Modules (niente cartella themes/)
 theme = ["github.com/adityatelange/hugo-PaperMod"]
 
-# NIENTE blocco [module] qui: non serve se usi 'theme = ["github.com/..."]'
+# Fix tipici per siti in sottocartella (GitHub Pages /REPO/)
+relativeURLs = true
+canonifyURLs = true
 
 [params]
   defaultTheme = "auto"
   math = true
-  mainSections = ["blog"]   # <-- aggiungi questa riga
+  # Dì a PaperMod che la sezione principale è "blog"
+  mainSections = ["blog"]
+
+  # Box "hero" in home (così vedi subito qualcosa)
+  [params.homeInfoParams]
+    Title = "Ciao, sono Francesco 👋"
+    Content = "CV, timeline, obiettivi e riflessioni settimanali."
 
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
-
-[params.homeInfoParams]
-  Title = "Ciao, sono Francesco"
-  Content = "Qui condivido CV, timeline, obiettivi e riflessioni settimanali."
