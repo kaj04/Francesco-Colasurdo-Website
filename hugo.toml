@@ -24,9 +24,10 @@ title = "Francesco Colasurdo"
     Content = "CV, timeline, obiettivi e riflessioni settimanali."
 
   [params.label]
-  text = "Francesco Colasurdo"   # testo cliccabile (optional)
-  icon = "Logo-Francesco-Website.png"             # percorso relativo alla root del sito
-  iconHeight = 32                # altezza in px (tweak a piacere)
+  text = ""            
+  icon = "Logo-Website-Francesco.svg"    
+  iconHeight = 56      
+
 
 
 [markup]
