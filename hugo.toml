@@ -23,6 +23,12 @@ title = "Francesco Colasurdo"
     Title = "Ciao, sono Francesco 👋"
     Content = "CV, timeline, obiettivi e riflessioni settimanali."
 
+  [params.label]
+  text = "Francesco Colasurdo"   # testo cliccabile (optional)
+  icon = "/Logo-Francesco-Website.png"             # percorso relativo alla root del sito
+  iconHeight = 32                # altezza in px (tweak a piacere)
+
+
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
