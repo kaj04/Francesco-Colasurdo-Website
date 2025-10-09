@@ -39,7 +39,7 @@ jobs:
         run: hugo mod get -u
 
       - name: Build
-        run: hugo --minify -v
+        run: hugo --minify 
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
