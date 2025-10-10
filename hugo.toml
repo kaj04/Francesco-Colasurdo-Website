@@ -34,11 +34,6 @@ title = "Francesco Colasurdo"
     
 [menu]
   [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-
-  [[menu.main]]
     name = "CV"
     url = "/cv/"
     weight = 2
