@@ -38,7 +38,7 @@ jobs:
       - name: Fetch theme (Hugo Modules)
         run: hugo mod get -u
 
-      # === QUI INIZIANO GLI STEP DI CONVERSIONE LATEX ===
+      # === CONVERSIONE LaTeX (GOALS) ===
       - name: Install pandoc + minimal TeX
         run: |
           sudo apt-get update
@@ -50,34 +50,36 @@ jobs:
           set -euo pipefail
           mkdir -p content/goals
           OUT="content/goals/_index.html"
-          cat > "$OUT" <<'EOF'
----
-title: "Actual Goals"
-description: "Cose su cui sto lavorando"
----
-<div class="post-content">
-EOF
+
+          # Front matter + wrapper (niente heredoc)
+          printf '%s\n' \
+            '---' \
+            'title: "Actual Goals"' \
+            'description: "Cose su cui sto lavorando"' \
+            '---' \
+            '<div class="post-content">' > "$OUT"
+
           if [ -f latex/goals/goals.tex ]; then
             pandoc latex/goals/goals.tex -f latex -t html5 \
               --katex \
               --css /Francesco-Colasurdo-Website/css/plain.css \
               -o - >> "$OUT"
           else
-            echo "<p>(Nessun latex/goals/goals.tex trovato.)</p>" >> "$OUT"
+            echo '<p>(Nessun latex/goals/goals.tex trovato.)</p>' >> "$OUT"
           fi
+
           echo '</div>' >> "$OUT"
 
-      - name: Debug — show created Goals page
-        run: |
-          echo "=== tree content/goals ==="
-          ls -la content/goals || true
-          echo "=== head _index.html ==="
-          head -n 40 content/goals/_index.html || true
+          # Log di controllo nel job
+          echo "=== list content/goals ==="
+          ls -la content/goals
+          echo "=== head of _index.html ==="
+          head -n 40 "$OUT"
 
       - name: Assert Goals page exists
         run: |
           test -f content/goals/_index.html || (echo "Manca content/goals/_index.html" && exit 1)
-      # === FINE STEP DI CONVERSIONE LATEX ===
+      # === FINE CONVERSIONE ===
 
       - name: Build
         run: hugo --minify
