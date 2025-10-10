@@ -1,18 +1,20 @@
 ---
-title: "Francesco Colasurdo — Personal Shared Web-Space"
+title: "Home"
 ---
 
 <div class="paper-page">
 
+  <!-- Titolo su due righe: nome/cognome + tagline -->
   <header class="paper-header">
-    <h1 class="paper-title">Francesco Colasurdo — Personal Shared Web-Space</h1>
-    <div class="paper-authors">
-      <span class="paper-author">Francesco Colasurdo</span>
-      <span class="paper-meta">
-        <a href="mailto:francesco.colasurdo04@gmail.com">francesco.colasurdo04@gmail.com</a> · Eindhoven, Netherlands
-      </span>
-    </div>
+    <h1 class="paper-title">
+      <span class="name">Francesco Colasurdo</span>
+      <span class="tagline">Personal Shared Web-Space</span>
+    </h1>
+    <!-- (RIMOSSA la sezione autore) -->
   </header>
+
+  <hr class="paper-rule" />
+
 
   <hr class="paper-rule" />
 
