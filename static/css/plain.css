@@ -1,0 +1,8 @@
+:root { --text:#1b1b1b; --muted:#666; --max:900px; }
+body { color:var(--text); }
+.post-content { max-width: var(--max); margin: 0 auto; line-height:1.65; }
+.post-content h1,.post-content h2,.post-content h3 { margin:1.2rem 0 .6rem; }
+.post-content figure { margin:1rem auto; text-align:center; }
+.post-content table { border-collapse: collapse; margin:1rem auto; }
+.post-content th, .post-content td { border:1px solid #ddd; padding:.4rem .6rem; }
+.post-content .abstract { font-style: italic; color:var(--muted); border-left:3px solid #ddd; padding:.5rem .75rem; }
