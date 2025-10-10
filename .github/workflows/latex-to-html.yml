@@ -6,12 +6,18 @@ on:
       - "latex/goals/goals.tex"
       - ".github/workflows/latex-to-html.yml"
 
+permissions:
+  contents: write   # <--- abilita il push con GITHUB_TOKEN
+
 jobs:
   build-goals:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true   # usa GITHUB_TOKEN per push
 
       - name: Install Pandoc and LaTeX
         run: |
@@ -22,16 +28,18 @@ jobs:
         run: |
           mkdir -p content/goals
           OUT="content/goals/_index.html"
-          echo '---' > $OUT
-          echo 'title: "Actual Goals"' >> $OUT
-          echo 'description: "Cose su cui sto lavorando"' >> $OUT
-          echo '---' >> $OUT
-          echo '<div class="post-content">' >> $OUT
+          cat > "$OUT" <<'EOF'
+---
+title: "Actual Goals"
+description: "Cose su cui sto lavorando"
+---
+<div class="post-content">
+EOF
           pandoc latex/goals/goals.tex -f latex -t html5 \
             --katex \
             --css /Francesco-Colasurdo-Website/css/plain.css \
-            -o - >> $OUT
-          echo '</div>' >> $OUT
+            -o - >> "$OUT"
+          echo '</div>' >> "$OUT"
 
       - name: Commit generated HTML
         run: |
@@ -40,5 +48,5 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add content/goals/_index.html
             git commit -m "Auto-update Goals from LaTeX"
-            git push
+            git push origin HEAD:main
           fi
