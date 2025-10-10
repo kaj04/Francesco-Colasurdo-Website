@@ -20,10 +20,6 @@ title = "Francesco Colasurdo"
   mainSections = ["home"]
   disableThemeToggle = true   # nasconde l’icona sole/luna
 
-  [params.homeInfoParams]
-    Title = "Ciao, sono Francesco 👋"
-    Content = "CV, timeline, obiettivi e riflessioni settimanali."
-
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
