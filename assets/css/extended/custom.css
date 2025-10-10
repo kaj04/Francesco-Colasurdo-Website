@@ -41,3 +41,9 @@
 /* (facoltativo) dimensione logo */
 .header .logo img { width: 28px; height: 28px; display: block; }
 
+/* Nascondi il titolo/logo del tema nella navbar */
+.header .logo,
+.header .logo a {
+  display: none !important;
+}
+
