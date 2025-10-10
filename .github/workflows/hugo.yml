@@ -38,8 +38,38 @@ jobs:
       - name: Fetch theme (Hugo Modules)
         run: hugo mod get -u
 
+      # ----- QUI I DUE STEP NUOVI -----
+      - name: Install pandoc + minimal TeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base
+
+      - name: Convert LaTeX (Goals) -> content/goals/_index.html
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/goals
+          OUT="content/goals/_index.html"
+          cat > "$OUT" <<'EOF'
+---
+title: "Actual Goals"
+description: "Cose su cui sto lavorando"
+---
+<div class="post-content">
+EOF
+          if [ -f latex/goals/goals.tex ]; then
+            pandoc latex/goals/goals.tex -f latex -t html5 \
+              --katex \
+              --css /Francesco-Colasurdo-Website/css/plain.css \
+              -o - >> "$OUT"
+          else
+            echo "<p>(Nessun latex/goals/goals.tex trovato.)</p>" >> "$OUT"
+          fi
+          echo '</div>' >> "$OUT"
+      # ----- FINE STEP NUOVI -----
+
       - name: Build
-        run: hugo --minify 
+        run: hugo --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
