@@ -17,22 +17,23 @@ title = "Francesco Colasurdo"
 [params]
   defaultTheme = "auto"
   math = true
-  mainSections = ["blog"]
+  mainSections = ["home"]
+  disableThemeToggle = true   # nasconde l’icona sole/luna
 
   [params.homeInfoParams]
     Title = "Ciao, sono Francesco 👋"
     Content = "CV, timeline, obiettivi e riflessioni settimanali."
-
-  [params.label]
-    text = ""            
-    icon = "/Francesco-Colasurdo-Website/Logo-Website-Francesco.svg"
-    iconHeight = 56      
 
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
     
 [menu]
+  [[menu.main]]
+    name = "home"
+    url  = "/"
+    weight = 1
+    
   [[menu.main]]
     name = "CV"
     url = "/cv/"
