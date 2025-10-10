@@ -1,0 +1,6 @@
+@import url("/Francesco-Colasurdo-Website/css/plain.css");
+.post-content { font-family: "Georgia", "Times New Roman", serif; }
+.post-content h1 { font-size:2rem; text-transform:none; }
+.post-content .authors { font-size:.95rem; color:#444; margin-top:-.3rem; }
+.columns-2 { column-count:2; column-gap:2rem; }
+@media (max-width:1000px){ .columns-2 { column-count:1; } }
