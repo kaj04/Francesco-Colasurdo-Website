@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Pages  # abilita Pages se non lo è già
+      - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
@@ -38,7 +38,7 @@ jobs:
       - name: Fetch theme (Hugo Modules)
         run: hugo mod get -u
 
-      # ----- QUI I DUE STEP NUOVI -----
+      # === QUI INIZIANO GLI STEP DI CONVERSIONE LATEX ===
       - name: Install pandoc + minimal TeX
         run: |
           sudo apt-get update
@@ -66,7 +66,18 @@ EOF
             echo "<p>(Nessun latex/goals/goals.tex trovato.)</p>" >> "$OUT"
           fi
           echo '</div>' >> "$OUT"
-      # ----- FINE STEP NUOVI -----
+
+      - name: Debug — show created Goals page
+        run: |
+          echo "=== tree content/goals ==="
+          ls -la content/goals || true
+          echo "=== head _index.html ==="
+          head -n 40 content/goals/_index.html || true
+
+      - name: Assert Goals page exists
+        run: |
+          test -f content/goals/_index.html || (echo "Manca content/goals/_index.html" && exit 1)
+      # === FINE STEP DI CONVERSIONE LATEX ===
 
       - name: Build
         run: hugo --minify
