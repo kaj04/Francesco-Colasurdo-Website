@@ -50,14 +50,57 @@ a:hover{ text-decoration:underline; }
 .paper-rule{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 
-/* ---- Titoli ---- */
+/* ===== Titolo home su due righe ===== */
 .paper-title{
   text-align:center;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  font-weight:700;
-  font-size:26px;
-  margin:0 0 .25em;
+  letter-spacing:.02em;
+  margin: 0 0 0.25em;
+  line-height: 1.1;
+  text-transform:none; /* niente upper-case forzato */
+}
+.paper-title .name{
+  display:block;
+  font-weight:800;              /* più spesso */
+  font-size:42px;               /* regola qui la dimensione */
+}
+.paper-title .tagline{
+  display:block;
+  margin-top:.15em;
+  font-weight:500;              /* più fino */
+  font-size:34px;
+  opacity: .95;
+}
+
+/* Rimuove eventuale blocco autore se fosse rimasto */
+.paper-authors{ display:none !important; }
+
+/* Abstract – leggermente più compatto con nuovo titolo */
+.paper-abstract h2{ font-size:18px; }
+
+/* ===== Riduci la dimensione dei titoli nelle altre pagine ===== */
+/* Pagine “single” (CV, post, pagine normali) */
+.single .post-title,
+.page .post-title,
+.post-title{
+  font-size: 34px !important;   /* default PaperMod è più grande */
+  line-height: 1.2;
+  font-weight: 700;
+  text-transform: none;
+}
+
+/* Pagine “list” (es. /blog) */
+.list .page-title,
+.page-title{
+  font-size: 28px !important;
+  line-height: 1.25;
+  font-weight: 700;
+  text-transform: none;
+}
+
+/* Responsivo: home title un po’ più piccolo su schermi stretti */
+@media (max-width: 900px){
+  .paper-title .name{ font-size: 34px; }
+  .paper-title .tagline{ font-size: 26px; }
 }
 .paper-authors{ text-align:center; margin-top:14px; font-size:18px; }
 .paper-author{ font-variant:small-caps; font-weight:600; }
