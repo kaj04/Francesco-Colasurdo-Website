@@ -159,3 +159,50 @@ figcaption{
 @media (max-width:720px){
   .paper-title{ font-size:23px; }
 }
+
+/* === Abstract: stessa altezza tra immagine e testo === */
+.equal-rows { align-items: stretch; }          /* estende entrambe le colonne */
+.abstract-panel{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.abstract-panel .abstract-text{
+  flex: 1 1 auto;               /* riempie la colonna */
+  display: block;
+}
+
+/* === Introduction a due colonne stile paper === */
+.two-col{
+  column-count: 2;
+  column-gap: 2rem;             /* spazio tra le colonne */
+  text-align: justify;
+}
+.two-col p{ break-inside: avoid; }  /* evita spaccature brutte nei paragrafi */
+
+/* Su schermi stretti torna a colonna singola */
+@media (max-width: 900px){
+  .two-col{ column-count: 1; }
+}
+
+/* === Video embed responsive (16:9) === */
+.video-embed{
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;        /* 16:9 */
+  background: #00000010;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  margin-top: .5rem;
+}
+.video-embed iframe,
+.video-embed video{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  border: 0;
+}
+.video-note{ color:#555; font-size: 0.95rem; margin: 0 0 .4rem; }
+
