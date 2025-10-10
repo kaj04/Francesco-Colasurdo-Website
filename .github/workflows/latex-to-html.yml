@@ -7,7 +7,7 @@ on:
       - ".github/workflows/latex-to-html.yml"
 
 permissions:
-  contents: write   # permette il push con GITHUB_TOKEN
+  contents: write   # consente git push con GITHUB_TOKEN
 
 jobs:
   goals:
