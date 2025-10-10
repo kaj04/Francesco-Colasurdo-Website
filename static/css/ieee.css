@@ -1,0 +1,4 @@
+@import url("/Francesco-Colasurdo-Website/css/plain.css");
+.post-content { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+.post-content h1 { font-size:1.9rem; letter-spacing:.2px; }
+.rule { border-top:2px solid #222; margin: .8rem 0 1rem; }
