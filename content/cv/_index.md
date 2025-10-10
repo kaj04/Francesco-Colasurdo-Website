@@ -1,6 +1,11 @@
+---
+title: "CV"
+description: "Curriculum Vitae di Francesco Colasurdo"
+---
+
 <style>
   /* Allarga solo questa pagina (PaperMod usa questa variabile) */
-  :root { --content-width: 1200px; }
+  :root { --content-width: 1400px; }
 
   /* Azioni */
   .cv-actions { margin: 1rem 0 1.5rem; text-align: center; }
@@ -23,13 +28,12 @@
   @media (max-width: 800px) {
     :root { --content-width: 96vw; }
     .cv-pages { grid-template-columns: 1fr; }
+
+  /* facoltativo: su schermi molto larghi, ancora un po' più ampia */
+  @media (min-width: 1700px) {
+    :root { --content-width: 1600px; }
   }
 </style>
-
----
-title: "CV"
-description: "Curriculum Vitae di Francesco Colasurdo"
----
 
 > **Per i più curiosi**: ecco il mio CV. Se sei uno studente o un recruiter, sarò felice di ricevere suggerimenti.  
 > Sentiti libero di scaricarlo e contattarmi!
