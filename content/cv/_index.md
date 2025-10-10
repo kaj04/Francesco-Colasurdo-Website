@@ -1,3 +1,31 @@
+<style>
+  /* Allarga solo questa pagina (PaperMod usa questa variabile) */
+  :root { --content-width: 1200px; }
+
+  /* Azioni */
+  .cv-actions { margin: 1rem 0 1.5rem; text-align: center; }
+  .btn-download {
+    display: inline-block; padding: .6rem 1rem; border: 1px solid #d6d6d6; border-radius: .5rem;
+    text-decoration: none; font-weight: 600;
+  }
+
+  /* Griglia a due colonne per le due pagine del CV */
+  .cv-pages {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    align-items: start; justify-items: center;
+    margin: 0 auto; /* centra la griglia */
+  }
+  .cv-pages img {
+    width: 100%; height: auto; border: 1px solid #e0e0e0; box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  }
+
+  /* Mobile: impila le pagine una sotto l'altra */
+  @media (max-width: 800px) {
+    :root { --content-width: 96vw; }
+    .cv-pages { grid-template-columns: 1fr; }
+  }
+</style>
+
 ---
 title: "CV"
 description: "Curriculum Vitae di Francesco Colasurdo"
