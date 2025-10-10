@@ -1,13 +1,13 @@
 /* =======================
-   Academic look (wide, no paper bg) — FULL FILE
+   Academic look (wide, no paper bg) — CLEAN FILE
    ======================= */
 
 /* Font serif */
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap');
 
-/* ---- LARGHEZZA: forza il contenitore anche con PaperMod ---- */
+/* ---- Larghezza contenitore ---- */
 :root{
-  --content-width: 1320px;          /* aumenta a 1400/1500 se vuoi ancora più largo */
+  --content-width: 1320px;             /* ↑ aumenta a 1400/1500 se vuoi più largo */
   --page-max: var(--content-width);
   --text: #111;
   --muted:#555;
@@ -15,102 +15,79 @@
   --link:#004080;
 }
 
-/* Alcuni layout di PaperMod usano questi selettori:
-   allarghiamo tutto quando siamo nella home (_index.md -> pagina "list") */
-.list .main,
-.list .container,
-.list .post-content { max-width: var(--content-width) !important; }
-
-/* fallback generale nel dubbio */
+/* Forza davvero la larghezza con PaperMod */
+.list .main, .list .container, .list .post-content { max-width: var(--content-width) !important; }
 .main, .container, .post-content { max-width: var(--content-width); }
 
 /* ---- Base tipografica ---- */
 body{
   font-family:"Source Serif 4","Crimson Pro",Georgia,"Times New Roman",serif;
   color:var(--text);
-  background:transparent;           /* niente sfondo “carta” */
+  background:transparent;             /* niente sfondo “carta” */
   font-size:17.5px;
   line-height:1.55;
 }
 a{ color:var(--link); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* ---- Home in stile paper (senza foglio bianco) ---- */
+/* ---- Wrapper home in stile paper (senza foglio bianco) ---- */
 .paper-page{
-  max-width:var(--page-max) !important;
+  max-width:var(--page-max);
   margin:0 auto;
   padding:24px 16px 56px;
-  background:transparent !important;   /* rimuove il rettangolo bianco */
-  border:0 !important;
-  box-shadow:none !important;
+  background:transparent;
+  border:0;
+  box-shadow:none;
   counter-reset: section;
 }
 
 /* ---- Separatori ---- */
 .paper-rule{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
-hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 
-/* ===== Titolo home su due righe ===== */
+/* Doppia linea sotto il titolo */
+.paper-rule.double-rule{
+  position: relative;
+  height: 8px;
+  border: 0;
+  margin: 18px 0 26px;
+}
+.paper-rule.double-rule::before,
+.paper-rule.double-rule::after{
+  content:"";
+  position:absolute; left:0; right:0;
+  border-top:1px solid var(--rule);
+}
+.paper-rule.double-rule::before{ top:0; }
+.paper-rule.double-rule::after{ bottom:0; }
+
+/* ---- Titolo home su due righe ---- */
 .paper-title{
   text-align:center;
   letter-spacing:.02em;
   margin: 0 0 0.25em;
   line-height: 1.1;
-  text-transform:none; /* niente upper-case forzato */
+  text-transform:none;
 }
 .paper-title .name{
   display:block;
-  font-weight:800;              /* più spesso */
-  font-size:42px;               /* regola qui la dimensione */
+  font-weight:800;
+  font-size:42px;                     /* regola qui */
 }
 .paper-title .tagline{
   display:block;
   margin-top:.15em;
-  font-weight:500;              /* più fino */
-  font-size:34px;
-  opacity: .95;
+  font-weight:500;
+  font-size:34px;                     /* regola qui */
+  opacity:.95;
 }
 
-/* Rimuove eventuale blocco autore se fosse rimasto */
+/* Nascondi eventuale blocco autore sotto il titolo */
 .paper-authors{ display:none !important; }
 
-/* Abstract – leggermente più compatto con nuovo titolo */
-.paper-abstract h2{ font-size:18px; }
+/* ---- Paragrafi e sezioni ---- */
+.paper-section p{ margin:.2em 0 .85em; text-align:justify; }
 
-/* ===== Riduci la dimensione dei titoli nelle altre pagine ===== */
-/* Pagine “single” (CV, post, pagine normali) */
-.single .post-title,
-.page .post-title,
-.post-title{
-  font-size: 34px !important;   /* default PaperMod è più grande */
-  line-height: 1.2;
-  font-weight: 700;
-  text-transform: none;
-}
-
-/* Pagine “list” (es. /blog) */
-.list .page-title,
-.page-title{
-  font-size: 28px !important;
-  line-height: 1.25;
-  font-weight: 700;
-  text-transform: none;
-}
-
-/* Responsivo: home title un po’ più piccolo su schermi stretti */
-@media (max-width: 900px){
-  .paper-title .name{ font-size: 34px; }
-  .paper-title .tagline{ font-size: 26px; }
-}
-.paper-authors{ text-align:center; margin-top:14px; font-size:18px; }
-.paper-author{ font-variant:small-caps; font-weight:600; }
-.paper-meta{ display:block; color:var(--muted); font-size:16px; margin-top:2px; }
-.paper-meta a{ color:inherit; text-decoration:underline; text-decoration-thickness:from-font; }
-
-/* ---- Paragrafi ---- */
-.paper-section p{ margin:.1em 0 .8em; text-align:justify; }
-
-/* ---- Numerazione sezioni ---- */
+/* Numerazione sezioni */
 .paper-section h2{
   counter-increment: section;
   font-weight:700; font-size:20px;
@@ -118,91 +95,63 @@ hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 }
 .paper-section h2::before{ content: counter(section) ". "; }
 
-/* ---- Abstract con immagine a sinistra (più ampia) ---- */
+/* ---- ABSTRACT: due colonne uguali, allineate in alto ---- */
+.paper-abstract h2{ font-size:18px; font-style:italic; margin:0 0 6px; }
 .paper-abstract-grid{
   display:grid;
-  grid-template-columns: 460px 1fr;   /* ← prima 360/340: allarga la colonna foto */
-  gap:32px;
-  align-items:start;
+  grid-template-columns: 1fr 1fr;     /* stessa larghezza */
+  gap: 32px;
 }
-.paper-portrait img{
-  display:block;
-  width:100%;
-  aspect-ratio: 16 / 9;     /* più largo: prova anche 3/2 se preferisci */
-  object-fit: cover;        /* riempie lo spazio ritagliando ai bordi */
-  object-position: 50% 25%; /* opzionale: sposta il focus (x%, y%) */
-  border:1px solid #d6d6d6;
-  box-shadow:0 2px 6px rgba(0,0,0,.05);
-}
-.paper-abstract h2{
-  margin:0 0 6px; font-size:18px; font-weight:700; font-style:italic;
-}
-.paper-abstract .abstract-text{
+.paper-abstract-grid > *{ align-self:start; } /* allinea immagine e testo in alto */
+.abstract-text{
   font-style:italic; color:#333; text-align:justify;
   border-left:3px solid #888; padding-left:1em;
 }
 
-/* ---- Figure & didascalie ---- */
-figure{ margin:0; }
-figcaption{
-  font-size:15px; color:#444; text-align:center; margin-top:.4em;
+/* Immagine abstract */
+.paper-portrait img{
+  display:block; width:100%;
+  aspect-ratio: 16 / 9;               /* 3/2 o 4/3 se vuoi più alta */
+  object-fit: cover;
+  object-position: 50% 25%;
+  border:1px solid #d6d6d6;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+  border-radius: 4px;
 }
 
-/* ---- Utility due colonne ---- */
-.twocol{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; align-items:start; }
+/* ---- INTRODUCTION: stessa griglia dell'Abstract ---- */
+.intro-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;     /* stessa larghezza */
+  gap: 32px;
+}
+.intro-grid p{ text-align:justify; margin:.2em 0 .85em; }
+
+/* ---- Figure & didascalie ---- */
+figure{ margin:0; }
+figcaption{ font-size:15px; color:#444; text-align:center; margin-top:.4em; }
+
+/* ---- Pagine diverse dalla home: riduci titoli ---- */
+:not(.paper-page) .post-title,
+:not(.paper-page) .page-header h1,
+:not(.paper-page) .page-title{
+  font-size:32px !important;          /* 30–34 */
+  line-height:1.2;
+  font-weight:700;
+  text-transform:none;
+  letter-spacing:.01em;
+}
 
 /* ---- Responsive ---- */
 @media (max-width: 1024px){
-  :root{ --content-width: 92vw; }     /* adatta su laptop piccoli */
-  .paper-abstract-grid{ grid-template-columns:1fr; }
+  :root{ --content-width: 92vw; }
+}
+@media (max-width: 900px){
+  .paper-title .name{ font-size:34px; }
+  .paper-title .tagline{ font-size:26px; }
+  .paper-abstract-grid,
+  .intro-grid{ grid-template-columns:1fr; }
 }
 @media (max-width:720px){
-  .paper-title{ font-size:23px; }
+  .paper-section h2{ font-size:19px; }
 }
-
-/* === Abstract: stessa altezza tra immagine e testo === */
-.equal-rows { align-items: stretch; }          /* estende entrambe le colonne */
-.abstract-panel{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.abstract-panel .abstract-text{
-  flex: 1 1 auto;               /* riempie la colonna */
-  display: block;
-}
-
-/* === Introduction a due colonne stile paper === */
-.two-col{
-  column-count: 2;
-  column-gap: 2rem;             /* spazio tra le colonne */
-  text-align: justify;
-}
-.two-col p{ break-inside: avoid; }  /* evita spaccature brutte nei paragrafi */
-
-/* Su schermi stretti torna a colonna singola */
-@media (max-width: 900px){
-  .two-col{ column-count: 1; }
-}
-
-/* === Video embed responsive (16:9) === */
-.video-embed{
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;        /* 16:9 */
-  background: #00000010;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-  margin-top: .5rem;
-}
-.video-embed iframe,
-.video-embed video{
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  display: block;
-  border: 0;
-}
-.video-note{ color:#555; font-size: 0.95rem; margin: 0 0 .4rem; }
-
