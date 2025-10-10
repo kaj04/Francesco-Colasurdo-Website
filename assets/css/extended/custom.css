@@ -29,25 +29,15 @@
 .goals-page th, .goals-page td { border: 1px solid var(--border); padding: .45rem .6rem; text-align: left; }
 .goals-page li { margin: .25rem 0; }
 
-/* Navbar: logo a sinistra, menu accanto, minuscolo e con spaziatura */
-.header .nav { justify-content: flex-start; }
-.header .logo img { width: 28px; height: 28px; display: block; }
-
-#menu {
-  margin-left: 12px;
-  display: flex;
-  gap: 16px;
-}
+/* ✅ Safe: lascia il layout del tema, solo piccoli ritocchi */
 #menu a {
-  text-transform: lowercase;
-  font-weight: 500;
+  text-transform: lowercase;   /* look tipo screenshot */
   letter-spacing: .1px;
-  padding: 0;
 }
 #menu a:hover { opacity: .85; }
-
-/* Attivo sottolineato (opzionale) */
+/* opzionale, sottolinea la voce attiva */
 #menu .active { border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
 
-/* Opzionale: riduci altezza della barra */
-.header { padding-top: .6rem; padding-bottom: .6rem; }
+/* (facoltativo) dimensione logo */
+.header .logo img { width: 28px; height: 28px; display: block; }
+
