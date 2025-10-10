@@ -51,18 +51,21 @@ jobs:
           mkdir -p content/goals
           OUT="content/goals/_index.html"
 
-          # Front matter + wrapper (niente heredoc)
+          # Front matter: abilita KaTeX
           printf '%s\n' \
             '---' \
             'title: "Actual Goals"' \
             'description: "Cose su cui sto lavorando"' \
+            'math: true' \
             '---' \
             '<div class="post-content">' > "$OUT"
 
+          # Conversione: KaTeX + numerazione sezioni + CSS "accademico"
           if [ -f latex/goals/goals.tex ]; then
             pandoc latex/goals/goals.tex -f latex -t html5 \
               --katex \
-              --css /Francesco-Colasurdo-Website/css/plain.css \
+              --number-sections \
+              --css /Francesco-Colasurdo-Website/css/goals.css \
               -o - >> "$OUT"
           else
             echo '<p>(Nessun latex/goals/goals.tex trovato.)</p>' >> "$OUT"
@@ -70,10 +73,8 @@ jobs:
 
           echo '</div>' >> "$OUT"
 
-          # Log di controllo nel job
-          echo "=== list content/goals ==="
+          # Log di controllo
           ls -la content/goals
-          echo "=== head of _index.html ==="
           head -n 40 "$OUT"
 
       - name: Assert Goals page exists
