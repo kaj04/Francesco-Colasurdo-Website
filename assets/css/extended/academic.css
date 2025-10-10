@@ -1,11 +1,13 @@
-/* Font serif leggibile da paper */
+/* =======================
+   Academic look (wide, no paper bg) — FULL FILE
+   ======================= */
+
+/* Font serif */
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap');
 
-/* ---- Variabili globali ----
-   PaperMod usa --content-width per il contenitore centrale.
-   La alziamo così si allarga DAVVERO la pagina. */
+/* ---- LARGHEZZA: forza il contenitore anche con PaperMod ---- */
 :root{
-  --content-width: 1320px;        /* <— aumenta a 1400/1500 se vuoi più largo */
+  --content-width: 1320px;          /* aumenta a 1400/1500 se vuoi ancora più largo */
   --page-max: var(--content-width);
   --text: #111;
   --muted:#555;
@@ -13,30 +15,34 @@
   --link:#004080;
 }
 
+/* Alcuni layout di PaperMod usano questi selettori:
+   allarghiamo tutto quando siamo nella home (_index.md -> pagina "list") */
+.list .main,
+.list .container,
+.list .post-content { max-width: var(--content-width) !important; }
+
+/* fallback generale nel dubbio */
+.main, .container, .post-content { max-width: var(--content-width); }
+
 /* ---- Base tipografica ---- */
 body{
   font-family:"Source Serif 4","Crimson Pro",Georgia,"Times New Roman",serif;
   color:var(--text);
-  background:transparent;         /* niente sfondo “carta” */
+  background:transparent;           /* niente sfondo “carta” */
   font-size:17.5px;
   line-height:1.55;
 }
 a{ color:var(--link); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-/* Allarga i contenuti dei post/pagine (PaperMod) */
-.post-content{
-  max-width: var(--content-width);
-}
-
-/* ---- Niente foglio bianco per la home in stile paper ---- */
+/* ---- Home in stile paper (senza foglio bianco) ---- */
 .paper-page{
-  max-width:var(--page-max);
+  max-width:var(--page-max) !important;
   margin:0 auto;
-  padding:24px 16px 56px;         /* meno margini laterali */
-  background:transparent;         /* rimuove il rettangolo bianco */
-  border:0;
-  box-shadow:none;
+  padding:24px 16px 56px;
+  background:transparent !important;   /* rimuove il rettangolo bianco */
+  border:0 !important;
+  box-shadow:none !important;
   counter-reset: section;
 }
 
@@ -44,7 +50,7 @@ a:hover{ text-decoration:underline; }
 .paper-rule{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 
-/* ---- Titoli front-matter in stile paper ---- */
+/* ---- Titoli ---- */
 .paper-title{
   text-align:center;
   text-transform:uppercase;
@@ -69,19 +75,16 @@ hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 }
 .paper-section h2::before{ content: counter(section) ". "; }
 
-/* ---- Abstract con immagine a sinistra (un po' più ampia) ---- */
+/* ---- Abstract con immagine a sinistra (più ampia) ---- */
 .paper-abstract-grid{
   display:grid;
-  grid-template-columns: 340px 1fr;  /* aumenta lo spazio per la foto */
+  grid-template-columns: 360px 1fr;   /* aumenta lo spazio per la foto */
   gap:32px;
   align-items:start;
 }
 .paper-portrait img{
-  width:100%;
-  aspect-ratio:4/3;
-  object-fit:cover;
-  border:1px solid #d6d6d6;
-  box-shadow:0 2px 6px rgba(0,0,0,.05);
+  width:100%; aspect-ratio:4/3; object-fit:cover;
+  border:1px solid #d6d6d6; box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
 .paper-abstract h2{
   margin:0 0 6px; font-size:18px; font-weight:700; font-style:italic;
@@ -97,12 +100,12 @@ figcaption{
   font-size:15px; color:#444; text-align:center; margin-top:.4em;
 }
 
-/* ---- Utility due colonne (per blocchi opzionali) ---- */
+/* ---- Utility due colonne ---- */
 .twocol{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; align-items:start; }
 
 /* ---- Responsive ---- */
 @media (max-width: 1024px){
-  :root{ --content-width: 92vw; }   /* riadatta su tablet/laptop piccoli */
+  :root{ --content-width: 92vw; }     /* adatta su laptop piccoli */
   .paper-abstract-grid{ grid-template-columns:1fr; }
 }
 @media (max-width:720px){
