@@ -1,0 +1,3 @@
+{{- $path := .Get 0 -}}
+{{- $url := (printf "%s" $path) | relURL -}}
+{{- $url -}}
