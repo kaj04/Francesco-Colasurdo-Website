@@ -7,7 +7,7 @@ on:
       - ".github/workflows/latex-to-html.yml"
 
 permissions:
-  contents: write   # <— consente il push con GITHUB_TOKEN
+  contents: write   # permette il push con GITHUB_TOKEN
 
 jobs:
   goals:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true   # <— usa il GITHUB_TOKEN per push
+          persist-credentials: true
 
       - name: Install pandoc + minimal TeX
         run: |
@@ -25,9 +25,13 @@ jobs:
           sudo apt-get install -y pandoc texlive-latex-base
 
       - name: Convert latex/goals/goals.tex -> content/goals/_index.html
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p content/goals
           OUT="content/goals/_index.html"
+
+          # Front matter + wrapper
           cat > "$OUT" <<'EOF'
 ---
 title: "Actual Goals"
@@ -35,6 +39,7 @@ description: "Cose su cui sto lavorando"
 ---
 <div class="post-content">
 EOF
+
           if [ -f latex/goals/goals.tex ]; then
             pandoc latex/goals/goals.tex -f latex -t html5 \
               --katex \
@@ -43,13 +48,17 @@ EOF
           else
             echo "<p>(Nessun latex/goals/goals.tex trovato.)</p>" >> "$OUT"
           fi
+
           echo '</div>' >> "$OUT"
 
       - name: Debug: show created files
         run: |
+          echo "=== git status ==="
           git status
+          echo "=== list content/goals ==="
           ls -la content/goals || true
-          head -n 30 content/goals/_index.html || true
+          echo "=== head of _index.html ==="
+          head -n 40 content/goals/_index.html || true
 
       - name: Commit & Push generated HTML
         run: |
