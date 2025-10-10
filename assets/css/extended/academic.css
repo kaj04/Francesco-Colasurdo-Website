@@ -1,0 +1,30 @@
+/* aspetto generale */
+.paper-page{ max-width:860px; margin:0 auto; padding:56px 24px 80px; }
+.paper-rule{ border:0; border-top:1px solid #d6d6d6; margin:28px 0; }
+
+/* titoli stile paper */
+.paper-title{ text-align:center; text-transform:uppercase; letter-spacing:.06em; font-weight:600; font-size:28px; margin:0; }
+.paper-authors{ text-align:center; margin-top:18px; font-size:18px; }
+.paper-author{ font-variant: small-caps; font-weight:600; }
+.paper-meta{ display:block; color:#555; font-size:16px; margin-top:2px; }
+.paper-meta a{ color:inherit; text-decoration:underline; }
+
+/* abstract con immagine a sinistra */
+.paper-abstract-grid{ display:grid; grid-template-columns:280px 1fr; gap:28px; align-items:start; }
+.paper-portrait img{ width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #d6d6d6; }
+.paper-abstract h2{ margin:0 0 6px; font-size:18px; font-weight:700; }
+.paper-abstract em{ font-style:italic; }
+.paper-section em{ font-style:italic; }
+.paper-section p{ text-align:justify; }
+
+/* numerazione sezioni (opzionale) */
+.paper-section h2{ counter-increment: section; font-weight:700; font-size:22px; margin:20px 0 6px; }
+.paper-page{ counter-reset: section; }
+.paper-section h2::before{ content: counter(section) ". "; }
+
+/* responsive */
+@media (max-width:720px){
+  .paper-abstract-grid{ grid-template-columns:1fr; }
+  .paper-page{ padding:36px 18px 56px; }
+  .paper-title{ font-size:24px; }
+}
