@@ -78,13 +78,18 @@ hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 /* ---- Abstract con immagine a sinistra (più ampia) ---- */
 .paper-abstract-grid{
   display:grid;
-  grid-template-columns: 360px 1fr;   /* aumenta lo spazio per la foto */
+  grid-template-columns: 460px 1fr;   /* ← prima 360/340: allarga la colonna foto */
   gap:32px;
   align-items:start;
 }
 .paper-portrait img{
-  width:100%; aspect-ratio:4/3; object-fit:cover;
-  border:1px solid #d6d6d6; box-shadow:0 2px 6px rgba(0,0,0,.05);
+  display:block;
+  width:100%;
+  aspect-ratio: 16 / 9;     /* più largo: prova anche 3/2 se preferisci */
+  object-fit: cover;        /* riempie lo spazio ritagliando ai bordi */
+  object-position: 50% 25%; /* opzionale: sposta il focus (x%, y%) */
+  border:1px solid #d6d6d6;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
 .paper-abstract h2{
   margin:0 0 6px; font-size:18px; font-weight:700; font-style:italic;
