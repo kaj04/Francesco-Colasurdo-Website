@@ -9,7 +9,7 @@ title: "Francesco Colasurdo — Personal Shared Web-Space"
     <div class="paper-authors">
       <span class="paper-author">Francesco Colasurdo</span>
       <span class="paper-meta">
-        <a href="mailto:francescocolasurdo04@gmail.com">francescocolasurdo04@gmail.com</a> · Eindhoven, Netherlands
+        <a href="mailto:francesco.colasurdo04@gmail.com">francesco.colasurdo04@gmail.com</a> · Eindhoven, Netherlands
       </span>
     </div>
   </header>
