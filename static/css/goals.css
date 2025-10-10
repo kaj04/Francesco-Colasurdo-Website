@@ -1,0 +1,42 @@
+/* goals.css — stile accademico per /goals/ */
+.post-content {
+  font-family: "Georgia", "Times New Roman", serif;
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+/* Nascondi il titolo enorme del tema (opzionale) */
+.single .post-title { display: none; }
+
+.post-content h1, .post-content h2, .post-content h3 {
+  color: #eaeaea;
+  margin: 1.1rem 0 .6rem;
+  font-weight: 600;
+}
+
+/* Abstract LaTeX-like */
+.post-content .abstract {
+  font-style: italic;
+  color: #cfcfcf;
+  border-left: 3px solid #444;
+  padding: .6rem .8rem;
+  margin: .6rem 0 1rem;
+}
+
+/* Tabelle “paper” */
+.post-content table {
+  border-collapse: collapse;
+  margin: .8rem auto;
+  width: 100%;
+  font-size: 0.98rem;
+}
+.post-content th, .post-content td {
+  border: 1px solid #444;
+  padding: .45rem .6rem;
+  text-align: left;
+}
+
+/* KaTeX: rendi il math coerente col corpo */
+.katex { font-size: 1.02rem; }
