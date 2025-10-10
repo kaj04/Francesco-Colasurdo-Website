@@ -7,8 +7,8 @@
   font-size: 1.02rem;
 }
 
-/* Nascondo il titolo enorme del tema per avere un titolo "da paper" nel contenuto */
-.single .post-title { display: none; }
+/* (Valuta se tenerla: nasconde i titoli in tutte le pagine singole) */
+/* .single .post-title { display: none; } */
 
 /* Titoli e gerarchia più sobri */
 .goals-page h1 { font-size: 1.6rem; font-weight: 600; margin: 1.2rem 0 .6rem; }
@@ -24,7 +24,30 @@
   color: var(--secondary);
 }
 
-/* Liste ordinate e tabelle con stile sobrio */
+/* Liste e tabelle sobrie */
 .goals-page table { border-collapse: collapse; width: 100%; margin: .8rem 0; }
 .goals-page th, .goals-page td { border: 1px solid var(--border); padding: .45rem .6rem; text-align: left; }
 .goals-page li { margin: .25rem 0; }
+
+/* Navbar: logo a sinistra, menu accanto, minuscolo e con spaziatura */
+.header .nav { justify-content: flex-start; }
+.header .logo img { width: 28px; height: 28px; display: block; }
+
+#menu {
+  margin-left: 12px;
+  display: flex;
+  gap: 16px;
+}
+#menu a {
+  text-transform: lowercase;
+  font-weight: 500;
+  letter-spacing: .1px;
+  padding: 0;
+}
+#menu a:hover { opacity: .85; }
+
+/* Attivo sottolineato (opzionale) */
+#menu .active { border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+
+/* Opzionale: riduci altezza della barra */
+.header { padding-top: .6rem; padding-bottom: .6rem; }
