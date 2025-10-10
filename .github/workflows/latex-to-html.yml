@@ -1,30 +1,30 @@
-name: Convert LaTeX Goals to HTML
+name: Build LaTeX (Goals)
 on:
   push:
     branches: ["main"]
     paths:
-      - "latex/goals/goals.tex"
+      - "latex/**"
       - ".github/workflows/latex-to-html.yml"
 
 permissions:
-  contents: write   # <--- abilita il push con GITHUB_TOKEN
+  contents: write   # consente il push con GITHUB_TOKEN
 
 jobs:
-  build-goals:
+  goals:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true   # usa GITHUB_TOKEN per push
+          persist-credentials: true
 
-      - name: Install Pandoc and LaTeX
+      - name: Install pandoc + minimal TeX
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc texlive-latex-base
 
-      - name: Convert goals.tex → content/goals/_index.html
+      - name: Convert latex/goals/goals.tex -> content/goals/_index.html
         run: |
           mkdir -p content/goals
           OUT="content/goals/_index.html"
@@ -35,18 +35,30 @@ description: "Cose su cui sto lavorando"
 ---
 <div class="post-content">
 EOF
-          pandoc latex/goals/goals.tex -f latex -t html5 \
-            --katex \
-            --css /Francesco-Colasurdo-Website/css/plain.css \
-            -o - >> "$OUT"
+          if [ -f latex/goals/goals.tex ]; then
+            pandoc latex/goals/goals.tex -f latex -t html5 \
+              --katex \
+              --css /Francesco-Colasurdo-Website/css/plain.css \
+              -o - >> "$OUT"
+          else
+            echo "<p>(Nessun latex/goals/goals.tex trovato.)</p>" >> "$OUT"
+          fi
           echo '</div>' >> "$OUT"
+
+      - name: Debug: show created files
+        run: |
+          echo "=== git status ==="
+          git status
+          echo "=== tree content/goals ==="
+          ls -la content/goals || true
+          echo "=== head of _index.html ==="
+          head -n 40 content/goals/_index.html || true
 
       - name: Commit generated HTML
         run: |
-          if [ -n "$(git status --porcelain content/goals/_index.html)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add content/goals/_index.html
-            git commit -m "Auto-update Goals from LaTeX"
-            git push origin HEAD:main
-          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/goals/_index.html
+          # commit solo se ci sono cambi
+          git commit -m "Build /goals from LaTeX" || echo "No changes to commit"
+          git push origin HEAD:main
