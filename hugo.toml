@@ -25,7 +25,7 @@ title = "Francesco Colasurdo"
 
   [params.label]
     text = ""            
-    icon = "Logo-Website-Francesco.svg"    
+    icon = "/Francesco-Colasurdo-Website/Logo-Website-Francesco.svg"
     iconHeight = 56      
 
 [markup]
