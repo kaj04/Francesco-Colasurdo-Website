@@ -40,10 +40,10 @@ title = "Francesco Colasurdo"
     url = "/blog/"
     weight = 3
 
-  [[menu.main]]
-    name = "Timeline"
-    url = "/timeline/"
-    weight = 4
+  #[[menu.main]]
+  #  name = "Timeline"
+  #  url = "/timeline/"
+  #  weight = 4
 
   [[menu.main]]
     name = "Goals"
