@@ -1,33 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&display=swap');
-body{ font-family: "Crimson Pro", Georgia, "Times New Roman", serif; }
+/* ====== Academic paper look (ACM-like) ====== */
+/* Font serif leggibile e “da paper” */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap');
+:root{
+  --page-max: 960px;
+  --text: #111;
+  --muted:#555;
+  --rule:#bdbdbd;
+  --paper:#fcfcfc; /* carta leggermente avorio */
+  --link:#004080;
+}
 
-/* aspetto generale */
-.paper-page{ max-width:860px; margin:0 auto; padding:56px 24px 80px; }
-.paper-rule{ border:0; border-top:1px solid #d6d6d6; margin:28px 0; }
+/* Base */
+body{
+  font-family:"Source Serif 4", "Crimson Pro", Georgia, "Times New Roman", serif;
+  color:var(--text);
+  background:var(--paper);
+  font-size:17.5px;
+  line-height:1.55;
+}
+a{ color:var(--link); text-decoration:none; }
+a:hover{ text-decoration:underline; }
 
-/* titoli stile paper */
-.paper-title{ text-align:center; text-transform:uppercase; letter-spacing:.06em; font-weight:600; font-size:28px; margin:0; }
-.paper-authors{ text-align:center; margin-top:18px; font-size:18px; }
-.paper-author{ font-variant: small-caps; font-weight:600; }
-.paper-meta{ display:block; color:#555; font-size:16px; margin-top:2px; }
-.paper-meta a{ color:inherit; text-decoration:underline; }
+/* Pagina “stampata” */
+.paper-page{
+  max-width:var(--page-max); margin:0 auto;
+  padding:48px 40px 72px;
+  background:#fff;
+  border:1px solid #e6e6e6;
+  box-shadow:0 0 8px rgba(0,0,0,.05);
+  counter-reset: section;
+}
 
-/* abstract con immagine a sinistra */
-.paper-abstract-grid{ display:grid; grid-template-columns:280px 1fr; gap:28px; align-items:start; }
-.paper-portrait img{ width:100%; aspect-ratio:4/3; object-fit:cover; border:1px solid #d6d6d6; }
-.paper-abstract h2{ margin:0 0 6px; font-size:18px; font-weight:700; }
-.paper-abstract em{ font-style:italic; }
-.paper-section em{ font-style:italic; }
-.paper-section p{ text-align:justify; }
+/* Separatori */
+.paper-rule{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
+hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 
-/* numerazione sezioni (opzionale) */
-.paper-section h2{ counter-increment: section; font-weight:700; font-size:22px; margin:20px 0 6px; }
-.paper-page{ counter-reset: section; }
+/* Titoli */
+.paper-title{
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-weight:700;
+  font-size:26px;
+  margin:0 0 .25em;
+}
+.paper-authors{ text-align:center; margin-top:14px; font-size:18px; }
+.paper-author{ font-variant:small-caps; font-weight:600; }
+.paper-meta{ display:block; color:var(--muted); font-size:16px; margin-top:2px; }
+.paper-meta a{ color:inherit; text-decoration:underline; text-decoration-thickness:from-font; }
+
+/* Paragrafi */
+.paper-section p{ margin:.1em 0 .8em; text-align:justify; }
+
+/* Numerazione sezioni */
+.paper-section h2{
+  counter-increment: section;
+  font-weight:700; font-size:20px;
+  margin:18px 0 6px;
+}
 .paper-section h2::before{ content: counter(section) ". "; }
 
-/* responsive */
+/* Abstract con immagine a sinistra */
+.paper-abstract-grid{
+  display:grid; grid-template-columns:280px 1fr; gap:24px; align-items:start;
+}
+.paper-portrait img{
+  width:100%; aspect-ratio:4/3; object-fit:cover;
+  border:1px solid #d6d6d6; box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+.paper-abstract h2{
+  margin:0 0 6px; font-size:18px; font-weight:700; font-style:italic;
+}
+.paper-abstract .abstract-text{
+  font-style:italic; color:#333; text-align:justify;
+  border-left:3px solid #888; padding-left:1em;
+}
+
+/* Figure & didascalie in stile paper */
+figure{ margin:0; }
+figcaption{
+  font-size:15px; color:#444; text-align:center; margin-top:.4em;
+}
+
+/* Utility due colonne (per blocchi opzionali) */
+.twocol{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; align-items:start; }
+@media (max-width:800px){ .twocol{ grid-template-columns:1fr; } }
+
+/* Responsive generale */
 @media (max-width:720px){
   .paper-abstract-grid{ grid-template-columns:1fr; }
-  .paper-page{ padding:36px 18px 56px; }
-  .paper-title{ font-size:24px; }
+  .paper-page{ padding:32px 18px 48px; }
+  .paper-title{ font-size:23px; }
 }
