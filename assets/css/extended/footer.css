@@ -1,0 +1,20 @@
+.fc-footer{
+  margin-top: 48px;
+  border-top: 1px solid #e0e0e0;
+  padding: 18px 0;
+  font-size: 15.5px;
+  color: #444;
+}
+.fc-footer__inner{
+  max-width: var(--content-width, 860px);
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+}
+.fc-link{
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(0,0,0,.35);
+  margin-left: 6px;
+}
+.fc-link:hover{ text-decoration: underline; }
+.fc-sep{ margin: 0 8px; opacity: .6; }
