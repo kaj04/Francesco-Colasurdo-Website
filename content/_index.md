@@ -11,6 +11,7 @@ title: "Home"
     </h1>
   </header>
 
+  <!-- due righe sottili -->
   <hr class="paper-rule double-rule" />
 
   <!-- ABSTRACT -->
@@ -28,7 +29,9 @@ title: "Home"
             convallis dapibus, metus metus ultricies nibh, at tincidunt ex nisl in massa. Vivamus
             commodo, magna at gravida laoreet, tortor augue laoreet justo, sed rhoncus mi nisl non
             est. Cras sed felis id risus varius finibus. Phasellus tristique, mauris sit amet
-            vestibulum varius, nisl arcu placerat massa, vitae luctus ligula sapien a lorem.
+            vestibulum varius, nisl arcu placerat massa, vitae luctus ligula sapien a lorem. Sed
+            luctus, urna non maximus gravida, urna ante vehicula ante, eu facilisis risus nunc nec
+            lacus.
           </em></p>
         </div>
       </div>
@@ -53,14 +56,14 @@ title: "Home"
       nibh fermentum lorem, vitae pellentesque arcu ipsum a velit. Curabitur at justo ac elit
       feugiat laoreet. Aliquam luctus, mi ut efficitur vestibulum, sem arcu varius nibh, id ornare
       massa nulla a neque. Integer bibendum, nibh in mattis tempus, lorem metus volutpat augue,
-      quis gravida quam sem sed tortor.
+      quis gravida quam sem sed tortor. Quisque nec sem id lectus semper finibus.
     </p>
     <p>
-      Quisque nec sem id lectus semper finibus. Phasellus facilisis, magna sit amet commodo
-      malesuada, risus velit tincidunt arcu, vitae dictum quam nunc vitae sem. Pellentesque vitae
-      orci at purus ultrices sagittis. Ut feugiat euismod odio, sit amet volutpat nibh tincidunt
-      id. Donec ullamcorper finibus tortor, in congue augue dictum eu. Integer sodales, purus nec
-      consequat pharetra, ipsum orci commodo nunc, at tempus urna metus sed sapien.
+      Phasellus facilisis, magna sit amet commodo malesuada, risus velit tincidunt arcu, vitae
+      dictum quam nunc vitae sem. Pellentesque vitae orci at purus ultrices sagittis. Ut feugiat
+      euismod odio, sit amet volutpat nibh tincidunt id. Donec ullamcorper finibus tortor, in
+      congue augue dictum eu. Integer sodales, purus nec consequat pharetra, ipsum orci commodo
+      nunc, at tempus urna metus sed sapien.
     </p>
   </section>
 
