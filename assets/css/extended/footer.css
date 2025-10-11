@@ -18,3 +18,8 @@
 }
 .fc-link:hover{ text-decoration: underline; }
 .fc-sep{ margin: 0 8px; opacity: .6; }
+
+/* Nasconde il footer default di PaperMod (© … Powered by …) */
+.footer { 
+  display: none !important;
+}
