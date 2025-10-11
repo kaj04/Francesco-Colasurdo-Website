@@ -152,6 +152,19 @@ figcaption{ font-size:15px; color:#444; text-align:center; margin-top:.4em; }
   .paper-abstract-grid,
   .intro-grid{ grid-template-columns:1fr; }
 }
+
+/* Abstract: testa del testo allineata alla foto */
+.paper-abstract-grid{ align-items: start; }     /* bordi superiori allineati */
+.abstract-panel{ padding-top: 6px; }            /* micro-compensazione; alza/abbassa se serve */
+.abstract-panel h2{ margin-top: 0; }
+
+/* Rimuovi la numerazione per gli h2 marcati come .no-number */
+.paper-section h2.no-number::before{
+  content: none;             /* niente "1." */
+  counter-increment: none;
+  margin: 0;
+}
+
 @media (max-width:720px){
   .paper-section h2{ font-size:19px; }
 }
