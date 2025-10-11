@@ -7,11 +7,11 @@
 
 /* ---- Larghezza contenitore ---- */
 :root{
-  --content-width: 1320px;             /* ↑ aumenta a 1400/1500 se vuoi più largo */
+  --content-width: 1320px;          /* ↑ aumenta a 1400/1500 se vuoi più largo */
   --page-max: var(--content-width);
   --text: #111;
   --muted:#555;
-  --rule:#bdbdbd;
+  --rule:#d6d6d6;                    /* grigio chiaro per linee */
   --link:#004080;
 }
 
@@ -23,7 +23,7 @@
 body{
   font-family:"Source Serif 4","Crimson Pro",Georgia,"Times New Roman",serif;
   color:var(--text);
-  background:transparent;             /* niente sfondo “carta” */
+  background:transparent;            /* niente sfondo “carta” */
   font-size:17.5px;
   line-height:1.55;
 }
@@ -44,7 +44,7 @@ a:hover{ text-decoration:underline; }
 /* ---- Separatori ---- */
 .paper-rule{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 
-/* Doppia linea sotto il titolo */
+/* Doppia linea sottile sotto il titolo */
 .paper-rule.double-rule{
   position: relative;
   height: 8px;
@@ -71,13 +71,13 @@ a:hover{ text-decoration:underline; }
 .paper-title .name{
   display:block;
   font-weight:800;
-  font-size:42px;                     /* regola qui */
+  font-size:42px;                    /* regola qui */
 }
 .paper-title .tagline{
   display:block;
   margin-top:.15em;
   font-weight:500;
-  font-size:34px;                     /* regola qui */
+  font-size:34px;                    /* regola qui */
   opacity:.95;
 }
 
@@ -87,7 +87,7 @@ a:hover{ text-decoration:underline; }
 /* ---- Paragrafi e sezioni ---- */
 .paper-section p{ margin:.2em 0 .85em; text-align:justify; }
 
-/* Numerazione sezioni */
+/* Numerazione sezioni (disattivabile con .no-number) */
 .paper-section h2{
   counter-increment: section;
   font-weight:700; font-size:20px;
@@ -99,33 +99,33 @@ a:hover{ text-decoration:underline; }
 .paper-abstract h2{ font-size:18px; font-style:italic; margin:0 0 6px; }
 .paper-abstract-grid{
   display:grid;
-  grid-template-columns: 1fr 1fr;     /* stessa larghezza */
+  grid-template-columns: 1fr 1fr;    /* stessa larghezza */
   gap: 32px;
+  align-items: start;                 /* allinea in alto immagine + testo */
 }
-.paper-abstract-grid > *{ align-self:start; } /* allinea immagine e testo in alto */
+/* bordo verticale sottile e grigio chiaro */
 .abstract-text{
   font-style:italic; color:#333; text-align:justify;
-  border-left:3px solid #888; padding-left:1em;
+  border-left:1px solid var(--rule);
+  padding-left:.9em;
 }
+/* micro-allineamento del testo con la foto */
+.abstract-panel{ padding-top: 8px; }
+.abstract-panel h2{ margin-top:0; }
 
 /* Immagine abstract */
 .paper-portrait img{
   display:block; width:100%;
-  aspect-ratio: 16 / 9;               /* 3/2 o 4/3 se vuoi più alta */
+  aspect-ratio: 16 / 9;              /* 3/2 o 4/3 se la vuoi più alta */
   object-fit: cover;
   object-position: 50% 25%;
-  border:1px solid #d6d6d6;
+  border:1px solid var(--rule);
   box-shadow:0 2px 6px rgba(0,0,0,.05);
   border-radius: 4px;
 }
 
-/* ---- INTRODUCTION: stessa griglia dell'Abstract ---- */
-.intro-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;     /* stessa larghezza */
-  gap: 32px;
-}
-.intro-grid p{ text-align:justify; margin:.2em 0 .85em; }
+/* ---- INTRODUCTION (solo testo normale per ora) ---- */
+/* Se in futuro vuoi due colonne, possiamo aggiungere una griglia dedicata. */
 
 /* ---- Figure & didascalie ---- */
 figure{ margin:0; }
@@ -135,7 +135,7 @@ figcaption{ font-size:15px; color:#444; text-align:center; margin-top:.4em; }
 :not(.paper-page) .post-title,
 :not(.paper-page) .page-header h1,
 :not(.paper-page) .page-title{
-  font-size:32px !important;          /* 30–34 */
+  font-size:32px !important;         /* 30–34 */
   line-height:1.2;
   font-weight:700;
   text-transform:none;
@@ -149,22 +149,15 @@ figcaption{ font-size:15px; color:#444; text-align:center; margin-top:.4em; }
 @media (max-width: 900px){
   .paper-title .name{ font-size:34px; }
   .paper-title .tagline{ font-size:26px; }
-  .paper-abstract-grid,
-  .intro-grid{ grid-template-columns:1fr; }
+  .paper-abstract-grid{ grid-template-columns:1fr; }
 }
-
-/* Abstract: testa del testo allineata alla foto */
-.paper-abstract-grid{ align-items: start; }     /* bordi superiori allineati */
-.abstract-panel{ padding-top: 6px; }            /* micro-compensazione; alza/abbassa se serve */
-.abstract-panel h2{ margin-top: 0; }
-
-/* Rimuovi la numerazione per gli h2 marcati come .no-number */
-.paper-section h2.no-number::before{
-  content: none;             /* niente "1." */
-  counter-increment: none;
-  margin: 0;
-}
-
 @media (max-width:720px){
   .paper-section h2{ font-size:19px; }
+}
+
+/* ---- Rimuovi numerazione quando usi .no-number ---- */
+.paper-section h2.no-number::before{
+  content: none !important;
+  counter-increment: none;
+  margin: 0;
 }
