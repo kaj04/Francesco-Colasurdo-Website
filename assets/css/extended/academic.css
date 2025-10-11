@@ -165,3 +165,38 @@ figcaption{ font-size:15px; color:#444; text-align:center; margin-top:.4em; }
   counter-increment: none;
   margin: 0;
 }
+
+/* ====== HOME: titolo più piccolo e compatto rispetto alla navbar ====== */
+.paper-page{ padding-top: 10px; }                /* meno spazio dall'header */
+.paper-header{ margin-top: 4px; }                /* ulteriore micro-taglio */
+.paper-title{
+  margin: 0 0 .2em;                              /* compatta */
+}
+.paper-title .name{ font-size: 36px; }           /* prima 42px */
+.paper-title .tagline{ font-size: 28px; }        /* prima 34px */
+
+/* Doppia riga sotto il titolo: meno aria */
+.paper-rule.double-rule{
+  height: 6px;
+  margin: 10px 0 16px;                           /* prima 18px 0 26px */
+}
+
+/* ====== ALTRE PAGINE (CV, blog, post, ecc.): titoli più piccoli ====== */
+:not(.paper-page) .post-title,
+:not(.paper-page) .page-header h1,
+:not(.paper-page) .page-title{
+  font-size: 28px !important;                    /* prima 32px */
+  line-height: 1.2;
+  margin: 6px 0 12px;                            /* compatta verticalmente */
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: .01em;
+}
+
+/* Sottotitoli un filo più sobri ovunque */
+.paper-section h2{ font-size: 19px; }            /* prima 20px */
+@media (max-width: 900px){
+  .paper-title .name{ font-size: 30px; }
+  .paper-title .tagline{ font-size: 24px; }
+}
+
