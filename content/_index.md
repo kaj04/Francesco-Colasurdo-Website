@@ -18,7 +18,7 @@ title: "Home"
   <section class="paper-abstract">
     <div class="paper-abstract-grid">
       <figure class="paper-portrait">
-        <img src="{{ "Image-Home.jpeg" | relURL }}" alt="Francesco Colasurdo" />
+        <img src="/Francesco-Colasurdo-Website/Image-Home.jpeg" alt="Francesco Colasurdo">
       </figure>
       <div class="abstract-panel">
         <h2><em>Abstract</em></h2>
