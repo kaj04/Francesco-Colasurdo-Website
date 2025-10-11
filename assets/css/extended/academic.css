@@ -7,7 +7,7 @@
 
 /* ---- Larghezza contenitore ---- */
 :root{
-  --content-width: 1320px;          /* ↑ aumenta a 1400/1500 se vuoi più largo */
+  --content-width: 1320px;          /* ↑ 1400/1500 per più larghezza */
   --page-max: var(--content-width);
   --text: #111;
   --muted:#555;
@@ -18,6 +18,13 @@
 /* Forza davvero la larghezza con PaperMod */
 .list .main, .list .container, .list .post-content { max-width: var(--content-width) !important; }
 .main, .container, .post-content { max-width: var(--content-width); }
+
+/* ---- Compattazione spazio sotto la navbar (PaperMod) ---- */
+main.main, .main      { padding-top: 6px !important; }
+.container            { padding-top: 0 !important; }
+.list main.main       { padding-top: 6px !important; }
+.list .page-header,
+.list .content        { margin-top: 0 !important; }
 
 /* ---- Base tipografica ---- */
 body{
@@ -34,7 +41,7 @@ a:hover{ text-decoration:underline; }
 .paper-page{
   max-width:var(--page-max);
   margin:0 auto;
-  padding:24px 16px 56px;
+  padding:8px 16px 48px;             /* top più corto */
   background:transparent;
   border:0;
   box-shadow:none;
@@ -44,44 +51,44 @@ a:hover{ text-decoration:underline; }
 /* ---- Separatori ---- */
 .paper-rule{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 
-/* Doppia linea SOTTILE sotto il titolo (sempre due righe) */
+/* Doppia linea SOTTILE sotto il titolo */
 .paper-rule.double-rule{
   position: relative;
-  display: block;                 /* evita comportamenti speciali di <hr> */
-  height: 10px;                   /* distanza tra le due righe */
-  margin: 18px 0 26px;
-  border: 0 !important;           /* annulla qualunque bordo ereditato */
+  display: block;                    /* evita comportamenti speciali di <hr> */
+  height: 6px;                       /* distanza verticale tra le due righe */
+  margin: 8px 0 14px;                /* poco spazio */
+  border: 0 !important;
   background: transparent !important;
 }
 .paper-rule.double-rule::before,
 .paper-rule.double-rule::after{
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  height: 1px;                    /* spessore delle righe */
-  background: var(--rule);        /* grigio chiaro */
+  content:"";
+  position:absolute; left:0; right:0;
+  height:1px;                        /* spessore righe */
+  background:var(--rule);
 }
-.paper-rule.double-rule::before{ top: 0; }
-.paper-rule.double-rule::after{ bottom: 0; }
+.paper-rule.double-rule::before{ top:0; }
+.paper-rule.double-rule::after { bottom:0; }
 
-/* ---- Titolo home su due righe ---- */
+/* ---- Titolo home su due righe (più compatto) ---- */
+.paper-header{ margin-top:0 !important; }
 .paper-title{
   text-align:center;
   letter-spacing:.02em;
-  margin: 0 0 0.25em;
-  line-height: 1.1;
+  margin:0 0 .2em;                   /* compatta */
+  line-height:1.1;
   text-transform:none;
 }
 .paper-title .name{
   display:block;
   font-weight:800;
-  font-size:42px;                    /* regola qui */
+  font-size:36px;                    /* prima 42px */
 }
 .paper-title .tagline{
   display:block;
-  margin-top:.15em;
+  margin-top:.12em;
   font-weight:500;
-  font-size:34px;                    /* regola qui */
+  font-size:28px;                    /* prima 34px */
   opacity:.95;
 }
 
@@ -94,18 +101,22 @@ a:hover{ text-decoration:underline; }
 /* Numerazione sezioni (disattivabile con .no-number) */
 .paper-section h2{
   counter-increment: section;
-  font-weight:700; font-size:20px;
-  margin:18px 0 6px;
+  font-weight:700; font-size:19px;
+  margin:16px 0 6px;
 }
 .paper-section h2::before{ content: counter(section) ". "; }
+.paper-section h2.no-number::before{
+  content:none !important;
+  counter-increment:none;
+}
 
 /* ---- ABSTRACT: due colonne uguali, allineate in alto ---- */
 .paper-abstract h2{ font-size:18px; font-style:italic; margin:0 0 6px; }
 .paper-abstract-grid{
   display:grid;
-  grid-template-columns: 1fr 1fr;    /* stessa larghezza */
-  gap: 32px;
-  align-items: start;                 /* allinea in alto immagine + testo */
+  grid-template-columns:1fr 1fr;     /* stessa larghezza */
+  gap:32px;
+  align-items:start;                 /* allinea in alto immagine + testo */
 }
 /* bordo verticale sottile e grigio chiaro */
 .abstract-text{
@@ -114,22 +125,19 @@ a:hover{ text-decoration:underline; }
   padding-left:.9em;
 }
 /* micro-allineamento del testo con la foto */
-.abstract-panel{ padding-top: 8px; }
+.abstract-panel{ padding-top:8px; }
 .abstract-panel h2{ margin-top:0; }
 
 /* Immagine abstract */
 .paper-portrait img{
   display:block; width:100%;
-  aspect-ratio: 16 / 9;              /* 3/2 o 4/3 se la vuoi più alta */
-  object-fit: cover;
-  object-position: 50% 25%;
+  aspect-ratio:16 / 9;               /* 3/2 o 4/3 se la vuoi più alta */
+  object-fit:cover;
+  object-position:50% 25%;
   border:1px solid var(--rule);
   box-shadow:0 2px 6px rgba(0,0,0,.05);
-  border-radius: 4px;
+  border-radius:4px;
 }
-
-/* ---- INTRODUCTION (solo testo normale per ora) ---- */
-/* Se in futuro vuoi due colonne, possiamo aggiungere una griglia dedicata. */
 
 /* ---- Figure & didascalie ---- */
 figure{ margin:0; }
@@ -139,64 +147,23 @@ figcaption{ font-size:15px; color:#444; text-align:center; margin-top:.4em; }
 :not(.paper-page) .post-title,
 :not(.paper-page) .page-header h1,
 :not(.paper-page) .page-title{
-  font-size:32px !important;         /* 30–34 */
+  font-size:28px !important;
   line-height:1.2;
+  margin:6px 0 12px;                 /* compattato */
   font-weight:700;
   text-transform:none;
   letter-spacing:.01em;
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 1024px){
+@media (max-width:1024px){
   :root{ --content-width: 92vw; }
 }
-@media (max-width: 900px){
-  .paper-title .name{ font-size:34px; }
-  .paper-title .tagline{ font-size:26px; }
+@media (max-width:900px){
+  .paper-title .name{ font-size:30px; }
+  .paper-title .tagline{ font-size:24px; }
   .paper-abstract-grid{ grid-template-columns:1fr; }
 }
 @media (max-width:720px){
-  .paper-section h2{ font-size:19px; }
+  .paper-section h2{ font-size:18px; }
 }
-
-/* ---- Rimuovi numerazione quando usi .no-number ---- */
-.paper-section h2.no-number::before{
-  content: none !important;
-  counter-increment: none;
-  margin: 0;
-}
-
-/* ====== HOME: titolo più piccolo e compatto rispetto alla navbar ====== */
-.paper-page{ padding-top: 10px; }                /* meno spazio dall'header */
-.paper-header{ margin-top: 4px; }                /* ulteriore micro-taglio */
-.paper-title{
-  margin: 0 0 .2em;                              /* compatta */
-}
-.paper-title .name{ font-size: 36px; }           /* prima 42px */
-.paper-title .tagline{ font-size: 28px; }        /* prima 34px */
-
-/* Doppia riga sotto il titolo: meno aria */
-.paper-rule.double-rule{
-  height: 6px;
-  margin: 10px 0 16px;                           /* prima 18px 0 26px */
-}
-
-/* ====== ALTRE PAGINE (CV, blog, post, ecc.): titoli più piccoli ====== */
-:not(.paper-page) .post-title,
-:not(.paper-page) .page-header h1,
-:not(.paper-page) .page-title{
-  font-size: 28px !important;                    /* prima 32px */
-  line-height: 1.2;
-  margin: 6px 0 12px;                            /* compatta verticalmente */
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: .01em;
-}
-
-/* Sottotitoli un filo più sobri ovunque */
-.paper-section h2{ font-size: 19px; }            /* prima 20px */
-@media (max-width: 900px){
-  .paper-title .name{ font-size: 30px; }
-  .paper-title .tagline{ font-size: 24px; }
-}
-
