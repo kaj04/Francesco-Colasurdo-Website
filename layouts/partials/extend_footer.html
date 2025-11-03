@@ -6,3 +6,6 @@
     <a class="fc-link" href="https://www.linkedin.com/in/francesco-colasurdo" target="_blank" rel="noopener me">LinkedIn</a>
   </div>
 </footer>
+
+{{ $chat := resources.Get "js/extended/chat-widget.js" | js.Build "chat-widget.js" | minify | fingerprint }}
+<script type="text/javascript" src="{{ $chat.Permalink }}"></script>
