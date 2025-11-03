@@ -64,7 +64,6 @@
       const res = await fetch(`${API_BASE}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({
           question: text,
           conversation_id: conversationId || null
