@@ -1,6 +1,6 @@
 (function(){
   // CONFIG: metti qui l'URL pubblico del tuo backend
-  const API_BASE = "https://<il-tuo-backend>/api";     // es: https://cv-assistant.onrender.com/api
+  const API_BASE = "https://cv-assistant-backend-jb20.onrender.com/api";
   let conversationId = localStorage.getItem("fc_conversation_id") || null;
 
   // UI: bottone + pannello
@@ -60,30 +60,39 @@
     thinking.textContent = "…";
     document.getElementById("fc-chat-body").appendChild(thinking);
 
-    try{
+    try {
       const res = await fetch(`${API_BASE}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ message: text, conversation_id: conversationId })
+        body: JSON.stringify({
+          question: text,
+          conversation_id: conversationId || null
+        })
       });
+
       if(!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
+
       thinking.remove();
-      addMessage(data.reply || "(nessuna risposta)", "bot");
+      addMessage(data.answer ?? data.reply ?? "(nessuna risposta)", "bot");
+
       if(data.conversation_id){
         conversationId = data.conversation_id;
         localStorage.setItem("fc_conversation_id", conversationId);
       }
-    }catch(err){
+
+    } catch(err){
       thinking.remove();
       addMessage("Errore di rete. Riprova più tardi.", "bot");
-      // opzionale: console.error(err);
+      console.error("Chat widget error:", err);
     }
   }
 
   // init
   if(document.readyState === "loading"){
     document.addEventListener("DOMContentLoaded", ensureUI);
-  } else { ensureUI(); }
+  } else {
+    ensureUI();
+  }
 })();
