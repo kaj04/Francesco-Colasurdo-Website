@@ -1,0 +1,25 @@
+/* BOTTONE FLOTANTE */
+#fc-chat-toggle {
+  position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: none; box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  background: var(--tertiary); color: var(--content);
+  cursor: pointer; font-size: 24px; line-height: 56px;
+}
+
+/* PANNELLO */
+#fc-chat-panel {
+  position: fixed; right: 18px; bottom: 82px; z-index: 9999;
+  width: min(360px, 90vw); max-height: min(70vh, 640px);
+  background: var(--theme); color: var(--content);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: 0 12px 28px rgba(0,0,0,.2); display: none; flex-direction: column;
+}
+#fc-chat-header { padding: 10px 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
+#fc-chat-body   { padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+#fc-chat-input  { display: flex; gap: 8px; border-top: 1px solid var(--border); padding: 10px; }
+#fc-chat-input input { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px; }
+#fc-chat-input button { padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--entry); cursor: pointer; }
+.fc-msg { padding: 8px 10px; border-radius: 10px; max-width: 90%; word-wrap: break-word; }
+.fc-user { align-self: flex-end; background: var(--entry); }
+.fc-bot  { align-self: flex-start; background: var(--code-bg); }
