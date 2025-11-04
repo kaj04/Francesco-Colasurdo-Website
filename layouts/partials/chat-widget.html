@@ -1,0 +1,19 @@
+<!-- Launcher -->
+<button id="fc-launcher" class="fc-fab" aria-controls="fc-panel" aria-haspopup="dialog">
+  <span class="fc-icon">💬</span><span class="fc-label">Ask about my work</span>
+</button>
+
+<!-- Panel -->
+<div id="fc-panel" class="fc-panel" role="dialog" aria-modal="false" aria-labelledby="fc-chat-title" hidden>
+  <header class="fc-header">
+    <h2 id="fc-chat-title" class="fc-title">Francesco’s CV Assistant</h2>
+    <p class="fc-sub">Answers are based only on my public docs.</p>
+  </header>
+
+  <div class="fc-messages"></div>
+
+  <form class="fc-form">
+    <textarea class="fc-input" placeholder="Ask about my work…" rows="1"></textarea>
+    <button type="submit" class="fc-send">Send</button>
+  </form>
+</div>
