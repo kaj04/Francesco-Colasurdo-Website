@@ -106,21 +106,6 @@
       const answer = (data && typeof data.answer === 'string') ? data.answer : 'No answer.';
       addMsg(answer, 'bot');
 
-      // opzionale: mostra fonti se presenti
-      if (data && Array.isArray(data.sources) && data.sources.length){
-        const src = document.createElement('div');
-        src.className = 'fc-msg fc-bot';
-        src.style.fontSize = '.8rem';
-        src.style.opacity = '.8';
-        const list = data.sources.map(s => {
-          if (typeof s === 'string') return s;
-          if (s && s.source) return s.source;
-          return '';
-        }).filter(Boolean);
-        src.textContent = 'Sources: ' + list.join(', ');
-        els.msgs.appendChild(src);
-        toBottom();
-      }
     } catch (e){
       hideTyping();
       addMsg('Sorry, something went wrong. Please try again.', 'bot');
