@@ -8,9 +8,10 @@
     input:    document.querySelector('.fc-input'),
     send:     document.querySelector('.fc-send'),
   };
-
-  // Se manca qualcosa, esci senza rompere il sito
   if(!els.launcher || !els.panel || !els.msgs || !els.form || !els.input) return;
+
+  // UTIL: scroll in fondo
+  function toBottom(){ els.msgs.scrollTop = els.msgs.scrollHeight; }
 
   // CHIUSURA CLIC FUORI
   function clickOutsideToClose(e){
@@ -18,13 +19,10 @@
     const onLauncher = els.launcher.contains(e.target);
     if(!inPanel && !onLauncher){ closePanel(); }
   }
-
   function openPanel(){
     els.panel.hidden = false;
     document.addEventListener('mousedown', clickOutsideToClose);
-    if(els.msgs.childElementCount === 0){
-      renderOnboarding();
-    }
+    if(els.msgs.childElementCount === 0){ renderOnboarding(); }
     els.input.focus();
   }
   function closePanel(){
@@ -50,7 +48,7 @@
     box.querySelectorAll('.fc-chip').forEach(chip=>{
       chip.addEventListener('click', ()=> { openPanel(); sendMessage(chip.textContent); });
     });
-    els.msgs.scrollTop = els.msgs.scrollHeight;
+    toBottom();
   }
 
   // MESSAGGI
@@ -59,10 +57,10 @@
     d.className = `fc-msg ${who==='me'?'fc-me':'fc-bot'}`;
     d.textContent = text;
     els.msgs.appendChild(d);
-    els.msgs.scrollTop = els.msgs.scrollHeight;
+    toBottom();
   }
 
-  // INDICATORE TYPING/THINKING
+  // INDICATORE
   let typingEl = null;
   function showTyping(label){
     if(typingEl) typingEl.remove();
@@ -70,44 +68,67 @@
     typingEl.className = 'fc-typing';
     typingEl.innerHTML = `<span>${label}</span> <span class="fc-dots"><span></span><span></span><span></span></span>`;
     els.msgs.appendChild(typingEl);
-    els.msgs.scrollTop = els.msgs.scrollHeight;
+    toBottom();
   }
   function hideTyping(){ if(typingEl){ typingEl.remove(); typingEl=null; } }
 
-  // INVIO (UI soltanto; la logica di backend resta com'è)
+  // INVIO → CHIAMATA BACKEND (formato {question} → {answer, sources})
   async function sendMessage(q){
     if(!q) return;
     addMsg(q, 'me');
     showTyping('Thinking');
 
-    try{
-      const t = setTimeout(()=> showTyping('Retrieving information'), 300);
+    const url = (typeof window !== 'undefined' && window.FC_API_URL)
+      ? window.FC_API_URL
+      : '/api/chat'; // fallback
 
-      // SE HAI GIA' LA LOGICA: lasciala!
-      // Qui usiamo un endpoint globale se serve:
-      const url = window.FC_API_URL || '/api/chat'; // modifica qui solo se necessario
+    try{
+      const switchToRetrieving = setTimeout(()=> showTyping('Retrieving information'), 300);
+
       const res = await fetch(url, {
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ question: q })
       });
 
-      clearTimeout(t);
+      clearTimeout(switchToRetrieving);
       showTyping('Generating answer');
+
+      if(!res.ok){
+        hideTyping();
+        addMsg('Sorry, backend not reachable right now. Please try again in a moment.');
+        return;
+      }
 
       const data = await res.json();
       hideTyping();
-      addMsg((data && data.answer) ? data.answer : 'No answer.');
-      // Se il tuo backend restituisce "sources", puoi appenderle qui.
-    } catch(e){
+
+      const answer = (data && typeof data.answer === 'string') ? data.answer : 'No answer.';
+      addMsg(answer, 'bot');
+
+      // opzionale: mostra fonti se presenti
+      if (data && Array.isArray(data.sources) && data.sources.length){
+        const src = document.createElement('div');
+        src.className = 'fc-msg fc-bot';
+        src.style.fontSize = '.8rem';
+        src.style.opacity = '.8';
+        const list = data.sources.map(s => {
+          if (typeof s === 'string') return s;
+          if (s && s.source) return s.source;
+          return '';
+        }).filter(Boolean);
+        src.textContent = 'Sources: ' + list.join(', ');
+        els.msgs.appendChild(src);
+        toBottom();
+      }
+    } catch (e){
       hideTyping();
-      addMsg('Sorry, something went wrong. Please try again.');
+      addMsg('Sorry, something went wrong. Please try again.', 'bot');
     }
   }
 
   // EVENTI
   els.launcher.addEventListener('click', openPanel);
-
   els.form.addEventListener('submit', (e)=>{
     e.preventDefault();
     const q = (els.input.value || '').trim();
@@ -115,11 +136,10 @@
     els.input.value = '';
     sendMessage(q);
   });
-
   els.input.addEventListener('keydown', (e)=>{
     if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); els.form.requestSubmit(); }
   });
 
-  // Etichetta "Send" in inglese
+  // TESTI
   if(els.send) els.send.textContent = 'Send';
 })();
