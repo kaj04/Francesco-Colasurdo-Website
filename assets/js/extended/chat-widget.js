@@ -32,25 +32,24 @@
 
   // ONBOARDING
   function renderOnboarding(){
-    const box = document.createElement('div');
-    box.className = 'fc-msg fc-bot';
-    box.innerHTML = `
-      <strong>How this works</strong><br>
-      Ask me about my projects, skills, and results. Answers are based only on my public docs.<br>
-      <em>Tip:</em> the first answer may take longer (up to ~2 minutes) if the Render server is waking up.
-      <div style="margin-top:.6rem; display:flex; gap:.5rem; flex-wrap:wrap;">
-        <button class="fc-chip">Top 3 projects with impact</button>
-        <button class="fc-chip">Summarize thesis & what I built</button>
-        <button class="fc-chip">Skills → which projects?</button>
-      </div>
-    `;
-    els.msgs.appendChild(box);
-    box.querySelectorAll('.fc-chip').forEach(chip=>{
-      chip.addEventListener('click', ()=> { openPanel(); sendMessage(chip.textContent); });
-    });
-    toBottom();
-  }
-
+  const box = document.createElement('div');
+  box.className = 'fc-msg fc-bot';
+  box.innerHTML = `
+    <strong>Quick start</strong><br>
+    Ask me about my career, university work, personal projects, results, or current goals.<br>
+    <em>PS:</em> the first reply may take up to ~1 minute if the server is resting — we all need rest.
+    <div style="margin-top:.6rem; display:flex; gap:.5rem; flex-wrap:wrap;">
+      <button class="fc-chip">What are you currently studying?</button>
+      <button class="fc-chip">What skills do you have with Python?</button>
+    </div>
+  `;
+  els.msgs.appendChild(box);
+  box.querySelectorAll('.fc-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=> { openPanel(); sendMessage(chip.textContent); });
+  });
+  toBottom();
+}
+  
   // MESSAGGI
   function addMsg(text, who='bot'){
     const d = document.createElement('div');
@@ -72,45 +71,55 @@
   }
   function hideTyping(){ if(typingEl){ typingEl.remove(); typingEl=null; } }
 
-  // INVIO → CHIAMATA BACKEND (formato {question} → {answer, sources})
-  async function sendMessage(q){
-    if(!q) return;
-    addMsg(q, 'me');
-    showTyping('Thinking');
+// INVIO → CHIAMATA BACKEND (formato {question} → {answer, sources})
+async function sendMessage(q){
+  if(!q) return;
+  addMsg(q, 'me');
 
-    const url = (typeof window !== 'undefined' && window.FC_API_URL)
-      ? window.FC_API_URL
-      : '/api/chat'; // fallback
+  const url = (typeof window !== 'undefined' && window.FC_API_URL)
+    ? window.FC_API_URL
+    : '/api/chat'; // fallback
 
-    try{
-      const switchToRetrieving = setTimeout(()=> showTyping('Retrieving information'), 300);
+  // 1) Mostra subito "Retrieving information"
+  showTyping('Retrieving information');
 
-      const res = await fetch(url, {
-        method:'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ question: q })
-      });
+  // Dopo 700ms passa a "Typing…"
+  let phase = 'retrieving';
+  const switchToTyping = setTimeout(()=>{
+    phase = 'typing';
+    showTyping('Typing…');
+  }, 700);
 
-      clearTimeout(switchToRetrieving);
-      showTyping('Generating answer');
+  try{
+    const res = await fetch(url, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ question: q })
+    });
 
-      if(!res.ok){
-        hideTyping();
-        addMsg('Sorry, backend not reachable right now. Please try again in a moment.');
-        return;
-      }
+    clearTimeout(switchToTyping);
+    // Se non era ancora passato a typing, cambialo ora per un attimo
+    if(phase !== 'typing'){ showTyping('Typing…'); }
 
-      const data = await res.json();
+    if(!res.ok){
       hideTyping();
-
-      const answer = (data && typeof data.answer === 'string') ? data.answer : 'No answer.';
-      addMsg(answer, 'bot');
-
-    } catch (e){
-      hideTyping();
-      addMsg('Sorry, something went wrong. Please try again.', 'bot');
+      addMsg('Sorry, backend not reachable right now. Please try again in a moment.');
+      return;
     }
+
+    const data = await res.json();
+    hideTyping();
+
+    const answer = (data && typeof data.answer === 'string') ? data.answer : 'No answer.';
+    addMsg(answer, 'bot');
+
+    // NON mostriamo più le sources (rimosso per tua preferenza)
+  } catch (e){
+    clearTimeout(switchToTyping);
+    hideTyping();
+    addMsg('Sorry, something went wrong. Please try again.', 'bot');
   }
+}
 
   // EVENTI
   els.launcher.addEventListener('click', openPanel);
