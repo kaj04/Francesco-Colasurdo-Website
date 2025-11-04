@@ -1,5 +1,5 @@
 (function(){
-  // RIFERIMENTI
+  // Riferimenti DOM
   const els = {
     launcher: document.getElementById('fc-launcher'),
     panel:    document.getElementById('fc-panel'),
@@ -10,10 +10,10 @@
   };
   if(!els.launcher || !els.panel || !els.msgs || !els.form || !els.input) return;
 
-  // UTIL: scroll in fondo
-  function toBottom(){ els.msgs.scrollTop = els.msgs.scrollHeight; }
+  // Utils
+  const toBottom = () => { els.msgs.scrollTop = els.msgs.scrollHeight; };
 
-  // CHIUSURA CLIC FUORI
+  // Open/Close + click fuori
   function clickOutsideToClose(e){
     const inPanel = els.panel.contains(e.target);
     const onLauncher = els.launcher.contains(e.target);
@@ -30,27 +30,7 @@
     document.removeEventListener('mousedown', clickOutsideToClose);
   }
 
-  // ONBOARDING
-  function renderOnboarding(){
-  const box = document.createElement('div');
-  box.className = 'fc-msg fc-bot';
-  box.innerHTML = `
-    <strong>Quick start</strong><br>
-    Ask me about my career, university work, personal projects, results, or current goals.<br>
-    <em>PS:</em> the first reply may take up to ~1 minute if the server is resting — we all need rest.
-    <div style="margin-top:.6rem; display:flex; gap:.5rem; flex-wrap:wrap;">
-      <button class="fc-chip">What are you currently studying?</button>
-      <button class="fc-chip">What skills do you have with Python?</button>
-    </div>
-  `;
-  els.msgs.appendChild(box);
-  box.querySelectorAll('.fc-chip').forEach(chip=>{
-    chip.addEventListener('click', ()=> { openPanel(); sendMessage(chip.textContent); });
-  });
-  toBottom();
-}
-  
-  // MESSAGGI
+  // Messaggi
   function addMsg(text, who='bot'){
     const d = document.createElement('div');
     d.className = `fc-msg ${who==='me'?'fc-me':'fc-bot'}`;
@@ -59,7 +39,7 @@
     toBottom();
   }
 
-  // INDICATORE
+  // Typing indicator
   let typingEl = null;
   function showTyping(label){
     if(typingEl) typingEl.remove();
@@ -71,57 +51,74 @@
   }
   function hideTyping(){ if(typingEl){ typingEl.remove(); typingEl=null; } }
 
-// INVIO → CHIAMATA BACKEND (formato {question} → {answer, sources})
-async function sendMessage(q){
-  if(!q) return;
-  addMsg(q, 'me');
-
-  const url = (typeof window !== 'undefined' && window.FC_API_URL)
-    ? window.FC_API_URL
-    : '/api/chat'; // fallback
-
-  // 1) Mostra subito "Retrieving information"
-  showTyping('Retrieving information');
-
-  // Dopo 700ms passa a "Typing…"
-  let phase = 'retrieving';
-  const switchToTyping = setTimeout(()=>{
-    phase = 'typing';
-    showTyping('Typing…');
-  }, 700);
-
-  try{
-    const res = await fetch(url, {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify({ question: q })
+  // Onboarding (testo conciso + 2 domande)
+  function renderOnboarding(){
+    const box = document.createElement('div');
+    box.className = 'fc-msg fc-bot';
+    box.innerHTML = `
+      <strong>How it works</strong><br>
+      Ask me about my career, university work, personal projects, results, or current goals.<br>
+      <em>PS:</em> the first reply may take up to ~1 minute if the server is resting, in the end we all need rest.
+      <div style="margin-top:.6rem; display:flex; gap:.5rem; flex-wrap:wrap;">
+        <button class="fc-chip">What are you currently studying?</button>
+        <button class="fc-chip">What skills do you have with Python?</button>
+      </div>
+    `;
+    els.msgs.appendChild(box);
+    box.querySelectorAll('.fc-chip').forEach(chip=>{
+      chip.addEventListener('click', ()=> { openPanel(); sendMessage(chip.textContent); });
     });
-
-    clearTimeout(switchToTyping);
-    // Se non era ancora passato a typing, cambialo ora per un attimo
-    if(phase !== 'typing'){ showTyping('Typing…'); }
-
-    if(!res.ok){
-      hideTyping();
-      addMsg('Sorry, backend not reachable right now. Please try again in a moment.');
-      return;
-    }
-
-    const data = await res.json();
-    hideTyping();
-
-    const answer = (data && typeof data.answer === 'string') ? data.answer : 'No answer.';
-    addMsg(answer, 'bot');
-
-    // NON mostriamo più le sources (rimosso per tua preferenza)
-  } catch (e){
-    clearTimeout(switchToTyping);
-    hideTyping();
-    addMsg('Sorry, something went wrong. Please try again.', 'bot');
+    toBottom();
   }
-}
 
-  // EVENTI
+  // Invio: {question} -> backend -> {answer}; niente sources
+  async function sendMessage(q){
+    if(!q) return;
+    addMsg(q, 'me');
+
+    const url = (typeof window !== 'undefined' && window.FC_API_URL)
+      ? window.FC_API_URL
+      : '/api/chat';
+
+    // Sequenza “Retrieving → Typing…”
+    showTyping('Retrieving information');
+    let phase = 'retrieving';
+    const switchToTyping = setTimeout(()=>{
+      phase = 'typing';
+      showTyping('Typing…');
+    }, 700);
+
+    try{
+      const res = await fetch(url, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ question: q })
+      });
+
+      clearTimeout(switchToTyping);
+      if(phase !== 'typing'){ showTyping('Typing…'); }
+
+      if(!res.ok){
+        hideTyping();
+        addMsg('Sorry, backend not reachable right now. Please try again in a moment.', 'bot');
+        return;
+      }
+
+      const data = await res.json();
+      hideTyping();
+
+      const answer = (data && typeof data.answer === 'string') ? data.answer : 'No answer.';
+      addMsg(answer, 'bot');
+
+      // Niente sources (scelte estetiche)
+    } catch (e){
+      clearTimeout(switchToTyping);
+      hideTyping();
+      addMsg('Sorry, something went wrong. Please try again.', 'bot');
+    }
+  }
+
+  // Eventi
   els.launcher.addEventListener('click', openPanel);
   els.form.addEventListener('submit', (e)=>{
     e.preventDefault();
@@ -134,6 +131,6 @@ async function sendMessage(q){
     if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); els.form.requestSubmit(); }
   });
 
-  // TESTI
+  // Etichetta invio (se serve)
   if(els.send) els.send.textContent = 'Send';
 })();
