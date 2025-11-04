@@ -11,15 +11,15 @@
 <!-- Launcher (bottone) -->
 <button id="fc-launcher" class="fc-fab" aria-controls="fc-panel" aria-haspopup="dialog">
   <span class="fc-icon">💬</span>
-  <span class="fc-label">Ask about my work</span>
+  <span class="fc-label">Ask about ME</span>
 </button>
 
 <!-- Pannello -->
 <div id="fc-panel" class="fc-panel" role="dialog" aria-modal="false" aria-labelledby="fc-chat-title" hidden>
   <header class="fc-header">
-    <h2 id="fc-chat-title" class="fc-title">Francesco’s CV Assistant</h2>
-    <p class="fc-sub">Answers are based only on my public docs.</p>
-  </header>
+  <h2 id="fc-chat-title" class="fc-title">Francesco’s Career Assistant</h2>
+  <p class="fc-sub">Every answer is crafted strictly from my real experience and documents — nothing invented.</p>
+</header>
 
   <div class="fc-messages"></div>
 
@@ -36,46 +36,41 @@
   --laurel-green-strong:#1b5e20;
 }
 .fc-fab{
-  position:fixed; right:20px; bottom:20px;
-  display:flex; align-items:center; gap:.6rem;
-  padding:.9rem 1.1rem; border:none; cursor:pointer;
+  position:fixed; right:24px; bottom:24px; z-index:9999;
+  display:flex; align-items:center; gap:.7rem;
+  padding:1.05rem 1.25rem; border:none; cursor:pointer;
   border-radius:999px; color:#fff;
   background:linear-gradient(135deg, var(--laurel-green), var(--laurel-green-strong));
-  box-shadow:0 12px 30px rgba(34,139,34,.35);
-  font-weight:700; font-size:15px;
+  box-shadow:0 16px 40px rgba(34,139,34,.45), 0 2px 8px rgba(0,0,0,.15);
+  font-weight:800; font-size:16px; letter-spacing:.2px;
+  outline:3px solid rgba(255,255,255,.85);
 }
-.fc-icon{font-size:20px; line-height:0}
-.fc-fab:hover{transform:translateY(-1px)} .fc-fab:active{transform:translateY(0)}
-
+.fc-icon{font-size:22px; line-height:0}
+.fc-fab:hover{transform:translateY(-2px)} 
+.fc-fab:active{transform:translateY(0)}
 .fc-panel[hidden]{display:none !important;}
 .fc-panel{
   position:fixed; right:20px; bottom:92px; width:360px; max-height:70vh;
   background:#fff; border-radius:16px; overflow:hidden;
   box-shadow:0 18px 50px rgba(0,0,0,.25); display:flex; flex-direction:column;
+  z-index:10000; /* resta sopra alla pagina */
 }
+
 @media (max-width:480px){
   .fc-panel{left:0; right:0; bottom:0; width:auto; max-height:100vh; border-radius:16px 16px 0 0;}
 }
-.fc-header{display:flex; flex-direction:column; gap:.25rem; padding:.8rem 1rem; border-bottom:1px solid #eee}
-.fc-title{font-weight:800; margin:0}
-.fc-sub{margin:0; font-size:.85rem; color:#666}
 
-.fc-messages{padding:1rem; overflow:auto; display:flex; flex-direction:column; gap:.65rem}
-.fc-msg{max-width:85%; padding:.6rem .75rem; border-radius:12px; line-height:1.4}
-.fc-me{align-self:flex-end; background:#111; color:#fff}
-.fc-bot{align-self:flex-start; background:#f2f2f2}
-
-.fc-typing{display:flex; align-items:center; gap:.5rem; color:#666; font-size:.85rem}
-.fc-dots span{display:inline-block; width:6px; height:6px; margin:0 1px; border-radius:50%; background:#bbb; animation:fc-blink 1.2s infinite}
-.fc-dots span:nth-child(2){animation-delay:.2s} .fc-dots span:nth-child(3){animation-delay:.4s}
-@keyframes fc-blink{0%,80%,100%{opacity:.2} 40%{opacity:1}}
-
-.fc-form{display:flex; gap:.5rem; padding:.75rem; border-top:1px solid #eee; background:#fff}
-.fc-input{flex:1; resize:none; border:1px solid #ddd; border-radius:10px; padding:.6rem}
-.fc-send{border:none; background:var(--laurel-green); color:#fff; border-radius:10px; padding:.6rem .9rem; cursor:pointer; font-weight:700}
-.fc-send:hover{background:var(--laurel-green-strong)}
-.fc-chip{border:1px solid #ddd; background:#f7f7f7; border-radius:999px; padding:.35rem .6rem; cursor:pointer; font-size:.9rem}
-.fc-chip:hover{background:#f0f0f0}
+/* --- PULSE DEL BOTTONE: deve stare FUORI dal blocco .fc-panel --- */
+.fc-fab::after{
+  content:""; position:absolute; inset:-8px; border-radius:999px;
+  border:2px solid rgba(46,125,50,.35);
+  animation:fc-pulse 2.4s infinite;
+}
+@keyframes fc-pulse{
+  0%{transform:scale(0.95); opacity:.7}
+  70%{transform:scale(1.15); opacity:0}
+  100%{opacity:0}
+}
 </style>
 
 <script>
