@@ -4,40 +4,52 @@ description: "Curriculum Vitae di Francesco Colasurdo"
 ---
 
 <style>
-  /* widen only this page (PaperMod uses this CSS var) */
-  :root { --content-width: 1100px; }
+  /* Allarga solo questa pagina (PaperMod usa questa variabile) */
+  :root { --content-width: 1400px; }
 
-  .cv-actions { margin: 1rem 0 1.5rem; text-align: center; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
-  .btn {
+  /* Azioni */
+  .cv-actions { margin: 1rem 0 1.5rem; text-align: center; }
+  .btn-download {
     display: inline-block; padding: .6rem 1rem; border: 1px solid #d6d6d6; border-radius: .5rem;
-    text-decoration: none; font-weight: 600; color: inherit;
-  }
-  .cv-frame {
-    width: 100%; height: 1050px; border: 0; box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    text-decoration: none; font-weight: 600;
   }
 
-  /* mobile tweaks */
+  /* Griglia a due colonne per le due pagine del CV */
+  .cv-pages {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    align-items: start; justify-items: center;
+    margin: 0 auto; /* centra la griglia */
+  }
+  .cv-pages img {
+    width: 100%; height: auto; border: 1px solid #e0e0e0; box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  }
+
+  /* Mobile: impila le pagine una sotto l'altra */
   @media (max-width: 800px) {
     :root { --content-width: 96vw; }
-    .cv-frame { height: 80vh; }
+    .cv-pages { grid-template-columns: 1fr; }
+
+  /* facoltativo: su schermi molto larghi, ancora un po' più ampia */
+  @media (min-width: 1700px) {
+    :root { --content-width: 1600px; }
   }
 </style>
 
-> **Here’s my latest 1-page CV.** Feel free to download it and reach out!
+> **Per i più curiosi**: ecco il mio CV. Se sei uno studente o un recruiter, sarò felice di ricevere suggerimenti.  
+> Sentiti libero di scaricarlo e contattarmi!
 
 <div class="cv-actions">
-  <a class="btn" href="/Francesco-Colasurdo-CV-4.pdf" download>⬇️ Download CV (PDF)</a>
-  <a class="btn" href="/Francesco-Colasurdo-CV-4.pdf" target="_blank" rel="noopener">🗎 Open in new tab</a>
+  <a class="btn-download" href="/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4.pdf" download>
+    Scarica il mio CV
+  </a>
 </div>
 
-<!-- Embedded single-page PDF -->
-<iframe
-  class="cv-frame"
-  src="/Francesco-Colasurdo-CV-4.pdf#view=FitH"
-  title="Francesco Colasurdo — CV (PDF)">
-</iframe>
-
-<!-- Optional: tiny fallback link for browsers blocking iframes -->
-<p style="text-align:center; margin-top:.5rem;">
-  Can’t see the embed? <a href="/Francesco-Colasurdo-CV-4.pdf">Open the PDF</a>.
-</p>
+<!-- Visualizzazione singola: PDF incorporato che occupa entrambe le colonne -->
+<div class="cv-pages">
+  <iframe
+    src="/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4.pdf#view=FitH"
+    title="CV — Francesco Colasurdo"
+    style="grid-column: 1 / -1; width: 100%; height: 1100px; border: 0; box-shadow: 0 2px 10px rgba(0,0,0,.06);"
+    loading="eager">
+  </iframe>
+</div>
