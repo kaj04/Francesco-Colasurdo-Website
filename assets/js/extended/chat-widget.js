@@ -58,7 +58,7 @@
     box.innerHTML = `
       <strong>Quick start</strong><br>
       Ask me about my career, university work, personal projects, results, or current goals.
-      <p class="fc-ps"><em>PS: the first reply may take up to ~1 minute if the server is resting — in the end we all need rest.</em></p>
+      <p class="fc-ps"><em>PS: The first reply may take up to ~1 minute if the server is resting, after all, we all need a little rest, right?</em></p>
       <div style="margin-top:.6rem; display:flex; gap:.5rem; flex-wrap:wrap;">
          <button class="fc-chip">What are you currently studying?</button>
         <button class="fc-chip">What skills do you have with Python?</button>
