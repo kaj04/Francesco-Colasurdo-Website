@@ -18,7 +18,7 @@
 <div id="fc-panel" class="fc-panel" role="dialog" aria-modal="false" aria-labelledby="fc-chat-title" hidden>
   <header class="fc-header">
     <h2 id="fc-chat-title" class="fc-title">Francesco’s Career Assistant</h2>
-    <p class="fc-sub">Every answer is crafted strictly from my real experience and documents — nothing invented.</p>
+    <p class="fc-sub">Every answer is generated strictly from my real experience and knowledge, nothing hallucinated.</p>
   </header>
 
   <div class="fc-messages"></div>
@@ -64,7 +64,7 @@
 /* ====== pannello (stile originale) ====== */
 .fc-panel[hidden]{display:none !important;}
 .fc-panel{
-  position:fixed; right:20px; bottom:92px; width:360px; max-height:70vh;
+  position:fixed; right:20px; bottom:92px; width:420px; max-height:70vh;
   background:#fff; border-radius:16px; overflow:hidden;
   box-shadow:0 18px 50px rgba(0,0,0,.25); display:flex; flex-direction:column;
   z-index:10000;
@@ -80,7 +80,12 @@
 .fc-messages{padding:1rem; overflow:auto; display:flex; flex-direction:column; gap:.65rem;
   overscroll-behavior:contain; touch-action:pan-y;}
 .fc-msg{max-width:85%; padding:.6rem .75rem; border-radius:12px; line-height:1.4}
-.fc-me{align-self:flex-end; background:#111; color:#fff}
+.fc-me{
+  align-self:flex-end;
+  background:#e9ecef;   
+  color:#111;           
+  border:1px solid #d9dde1;
+}
 .fc-bot{align-self:flex-start; background:#f2f2f2}
 
 /* typing */
