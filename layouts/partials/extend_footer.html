@@ -7,5 +7,32 @@
   </div>
 </footer>
 
+<!-- Chat widget markup -->
+<button id="fc-launcher" class="fc-fab" aria-controls="fc-panel" aria-haspopup="dialog">
+  <span class="fc-icon">💬</span>
+  <span class="fc-label">Ask about my work</span>
+</button>
+
+<div id="fc-panel" class="fc-panel" role="dialog" aria-modal="false" aria-labelledby="fc-chat-title" hidden>
+  <header class="fc-header">
+    <h2 id="fc-chat-title" class="fc-title">Francesco’s CV Assistant</h2>
+    <p class="fc-sub">Answers are based only on my public docs.</p>
+  </header>
+
+  <div class="fc-messages"></div>
+
+  <form class="fc-form">
+    <textarea class="fc-input" placeholder="Ask about my work…" rows="1"></textarea>
+    <button type="submit" class="fc-send">Send</button>
+  </form>
+</div>
+
+<!-- Hugo Pipes: CSS + JS -->
+{{ $chatCSS := resources.Get "css/extended/chat-widget.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $chatCSS.Permalink }}" integrity="{{ $chatCSS.Data.Integrity }}">
+
+<!-- Se NON definisci l’endpoint altrove, puoi sbloccarlo qui -->
+<!-- <script>window.FC_API_URL="https://<TUO-BACKEND>/api/chat";</script> -->
+
 {{ $chat := resources.Get "js/extended/chat-widget.js" | js.Build "chat-widget.js" | minify | fingerprint }}
-<script type="text/javascript" src="{{ $chat.Permalink }}"></script>
+<script type="text/javascript" src="{{ $chat.Permalink }}" integrity="{{ $chat.Data.Integrity }}"></script>
