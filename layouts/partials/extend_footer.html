@@ -77,8 +77,9 @@
 .fc-chip:hover{background:#f0f0f0}
 </style>
 
-<!-- Se NON hai già definito l'endpoint in un altro punto, sbloccalo qui: -->
-<!-- <script>window.FC_API_URL="https://<TUO-BACKEND>/api/chat";</script> -->
+<script>
+  window.FC_API_URL = "https://cv-assistant-backend-jb20.onrender.com/api/chat";
+</script>
 
 {{ $chat := resources.Get "js/extended/chat-widget.js" | js.Build "chat-widget.js" | minify | fingerprint }}
 <script type="text/javascript" src="{{ $chat.Permalink }}" integrity="{{ $chat.Data.Integrity }}"></script>
