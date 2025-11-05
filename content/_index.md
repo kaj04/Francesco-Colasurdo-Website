@@ -55,15 +55,10 @@ title: "Home"
       I consider myself efficient and well-organized, someone who values productivity not out of perfectionism, but to give proper value to time and enjoy every activity to the fullest.
       After this brief introduction, I hope I’ve caught your attention enough for you to explore the rest of the website: my blog, personal projects, and goals section.
       I’d love to get in touch with you, whether you’re a student or not, not only to talk about work or technology, but also to exchange ideas and reflections that help us both grow.
-  </p>
-  This website was born with two main goals:</p>
-  <ul>
-  <li>To tell my story, to let people know who I am and to connect with those who share, or do not, my passions and perspectives, sparking constructive conversations.</li>
-  <li>To put myself out there, by publishing what I usually write and sharing my personal reflections, hoping to receive feedback, insights, and new points of view.</li>
-  </ul>
-  <p><em>
-  Want me to make a “web-ready” version of this page? Just kidding, I’m a man of my word, and you’ll never find me using AI tools to make my thoughts sound inauthentic ;)
+  </p>This website was born with two main goals:</p>
+  <ul><li>To tell my story, to let people know who I am and to connect with those who share, or do not, my passions and perspectives, sparking constructive conversations.</li>
+  <li>To put myself out there, by publishing what I usually write and sharing my personal reflections, hoping to receive feedback, insights, and new points of view.</li></ul>
+  <p><em>Want me to make a “web-ready” version of this page? Just kidding, I’m a man of my word, and you’ll never find me using AI tools to make my thoughts sound inauthentic ;)
   </em></p>
   </section>
-
 </div>
