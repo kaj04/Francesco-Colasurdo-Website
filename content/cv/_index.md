@@ -35,9 +35,5 @@ description: "Curriculum Vitae of Francesco Colasurdo"
 </div>
 
 <div class="cv-wrapper">
-  <img
-    src='{{ "Francesco-Colasurdo-CV-4-1.png" | relURL }}'
-    alt="CV of Francesco Colasurdo"
-    class="cv-page"
-    loading="eager">
+  <img src='{{ "Francesco-Colasurdo-CV-4-1.png" | relURL }}' alt="CV of Francesco Colasurdo" class="cv-page">
 </div>
