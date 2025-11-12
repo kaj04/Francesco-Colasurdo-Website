@@ -17,11 +17,7 @@ description: "Curriculum Vitae of Francesco Colasurdo"
     border-radius: 12px;
     overflow: hidden;
   }
-  .cv-page {
-    display:block;
-    width:100%;
-    height:auto;
-  }
+  .cv-page { display:block; width:100%; height:auto; }
 </style>
 
 > **For the curious ones**: here’s my CV.  
@@ -29,11 +25,15 @@ description: "Curriculum Vitae of Francesco Colasurdo"
 > Feel free to download it and reach out!
 
 <div class="cv-actions">
-  <a class="btn-download" href='{{ "Francesco-Colasurdo-CV-4.pdf" | relURL }}' download>
+  <a class="btn-download" href='{{ "Francesco-Colasurdo-CV-4.pdf" | absURL }}' download>
     Download my CV
   </a>
 </div>
 
 <div class="cv-wrapper">
-  <img src='{{ "Francesco-Colasurdo-CV-4-1.png" | relURL }}' alt="CV of Francesco Colasurdo" class="cv-page">
+  <img src='{{ "Francesco-Colasurdo-CV-4-1.png" | absURL }}'
+       alt="CV of Francesco Colasurdo"
+       class="cv-page"
+       loading="eager"
+       decoding="async">
 </div>
