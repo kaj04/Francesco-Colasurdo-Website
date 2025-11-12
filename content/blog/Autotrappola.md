@@ -1,6 +1,6 @@
 ---
 title: "Autotrappola"
-date: 12-11-2025
+date: 2025-11-12
 ---
 
 Non ricordo precisamente quando, ma ricordo che ascoltando il [TEDx di Giuseppe Bertuccio D’Angelo (Progetto Happiness)](https://www.youtube.com/watch?v=ekgTXmowGFY) ho scoperto il termine *“autotrappola”*, e da lì ci sono rimasto sotto.
