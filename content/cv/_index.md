@@ -25,15 +25,19 @@ description: "Curriculum Vitae of Francesco Colasurdo"
 > Feel free to download it and reach out!
 
 <div class="cv-actions">
-  <a class="btn-download" href='{{ "Francesco-Colasurdo-CV-4.pdf" | absURL }}' download>
-    Download my CV
+  <a class="btn-download"
+   href="https://kaj04.github.io/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4.pdf"
+   download>
+  Download my CV
   </a>
 </div>
 
 <div class="cv-wrapper">
-  <img src='{{ "Francesco-Colasurdo-CV-4-1.png" | absURL }}'
-       alt="CV of Francesco Colasurdo"
-       class="cv-page"
-       loading="eager"
-       decoding="async">
+  <img
+    src="https://kaj04.github.io/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4-1.png"
+    alt="CV of Francesco Colasurdo"
+    class="cv-page"
+    loading="eager"
+    decoding="async">
 </div>
+
