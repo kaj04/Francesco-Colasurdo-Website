@@ -4,48 +4,23 @@ description: "Curriculum Vitae of Francesco Colasurdo"
 ---
 
 <style>
-  :root { --content-width: 1400px; }
-
-  /* Actions */
-  .cv-actions {
-    margin: 1rem 0 1.5rem;
-    text-align: center;
-  }
-
+  :root { --content-width: 1100px; }
+  .cv-actions { margin: 1rem 0 1.5rem; text-align: center; }
   .btn-download {
-    display: inline-block;
-    padding: 0.6rem 1rem;
-    border: 1px solid #d6d6d6;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
+    display:inline-block; padding:0.6rem 1rem; border:1px solid #d6d6d6;
+    border-radius:0.5rem; text-decoration:none; font-weight:600;
   }
-
-  /* CV Container */
-  .cv-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  .cv-wrapper {
+    max-width: var(--content-width);
     margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
   }
-
-  /* Clean embedded PDF (no toolbar or borders) */
-  .cv-embed {
-    width: 100%;
-    height: 1100px;
-    border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  }
-
-  /* Responsive */
-  @media (max-width: 800px) {
-    :root { --content-width: 96vw; }
-    .cv-embed { height: 900px; }
-  }
-
-  @media (min-width: 1700px) {
-    :root { --content-width: 1600px; }
+  .cv-page {
+    display:block;
+    width:100%;
+    height:auto;
   }
 </style>
 
@@ -54,17 +29,15 @@ description: "Curriculum Vitae of Francesco Colasurdo"
 > Feel free to download it and reach out!
 
 <div class="cv-actions">
-  <a class="btn-download" href="/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4.pdf" download>
+  <a class="btn-download" href='{{ "Francesco-Colasurdo-CV-4.pdf" | relURL }}' download>
     Download my CV
   </a>
 </div>
 
-<!-- Clean PDF embed without toolbar -->
-<div class="cv-container">
-  <object
-    data="/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4.pdf#toolbar=0&navpanes=0&scrollbar=0"
-    type="application/pdf"
-    class="cv-embed">
-    <p>Your browser does not support inline PDFs. <a href="/Francesco-Colasurdo-Website/Francesco-Colasurdo-CV-4.pdf">Download it here.</a></p>
-  </object>
+<div class="cv-wrapper">
+  <img
+    src='{{ "Francesco-Colasurdo-CV-4-1.png" | relURL }}'
+    alt="CV of Francesco Colasurdo"
+    class="cv-page"
+    loading="eager">
 </div>
