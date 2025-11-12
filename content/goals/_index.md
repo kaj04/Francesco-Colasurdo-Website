@@ -5,6 +5,55 @@ menu:
     name: "Goals"
     weight: 30
 ---
+<style>
+/* Callout "annuale" con barra laterale */
+.annual{
+  --paper: #fffdf8;                /* fallback, verrà sovrascritto dal tema in dark mode */
+  --line:  rgba(0,0,0,.14);
+  --accent: #2b6cb0;
+
+  position: relative;
+  margin: 1.25rem 0 1.75rem;
+  padding: 1rem 1rem 1rem 1.25rem; /* spazio a sinistra per la barra */
+  background: color-mix(in oklab, var(--paper) 92%, white);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  border-radius: .5rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02), 0 12px 24px rgba(0,0,0,.04);
+}
+
+/* Etichetta flottante (es. "Y25") */
+.annual::before{
+  content: attr(data-label);
+  position: absolute;
+  left: -1px; top: -0.75rem;
+  transform: translateY(-50%);
+  font-size: .80rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  background: var(--paper);
+  color: color-mix(in oklab, var(--accent) 80%, black);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  padding: .15rem .5rem .15rem .4rem;
+  border-top-left-radius: .35rem;
+  border-bottom-left-radius: .35rem;
+  border-top-right-radius: .35rem;
+}
+
+/* Titoli dentro il box: togli margine alto così il box appare "unico" */
+.annual h3, .annual h2{ margin-top: .2rem; }
+
+/* dark mode di cortesia, se il tema la supporta */
+@media (prefers-color-scheme: dark){
+  .annual{
+    --paper: #0f1115;
+    --line: rgba(255,255,255,.18);
+    background: color-mix(in oklab, var(--paper) 92%, black);
+    box-shadow: 0 1px 0 rgba(255,255,255,.02), 0 12px 24px rgba(0,0,0,.35);
+  }
+}
+</style>
 
 <em>
 I like setting goals that are measurable through clear KPIs and concrete, objective sub-tasks.
@@ -15,8 +64,11 @@ I find it very helpful to work in “Quarters”, which don’t follow the usual
 
 This page will be updated quarter by quarter to increase personal accountability, keep my thoughts organized, and, above all, to connect with people who share similar goals or experiences, maybe even someone who’s already been there and can share their insights.
 
-*Some goals will last throughout the year but evolve over time, all inspired by one simple principle: **“**Mens sana in corpore sano**.”**
+Some goals will last throughout the year but evolve over time, all inspired by one simple principle: **“**Mens sana in corpore sano**.”**
 </em>
+
+<div class="annual" data-label="Y25">
+  
 ### Y25 Mens Sana
 
 At TU/e, the academic environment is genuinely healthy, no one asks for your grades or GPA.
@@ -29,6 +81,10 @@ Instead, assuming that grades reflect true understanding, I want to verify that 
 
 So, my aim is to achieve an **average grade of 8/10,** meaning I’ve absorbed roughly 80% of each course’s content.
 
+</div>
+
+<div class="annual" data-label="Y25">
+
 ### Y25 Corpore Sano
 
 *“Imagine you only had one car for your whole life, you’d change the tires monthly, the brakes every semester, the oil weekly, and always use the best fuel available.”*
@@ -39,11 +95,14 @@ I follow a balanced diet, avoid bad habits (smoking, drugs, alcohol, caffeine), 
 
 During this quarter, in addition to my 4 weekly weight sessions, I plan to add 2 swimming workouts to boost mobility and introduce new challenges.
 
-| **Increase upper body strength** | 4x10 80kg Incline Bench (Smith Machine) |
+|Goal|KPI|
 | --- | --- |
+| **Increase upper body strength** | 4x10 80kg Incline Bench (Smith Machine) |
 | **Increase lower body strength** | 4x10 85kg Free Squat |
 | **Improve flexibility** | Touch my toes standing |
 | **Increase mass** | Reach 74 kg (morning, empty stomach) |
+
+</div>
 
 ### Q2 Personal Project *Simple Poker Solver*
 
