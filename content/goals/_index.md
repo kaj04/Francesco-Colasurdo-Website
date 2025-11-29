@@ -1,9 +1,5 @@
 ---
 title: "Goals"
-menu:
-  main:
-    name: "Goals"
-    weight: 30
 ---
 <style>
 /* Callout "annuale" con barra laterale */
