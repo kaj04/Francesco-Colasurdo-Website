@@ -1,0 +1,166 @@
+{{ define "main" }}
+<div class="animate-fade-in-up">
+
+    {{ if eq .Section "cv" }}
+    <!-- CV LAYOUT -->
+    <div class="max-w-5xl mx-auto px-6 py-16">
+        <div
+            class="mb-12 border-b border-stone-200 pb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <h1 class="font-serif text-5xl text-ink mb-2">Curriculum Vitae</h1>
+                <p class="text-xl text-stone-500 font-serif italic">MSc Data Science & AI @ TU/e, currently looking for
+                    a summer internship ; )</p>
+            </div>
+            <button
+                class="flex items-center gap-2 px-8 py-3 bg-ink text-paper rounded-full hover:bg-primary transition-all duration-300 text-sm font-medium font-serif italic shadow-lg hover:shadow-xl group cursor-pointer">
+                <i data-lucide="download" class="w-4 h-4 group-hover:-translate-y-1 transition-transform"></i>
+                Download full CV
+            </button>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12">
+            <!-- Left Column: Contact & Skills -->
+            <div class="md:col-span-1 space-y-12">
+                <div
+                    class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm relative overflow-hidden group hover:border-primary/20 transition-colors">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left">
+                    </div>
+                    <h2 class="font-serif text-xl mb-6 text-primary italic">Contacts</h2>
+                    <div class="space-y-4 text-sm text-stone-600 font-sans">
+                        <a href="mailto:francesco.colasurdo04@gmail.com"
+                            class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="mail"
+                                class="w-4 h-4"></i> francesco...04@gmail.com</a>
+                        <a href="https://linkedin.com/in/francesco-colasurdo" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center gap-3 hover:text-primary transition-colors"><i
+                                data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile</a>
+                        <a href="#" class="flex items-center gap-3 hover:text-primary transition-colors"><i
+                                data-lucide="github" class="w-4 h-4"></i> github.com/francesco</a>
+                        <a href="#" class="flex items-center gap-3 hover:text-primary transition-colors"><i
+                                data-lucide="globe" class="w-4 h-4"></i> Personal Website</a>
+                    </div>
+                </div>
+
+                <!-- Hardcoded skills to match React App (since we cannot generate MD for this structure easily) -->
+                <div>
+                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
+                        <i data-lucide="code" class="w-4.5 h-4.5 text-primary"></i> Technical Skills
+                    </h3>
+                    <div class="space-y-6 text-sm">
+                        <div><span class="font-bold text-ink block mb-2 font-serif">Languages</span>
+                            <p class="text-stone-600 leading-relaxed">Python, R, SQL</p>
+                        </div>
+                        <div><span class="font-bold text-ink block mb-2 font-serif">Databases</span>
+                            <p class="text-stone-600 leading-relaxed">MySQL, PostgreSQL, MongoDB, BigQuery</p>
+                        </div>
+                        <div><span class="font-bold text-ink block mb-2 font-serif">Machine Learning & AI</span>
+                            <p class="text-stone-600 leading-relaxed">Scikit-learn, XGBoost, TensorFlow, PyTorch, OpenAI
+                                API, Hugging Face</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Experience & Education -->
+            <div class="md:col-span-2 space-y-16">
+                <section>
+                    <h3
+                        class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
+                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i> Education
+                    </h3>
+                    <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
+                            </div>
+                            <div
+                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                    <h4 className="font-bold text-lg text-ink font-serif">Eindhoven University of
+                                        Technology (TU/e)</h4>
+                                    <span
+                                        className="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Aug
+                                        2025 – Expected Jul 2027</span>
+                                </div>
+                                <p className="text-stone-500 italic mb-3 font-serif">MSc in Data Science & AI -
+                                    Eindhoven, Netherlands</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    {{ else if eq .Section "goals" }}
+    <!-- GOALS LAYOUT -->
+    <div class="max-w-5xl mx-auto px-6 py-16">
+        <div class="mb-12 max-w-3xl">
+            <h1 class="font-serif text-5xl text-ink mb-2">Goals</h1>
+            <p className="text-xl text-stone-500 font-serif italic mb-8">Objectives and key results for the quarter</p>
+            <div class="text-ink/80 leading-loose space-y-6 font-serif text-lg text-justify">
+                <p>I like setting goals that are measurable through clear KPIs and concrete, objective sub-tasks...</p>
+            </div>
+        </div>
+
+        <div class="grid gap-10">
+            <!-- Mockup of Goals Grid - In a real Hugo app, these would be pages in content/goals/ -->
+            <div
+                class="bg-white p-10 rounded-xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
+                <div
+                    class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
+                </div>
+                <div class="pl-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-paper rounded-full border border-stone-100 shadow-sm"><i
+                                    data-lucide="mountain" class="w-8 h-8 text-primary"></i></div>
+                            <h3 class="font-serif text-3xl font-bold text-ink">Y25 Mens Sana</h3>
+                        </div>
+                        <span
+                            class="text-xs bg-paper text-primary border border-primary/20 px-3 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">Current
+                            Quarter</span>
+                    </div>
+                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">
+                        At TU/e, the academic environment is genuinely healthy...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ else }}
+    <!-- BLOG LIST LAYOUT (Default) -->
+    <div class="max-w-5xl mx-auto px-6 py-16">
+        <div class="mb-12">
+            <h1 class="font-serif text-5xl text-ink mb-2">Blog</h1>
+            <p class="text-xl text-stone-500 font-serif italic">Weekly collection of anecdotes and reflections.</p>
+        </div>
+
+        <div class="grid gap-10">
+            {{ range where .Site.RegularPages "Section" "posts" }}
+            <article onclick="window.location.href='{{ .RelPermalink }}'"
+                class="group bg-white p-10 rounded-xl shadow-sm border border-stone-100 border-t-4 border-t-transparent hover:border-t-primary hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-4">
+                    <h2 class="font-serif text-3xl text-ink group-hover:text-primary transition-colors">
+                        {{ .Title }}
+                    </h2>
+                    <span class="text-xs font-sans text-stone-400 uppercase tracking-widest shrink-0">{{ .Date.Format
+                        "January 02, 2006" }}</span>
+                </div>
+                <p class="text-stone-600 leading-relaxed mb-6 line-clamp-2 font-serif text-lg">
+                    {{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Summary }}{{ end }}
+                </p>
+                <div
+                    class="flex items-center text-xs font-bold font-sans text-primary group-hover:underline decoration-primary underline-offset-4 tracking-widest uppercase">
+                    Read full article <i data-lucide="chevron-right"
+                        class="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1"></i>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+</div>
+{{ end }}

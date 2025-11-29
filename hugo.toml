@@ -1,55 +1,28 @@
 baseURL = "https://kaj04.github.io/Francesco-Colasurdo-Website/"
-languageCode = "it"
+languageCode = "en-us"
 title = "Francesco Colasurdo"
+theme = []
 
-[pagination]
-  pagerSize = 10
-
-[module]
-  [[module.imports]]
-    path = "github.com/adityatelange/hugo-PaperMod"
-
-# Uscite: genera SEMPRE anche l'HTML della home, non solo l'RSS
-[outputs]
-  home = ["HTML", "RSS"]
-
-# Parametri PaperMod
-[params]
-  defaultTheme = "auto"
-  math = true
-  mainSections = ["home"]
-  disableThemeToggle = true   # nasconde l’icona sole/luna
-
-[markup]
-  [markup.goldmark.renderer]
-    unsafe = true
-    
 [menu]
   [[menu.main]]
     name = "home"
-    url  = "/"
+    url = "/"
     weight = 1
-    
   [[menu.main]]
-    name = "CV"
+    name = "cv"
     url = "/cv/"
     weight = 2
-
   [[menu.main]]
-    name = "Blog"
-    url = "/blog/"
+    name = "blog"
+    url = "/posts/"
     weight = 3
-
-  #[[menu.main]]
-  #  name = "Timeline"
-  #  url = "/timeline/"
-  #  weight = 4
-
   [[menu.main]]
-    name = "Goals"
+    name = "goals"
     url = "/goals/"
-    weight = 5
+    weight = 4
 
-# (facoltativo ma utile in sottocartella)
-relativeURLs = true
-canonifyURLs = true
+[params]
+  description = "A minimalist, personal portfolio and blog site with an integrated AI assistant."
+  
+  # Immagini placeholder navbar (sostituisci con i tuoi path in static/assets/)
+  navbar_bg_image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeFvJGdRAxe6nT-XO0TwXmb6roe8SewnWt4g&s"
