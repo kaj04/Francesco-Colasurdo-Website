@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ if .IsHome }}{{ .Site.Title }} | Personal Space{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <script>
+        // URL pubblico del backend su Render
+        window.FC_API_URL = "https://cv-assistant-backend-jb20.onrender.com/api/chat";
+    </script>
 
     <!-- Meta Description -->
     <meta name="description"
@@ -228,35 +232,108 @@
             }
         }
 
-        function handleChatKey(e) {
-            if (e.key === 'Enter') sendChatMessage();
-        }
+          function handleChatKey(e) {
+                if (e.key === 'Enter') sendChatMessage();
+            }
 
-        function sendChatMessage() {
-            const input = document.getElementById('chat-input');
-            const text = input.value.trim();
-            if (!text) return;
+            async function sendChatMessage() {
+                const input = document.getElementById('chat-input');
+                const text = input.value.trim();
+                if (!text) return;
 
-            // Add User Message
-            const userDiv = document.createElement('div');
-            userDiv.className = "flex justify-end";
-            userDiv.innerHTML = `<div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">${text}</div>`;
-            messagesContainer.appendChild(userDiv);
-
-            input.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            // Mock Response (Since we don't have backend/env here)
-            setTimeout(() => {
-                const botDiv = document.createElement('div');
-                botDiv.className = "flex justify-start";
-                botDiv.innerHTML = `<div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-              This is a static demo. In the React version, this connects to Google Gemini API.
-            </div>`;
-                messagesContainer.appendChild(botDiv);
+                // 1. Messaggio utente
+                const userDiv = document.createElement('div');
+                userDiv.className = "flex justify-end";
+                userDiv.innerHTML = `
+      <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
+        ${text}
+      </div>`;
+                messagesContainer.appendChild(userDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 1000);
-        }
+                input.value = '';
+
+                // 2. URL backend (come nel vecchio widget)
+                const url = (typeof window !== 'undefined' && window.FC_API_URL)
+                    ? window.FC_API_URL
+                    : '/api/chat';
+
+                // 3. Typing indicator: "Retrieving information" -> "Typing…"
+                let typingDiv = document.createElement('div');
+                typingDiv.className = "flex justify-start";
+                typingDiv.innerHTML = `
+      <div class="max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed font-sans bg-paper border border-stone-100 text-stone-500 rounded-bl-none">
+        <span id="typing-label">Retrieving information</span>
+        <span class="inline-flex gap-1 ml-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.15s"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.3s"></span>
+        </span>
+      </div>`;
+                messagesContainer.appendChild(typingDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                let phase = 'retrieving';
+                const labelSpan = typingDiv.querySelector('#typing-label');
+                const switchToTyping = setTimeout(() => {
+                    phase = 'typing';
+                    if (labelSpan) labelSpan.textContent = 'Typing…';
+                }, 700);
+
+                try {
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ question: text })   // 👈 come nel tuo vecchio widget
+                    });
+
+                    clearTimeout(switchToTyping);
+                    if (phase !== 'typing' && labelSpan) {
+                        labelSpan.textContent = 'Typing…';
+                    }
+
+                    if (!res.ok) {
+                        typingDiv.remove();
+                        const botDiv = document.createElement('div');
+                        botDiv.className = "flex justify-start";
+                        botDiv.innerHTML = `
+          <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+            Sorry, backend not reachable right now. Please try again in a moment.
+          </div>`;
+                        messagesContainer.appendChild(botDiv);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        return;
+                    }
+
+                    const data = await res.json();
+                    typingDiv.remove();
+
+                    const answer = (data && typeof data.answer === 'string')
+                        ? data.answer
+                        : 'No answer.';
+
+                    const botDiv = document.createElement('div');
+                    botDiv.className = "flex justify-start";
+                    botDiv.innerHTML = `
+        <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+          ${answer}
+        </div>`;
+                    messagesContainer.appendChild(botDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                } catch (e) {
+                    clearTimeout(switchToTyping);
+                    typingDiv.remove();
+
+                    const botDiv = document.createElement('div');
+                    botDiv.className = "flex justify-start";
+                    botDiv.innerHTML = `
+        <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+          Sorry, something went wrong. Please try again.
+        </div>`;
+                    messagesContainer.appendChild(botDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            }
     </script>
 </body>
 
