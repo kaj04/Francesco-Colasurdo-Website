@@ -8,14 +8,17 @@ theme = []
     name = "home"
     url = "/"
     weight = 1
+
   [[menu.main]]
     name = "cv"
     url = "/cv/"
     weight = 2
+
   [[menu.main]]
     name = "blog"
-    url = "/posts/"
+    url = "/blog/"
     weight = 3
+
   [[menu.main]]
     name = "goals"
     url = "/goals/"
@@ -23,6 +26,6 @@ theme = []
 
 [params]
   description = "A minimalist, personal portfolio and blog site with an integrated AI assistant."
-  
-  # Immagini placeholder navbar (sostituisci con i tuoi path in static/assets/)
+
+  # Immagine di sfondo navbar
   navbar_bg_image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeFvJGdRAxe6nT-XO0TwXmb6roe8SewnWt4g&s"
