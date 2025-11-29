@@ -1,21 +1,26 @@
 {{ define "main" }}
 <div class="animate-fade-in-up">
-    <div class="max-w-3xl mx-auto px-6 py-16">
+    <div class="max-w-4xl mx-auto px-6 py-16">
         <!-- Back Button -->
-        <a href="/posts/"
+        <a href="{{ " /blog/" | relURL }}"
             class="mb-8 flex items-center gap-2 text-stone-500 hover:text-ink transition-colors text-base font-serif italic cursor-pointer inline-flex">
-            <i data-lucide="chevron-left" class="w-5 h-5"></i> Back to articles
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            Back to articles
         </a>
 
-        <article
-            class="prose prose-stone prose-lg max-w-none font-serif text-ink bg-white p-10 rounded-xl shadow-sm border border-stone-100">
-            <h1 class="font-serif text-5xl text-ink mb-4 !mt-0">{{ .Title }}</h1>
-            <p class="text-primary font-sans text-sm uppercase tracking-widest border-b border-primary/20 pb-8 mb-8">{{
-                .Date.Format "January 02, 2006" }}</p>
+        <!-- Titolo + Data -->
+        <header class="mb-10">
+            <h1 class="font-serif text-5xl text-ink mb-4 leading-tight tracking-tight">
+                {{ .Title }}
+            </h1>
+            <p class="text-primary font-sans text-sm uppercase tracking-widest border-b border-primary/20 pb-4">
+                {{ .Date.Format "January 02, 2006" }}
+            </p>
+        </header>
 
-            <div class="whitespace-pre-line text-ink/80 leading-loose text-lg">
-                {{ .Content }}
-            </div>
+        <!-- Contenuto articolo: niente card bianca, testo più largo -->
+        <article class="prose prose-stone prose-lg max-w-none font-serif text-ink leading-loose">
+            {{ .Content }}
         </article>
     </div>
 </div>

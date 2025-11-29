@@ -4,28 +4,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ if .IsHome }}{{ .Site.Title }} | Personal Space{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-    <script>
-        // URL pubblico del backend su Render
-        window.FC_API_URL = "https://cv-assistant-backend-jb20.onrender.com/api/chat";
-    </script>
+    <title>
+        {{ if .IsHome }}
+        {{ .Site.Title }} | Personal Space
+        {{ else }}
+        {{ .Title }} | {{ .Site.Title }}
+        {{ end }}
+    </title>
 
     <!-- Meta Description -->
     <meta name="description"
-        content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+        content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ " css/style.css" | relURL }}">
+    <link rel="stylesheet" href="{{ " css/style.css" | relURL }}" />
+
+    <!-- Backend URL per il Personal Assistant -->
+    <script>
+        window.FC_API_URL =
+            "https://cv-assistant-backend-jb20.onrender.com/api/chat";
+    </script>
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -36,51 +44,50 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        serif: ['Lora', 'serif'],
-                        playfair: ['Playfair Display', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
+                        serif: ["Lora", "serif"],
+                        playfair: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
                     },
                     colors: {
-                        paper: '#fcf8ed',
-                        ink: '#2c2825',
+                        paper: "#fcf8ed",
+                        ink: "#2c2825",
                         stone: {
-                            50: '#fafaf9',
-                            100: '#f5f5f4',
-                            200: '#e7e5e4',
-                            300: '#d6d3d1',
-                            400: '#a8a29e',
-                            500: '#78716c',
-                            800: '#292524',
-                            900: '#1c1917',
+                            50: "#fafaf9",
+                            100: "#f5f5f4",
+                            200: "#e7e5e4",
+                            300: "#d6d3d1",
+                            400: "#a8a29e",
+                            500: "#78716c",
+                            800: "#292524",
+                            900: "#1c1917",
                         },
                         primary: {
-                            DEFAULT: '#1b6e4b',
-                            light: '#4ade80',
-                            dark: '#14532d',
-                        }
+                            DEFAULT: "#1b6e4b",
+                            light: "#4ade80",
+                            dark: "#14532d",
+                        },
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.5s ease-out forwards',
-                        'fade-in-up': 'fadeInUp 0.7s ease-out forwards',
+                        "fade-in": "fadeIn 0.5s ease-out forwards",
+                        "fade-in-up": "fadeInUp 0.7s ease-out forwards",
                     },
                     keyframes: {
                         fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
+                            "0%": { opacity: "0" },
+                            "100%": { opacity: "1" },
                         },
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1' },
-                        }
-                    }
-                }
-            }
-        }
+                            "0%": { opacity: "0", transform: "translateY(20px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
+                        },
+                    },
+                },
+            },
+        };
     </script>
 </head>
 
 <body class="bg-paper text-ink antialiased selection:bg-primary/20 noise-bg vignette">
-
     <!-- Custom Cursor -->
     <div id="cursor-dot" class="cursor-dot"></div>
     <div id="cursor-ring" class="cursor-ring"></div>
@@ -113,8 +120,12 @@
                 <!-- Header -->
                 <div class="bg-paper p-5 border-b border-stone-100 flex items-center justify-between">
                     <div>
-                        <h3 class="font-serif font-bold text-xl text-ink">Francesco AI</h3>
-                        <p class="text-xs text-stone-500 font-sans">Powered by Gemini 2.5 Flash</p>
+                        <h3 class="font-serif font-bold text-xl text-ink">
+                            Francesco AI
+                        </h3>
+                        <p class="text-xs text-stone-500 font-sans">
+                            Personal assistant about Francesco.
+                        </p>
                     </div>
                     <div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse-custom"></div>
                 </div>
@@ -124,8 +135,8 @@
                     <div class="flex justify-start">
                         <div
                             class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-                            Ciao! I'm Francesco's virtual assistant. Ask me anything about his skills, projects, or
-                            background.
+                            Ciao! I'm Francesco's virtual assistant. Ask me anything about
+                            his skills, projects, or background.
                         </div>
                     </div>
                 </div>
@@ -136,7 +147,7 @@
                         class="flex items-center gap-2 bg-white rounded-full border border-stone-200 px-4 py-3 focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
                         <input type="text" id="chat-input" placeholder="Ask about my skills..."
                             class="flex-1 bg-transparent outline-none text-sm text-ink placeholder:text-stone-400 font-sans"
-                            onkeydown="handleChatKey(event)">
+                            onkeydown="handleChatKey(event)" />
                         <button onclick="sendChatMessage()"
                             class="text-stone-400 hover:text-primary transition-colors cursor-pointer">
                             <i data-lucide="send" class="w-4 h-4"></i>
@@ -153,21 +164,23 @@
         lucide.createIcons();
 
         // 2. Custom Cursor Logic
-        const dot = document.getElementById('cursor-dot');
-        const ring = document.getElementById('cursor-ring');
-        let mouseX = -100, mouseY = -100;
-        let ringX = -100, ringY = -100;
+        const dot = document.getElementById("cursor-dot");
+        const ring = document.getElementById("cursor-ring");
+        let mouseX = -100,
+            mouseY = -100;
+        let ringX = -100,
+            ringY = -100;
 
-        document.addEventListener('mousemove', (e) => {
+        document.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
 
-            // Instant dot movement
-            if (dot) dot.style.left = `${mouseX}px`;
-            if (dot) dot.style.top = `${mouseY}px`;
+            if (dot) {
+                dot.style.left = `${mouseX}px`;
+                dot.style.top = `${mouseY}px`;
+            }
         });
 
-        // Ring Animation Loop (Lerp)
         function animateRing() {
             const ease = 0.15;
             ringX += (mouseX - ringX) * ease;
@@ -181,159 +194,177 @@
         }
         requestAnimationFrame(animateRing);
 
-        // Hover Effect
-        document.addEventListener('mouseover', (e) => {
+        document.addEventListener("mouseover", (e) => {
             const target = e.target;
-            const isClickable = target.closest('a') || target.closest('button') || target.tagName === 'INPUT' || target.classList.contains('cursor-pointer');
+            const isClickable =
+                target.closest("a") ||
+                target.closest("button") ||
+                target.tagName === "INPUT" ||
+                target.classList.contains("cursor-pointer");
             if (isClickable && ring) {
-                ring.classList.add('hovering');
+                ring.classList.add("hovering");
             } else if (ring) {
-                ring.classList.remove('hovering');
+                ring.classList.remove("hovering");
             }
         });
 
         // 3. Chat Logic
         let isChatOpen = false;
-        const chatWindow = document.getElementById('chat-window');
-        const chatButton = document.getElementById('chat-button');
-        const chatBackdrop = document.getElementById('chat-backdrop');
-        const chatText = document.getElementById('chat-text');
-        const iconOpen = document.getElementById('chat-icon-open');
-        const iconClose = document.getElementById('chat-icon-close');
-        const messagesContainer = document.getElementById('chat-messages');
+        const chatWindow = document.getElementById("chat-window");
+        const chatButton = document.getElementById("chat-button");
+        const chatBackdrop = document.getElementById("chat-backdrop");
+        const chatText = document.getElementById("chat-text");
+        const iconOpen = document.getElementById("chat-icon-open");
+        const iconClose = document.getElementById("chat-icon-close");
+        const messagesContainer = document.getElementById("chat-messages");
 
         function toggleChat() {
             isChatOpen = !isChatOpen;
 
             if (isChatOpen) {
-                chatWindow.classList.remove('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
-                chatWindow.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+                chatWindow.classList.remove(
+                    "opacity-0",
+                    "scale-90",
+                    "translate-y-10",
+                    "pointer-events-none"
+                );
+                chatWindow.classList.add("opacity-100", "scale-100", "translate-y-0");
 
-                chatButton.classList.remove('bg-primary', 'text-white');
-                chatButton.classList.add('bg-ink', 'text-paper');
+                chatButton.classList.remove("bg-primary", "text-white");
+                chatButton.classList.add("bg-ink", "text-paper");
 
-                chatBackdrop.classList.remove('hidden');
+                chatBackdrop.classList.remove("hidden");
 
-                iconOpen.classList.add('hidden');
-                iconClose.classList.remove('hidden');
-                chatText.innerText = 'Close Chat';
+                iconOpen.classList.add("hidden");
+                iconClose.classList.remove("hidden");
+                chatText.innerText = "Close Chat";
             } else {
-                chatWindow.classList.add('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
-                chatWindow.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                chatWindow.classList.add(
+                    "opacity-0",
+                    "scale-90",
+                    "translate-y-10",
+                    "pointer-events-none"
+                );
+                chatWindow.classList.remove(
+                    "opacity-100",
+                    "scale-100",
+                    "translate-y-0"
+                );
 
-                chatButton.classList.add('bg-primary', 'text-white');
-                chatButton.classList.remove('bg-ink', 'text-paper');
+                chatButton.classList.add("bg-primary", "text-white");
+                chatButton.classList.remove("bg-ink", "text-paper");
 
-                chatBackdrop.classList.add('hidden');
+                chatBackdrop.classList.add("hidden");
 
-                iconOpen.classList.remove('hidden');
-                iconClose.classList.add('hidden');
-                chatText.innerText = 'Ask about ME';
+                iconOpen.classList.remove("hidden");
+                iconClose.classList.add("hidden");
+                chatText.innerText = "Ask about ME";
             }
         }
 
-          function handleChatKey(e) {
-                if (e.key === 'Enter') sendChatMessage();
-            }
+        function handleChatKey(e) {
+            if (e.key === "Enter") sendChatMessage();
+        }
 
-            async function sendChatMessage() {
-                const input = document.getElementById('chat-input');
-                const text = input.value.trim();
-                if (!text) return;
+        async function sendChatMessage() {
+            const input = document.getElementById("chat-input");
+            const text = input.value.trim();
+            if (!text) return;
 
-                // 1. Messaggio utente
-                const userDiv = document.createElement('div');
-                userDiv.className = "flex justify-end";
-                userDiv.innerHTML = `
-      <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
-        ${text}
-      </div>`;
-                messagesContainer.appendChild(userDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                input.value = '';
-
-                // 2. URL backend (come nel vecchio widget)
-                const url = (typeof window !== 'undefined' && window.FC_API_URL)
-                    ? window.FC_API_URL
-                    : '/api/chat';
-
-                // 3. Typing indicator: "Retrieving information" -> "Typing…"
-                let typingDiv = document.createElement('div');
-                typingDiv.className = "flex justify-start";
-                typingDiv.innerHTML = `
-      <div class="max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed font-sans bg-paper border border-stone-100 text-stone-500 rounded-bl-none">
-        <span id="typing-label">Retrieving information</span>
-        <span class="inline-flex gap-1 ml-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.15s"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.3s"></span>
-        </span>
-      </div>`;
-                messagesContainer.appendChild(typingDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-                let phase = 'retrieving';
-                const labelSpan = typingDiv.querySelector('#typing-label');
-                const switchToTyping = setTimeout(() => {
-                    phase = 'typing';
-                    if (labelSpan) labelSpan.textContent = 'Typing…';
-                }, 700);
-
-                try {
-                    const res = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ question: text })   // 👈 come nel tuo vecchio widget
-                    });
-
-                    clearTimeout(switchToTyping);
-                    if (phase !== 'typing' && labelSpan) {
-                        labelSpan.textContent = 'Typing…';
-                    }
-
-                    if (!res.ok) {
-                        typingDiv.remove();
-                        const botDiv = document.createElement('div');
-                        botDiv.className = "flex justify-start";
-                        botDiv.innerHTML = `
-          <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-            Sorry, backend not reachable right now. Please try again in a moment.
+            // Messaggio utente
+            const userDiv = document.createElement("div");
+            userDiv.className = "flex justify-end";
+            userDiv.innerHTML = `
+          <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
+            ${text}
           </div>`;
-                        messagesContainer.appendChild(botDiv);
-                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                        return;
-                    }
+            messagesContainer.appendChild(userDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            input.value = "";
 
-                    const data = await res.json();
-                    typingDiv.remove();
+            // URL backend (FastAPI su Render)
+            const url =
+                typeof window !== "undefined" && window.FC_API_URL
+                    ? window.FC_API_URL
+                    : "/api/chat";
 
-                    const answer = (data && typeof data.answer === 'string')
-                        ? data.answer
-                        : 'No answer.';
+            // Typing indicator
+            let typingDiv = document.createElement("div");
+            typingDiv.className = "flex justify-start";
+            typingDiv.innerHTML = `
+          <div class="max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed font-sans bg-paper border border-stone-100 text-stone-500 rounded-bl-none">
+            <span id="typing-label">Retrieving information</span>
+            <span class="inline-flex gap-1 ml-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.15s"></span>
+              <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.3s"></span>
+            </span>
+          </div>`;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-                    const botDiv = document.createElement('div');
-                    botDiv.className = "flex justify-start";
-                    botDiv.innerHTML = `
-        <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-          ${answer}
-        </div>`;
-                    messagesContainer.appendChild(botDiv);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            let phase = "retrieving";
+            const labelSpan = typingDiv.querySelector("#typing-label");
+            const switchToTyping = setTimeout(() => {
+                phase = "typing";
+                if (labelSpan) labelSpan.textContent = "Typing…";
+            }, 700);
 
-                } catch (e) {
-                    clearTimeout(switchToTyping);
-                    typingDiv.remove();
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question: text }),
+                });
 
-                    const botDiv = document.createElement('div');
-                    botDiv.className = "flex justify-start";
-                    botDiv.innerHTML = `
-        <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-          Sorry, something went wrong. Please try again.
-        </div>`;
-                    messagesContainer.appendChild(botDiv);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                clearTimeout(switchToTyping);
+                if (phase !== "typing" && labelSpan) {
+                    labelSpan.textContent = "Typing…";
                 }
+
+                if (!res.ok) {
+                    typingDiv.remove();
+                    const botDiv = document.createElement("div");
+                    botDiv.className = "flex justify-start";
+                    botDiv.innerHTML = `
+              <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+                Sorry, backend not reachable right now. Please try again in a moment.
+              </div>`;
+                    messagesContainer.appendChild(botDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    return;
+                }
+
+                const data = await res.json();
+                typingDiv.remove();
+
+                const answer =
+                    data && typeof data.answer === "string"
+                        ? data.answer
+                        : "No answer.";
+
+                const botDiv = document.createElement("div");
+                botDiv.className = "flex justify-start";
+                botDiv.innerHTML = `
+            <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+              ${answer}
+            </div>`;
+                messagesContainer.appendChild(botDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            } catch (e) {
+                clearTimeout(switchToTyping);
+                typingDiv.remove();
+
+                const botDiv = document.createElement("div");
+                botDiv.className = "flex justify-start";
+                botDiv.innerHTML = `
+            <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+              Sorry, something went wrong. Please try again.
+            </div>`;
+                messagesContainer.appendChild(botDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
+        }
     </script>
 </body>
 

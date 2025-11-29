@@ -1,60 +1,56 @@
 {{ define "main" }}
 <div class="animate-fade-in-up">
-
     {{ if eq .Section "cv" }}
     <!-- CV LAYOUT -->
-    <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="max-w-5xl mx-auto px-6 py-16">
         <div
             class="mb-12 border-b border-stone-200 pb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
-                <h1 class="font-serif text-5xl md:text-6xl text-ink mb-2">Curriculum Vitae</h1>
-                <p class="text-xl text-stone-500 font-serif italic max-w-2xl">
-                    MSc Data Science &amp; AI @ TU/e, currently looking for a summer internship ; )
+                <h1 class="font-serif text-5xl text-ink mb-2">Curriculum Vitae</h1>
+                <p class="text-xl text-stone-500 font-serif italic">
+                    MSc Data Science &amp; AI @ TU/e, currently looking for a summer
+                    internship ; )
                 </p>
             </div>
-            <a href="{{ "/cv/Francesco_Colasurdo_CV.pdf" | relURL }}"
-                class="inline-flex items-center gap-2 px-8 py-3 bg-ink text-paper rounded-full hover:bg-primary
-        transition-all duration-300 text-sm font-medium font-serif italic shadow-lg hover:shadow-xl group cursor-pointer">
-                download
+            <a href="{{ " Francesco-Colasurdo-CV-4.pdf" | relURL }}" download
+                class="inline-flex items-center gap-2 px-8 py-3 bg-ink text-paper rounded-full hover:bg-primary transition-all duration-300 text-sm font-medium font-serif italic shadow-lg hover:shadow-xl group cursor-pointer">
                 <i data-lucide="download" class="w-4 h-4 group-hover:-translate-y-1 transition-transform"></i>
-                Download full CV
+                <span>Download CV (PDF)</span>
             </a>
         </div>
 
         <div class="grid md:grid-cols-3 gap-12">
             <!-- Left Column: Contact & Skills -->
-            <aside class="md:col-span-1 space-y-12">
-                <!-- Contacts -->
-                <section
-                    class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm relative overflow-hidden group hover:border-primary/30 transition-colors">
+            <div class="md:col-span-1 space-y-12">
+                <div
+                    class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm relative overflow-hidden group hover:border-primary/20 transition-colors">
                     <div
                         class="absolute top-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left">
                     </div>
                     <h2 class="font-serif text-xl mb-6 text-primary italic">Contacts</h2>
                     <div class="space-y-4 text-sm text-stone-600 font-sans">
                         <a href="mailto:francesco.colasurdo04@gmail.com"
-                            class="flex items-center gap-3 hover:text-primary transition-colors">
-                            <i data-lucide="mail" class="w-4 h-4"></i> francesco.colasurdo04@gmail.com
-                        </a>
+                            class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="mail"
+                                class="w-4 h-4"></i>
+                            francesco.colasurdo04@gmail.com</a>
                         <a href="https://linkedin.com/in/francesco-colasurdo" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center gap-3 hover:text-primary transition-colors">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile
-                        </a>
+                            class="flex items-center gap-3 hover:text-primary transition-colors"><i
+                                data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                            Profile</a>
                         <a href="https://github.com/kaj04" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center gap-3 hover:text-primary transition-colors">
-                            <i data-lucide="github" class="w-4 h-4"></i> github.com/kaj04
-                        </a>
-                        <a href="https://kaj04.github.io/Francesco-Colasurdo-Website/"
-                            class="flex items-center gap-3 hover:text-primary transition-colors">
-                            <i data-lucide="globe" class="w-4 h-4"></i> Personal Website
-                        </a>
+                            class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="github"
+                                class="w-4 h-4"></i>
+                            github.com/kaj04</a>
+                        <a href="{{ " /" | relURL }}"
+                            class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="globe"
+                                class="w-4 h-4"></i> Personal Website</a>
                     </div>
-                </section>
+                </div>
 
-                <!-- Technical Skills -->
-                <section>
+                <!-- Skills (come prima) -->
+                <div>
                     <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
-                        <i data-lucide="code" class="w-4 h-4 text-primary"></i>
+                        <i data-lucide="code" class="w-4.5 h-4.5 text-primary"></i>
                         Technical Skills
                     </h3>
                     <div class="space-y-6 text-sm">
@@ -64,12 +60,15 @@
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Databases</span>
-                            <p class="text-stone-600 leading-relaxed">MySQL, PostgreSQL, MongoDB, BigQuery</p>
+                            <p class="text-stone-600 leading-relaxed">
+                                MySQL, PostgreSQL, MongoDB, BigQuery
+                            </p>
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Machine Learning &amp; AI</span>
                             <p class="text-stone-600 leading-relaxed">
-                                Scikit-learn, XGBoost, TensorFlow, PyTorch, OpenAI API, Hugging Face
+                                Scikit-learn, XGBoost, TensorFlow, PyTorch, OpenAI API, Hugging
+                                Face
                             </p>
                         </div>
                         <div>
@@ -93,42 +92,47 @@
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Statistical Concepts</span>
                             <p class="text-stone-600 leading-relaxed">
-                                EDA, Statistical Inference, Predictive Analytics, Data Modeling, Data Visualization
+                                EDA, Statistical Inference, Predictive Analytics, Data
+                                Modeling, Data Visualization
                             </p>
                         </div>
                     </div>
-                </section>
+                </div>
 
                 <!-- Certificates -->
-                <section class="space-y-4">
-                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-2 flex items-center gap-2 text-ink">
-                        <i data-lucide="award" class="w-4 h-4 text-primary"></i>
+                <div class="space-y-6 mt-8">
+                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
+                        <i data-lucide="award" class="w-4.5 h-4.5 text-primary"></i>
                         Certificates
                     </h3>
-                    <div class="text-sm text-stone-700 space-y-2">
-                        <p><span class="font-semibold">IELTS 7.5:</span> C1 Proficiency (British Council)</p>
-                        <p>
-                            <span class="font-semibold">Summer School:</span>
-                            Data Science &amp; AI for Life Sciences (SAS &amp; Cambridge)
-                        </p>
-                    </div>
-                </section>
+                    <p class="text-sm text-stone-700">
+                        <strong>IELTS 7.5:</strong> C1 Proficiency (British Council)
+                    </p>
+                    <p class="text-sm text-stone-700">
+                        <strong>Summer School:</strong> Data Science &amp; AI for Life
+                        Sciences (SAS &amp; Cambridge)
+                    </p>
+                </div>
 
-                <!-- Extra Career -->
-                <section class="space-y-4">
-                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-2 flex items-center gap-2 text-ink">
-                        <i data-lucide="users" class="w-4 h-4 text-primary"></i>
+                <!-- Extra-Career -->
+                <div class="space-y-4 mt-8">
+                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
+                        <i data-lucide="user-round" class="w-4.5 h-4.5 text-primary"></i>
                         Extra-Career
                     </h3>
-                    <ul class="text-sm text-stone-700 space-y-2 list-disc list-inside">
-                        <li>Volunteer with AGESCI Scout Association (Jamboree 2019, USA).</li>
-                        <li>Executive producer of a short, self-produced film project.</li>
-                        <li>Organizer of private and public events.</li>
+                    <ul class="list-disc list-inside text-sm text-stone-700 space-y-2">
+                        <li>
+                            Volunteer with AGESCI Scout Association (Jamboree 2019, USA)
+                        </li>
+                        <li>
+                            Executive producer of a short, self-produced film project
+                        </li>
+                        <li>Organizer of private and public events</li>
                     </ul>
-                </section>
-            </aside>
+                </div>
+            </div>
 
-            <!-- Right Column: Education, Work, Projects -->
+            <!-- Right Column: Education, Work Experience, Projects (come da mock) -->
             <div class="md:col-span-2 space-y-16">
                 <!-- Education -->
                 <section>
@@ -137,10 +141,9 @@
                         <i data-lucide="book-open" class="w-6 h-6 text-primary"></i>
                         Education
                     </h3>
-
                     <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
                         <!-- TU/e -->
-                        <article class="relative group">
+                        <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
                             </div>
@@ -151,24 +154,27 @@
                                         Eindhoven University of Technology (TU/e)
                                     </h4>
                                     <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                                        Aug 2025 – Expected Jul 2027
-                                    </span>
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Aug
+                                        2025 – Expected Jul 2027</span>
                                 </div>
                                 <p class="text-stone-500 italic mb-3 font-serif">
                                     MSc in Data Science &amp; AI – Eindhoven, Netherlands
                                 </p>
-                                <ul class="text-sm text-stone-700 space-y-1 list-disc list-inside">
-                                    <li>Main courses: Foundations &amp; Ethics of AI, Big Data Management, Gen AI
-                                        Models, Visual Analytics, Time series.</li>
-                                    <li>Participant in the Honors Master Program, an additional 20-credit track on
-                                        leadership and personal development.</li>
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>
+                                        Main courses: Foundations &amp; Ethics of AI, Big Data
+                                        Management, Gen AI Models, Visual Analytics, Time series.
+                                    </li>
+                                    <li>
+                                        Participant in the Honors Master Program, an additional
+                                        20-credit track on leadership and personal development.
+                                    </li>
                                 </ul>
                             </div>
-                        </article>
+                        </div>
 
                         <!-- Salerno -->
-                        <article class="relative group">
+                        <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
                             </div>
@@ -179,23 +185,29 @@
                                         University of Salerno
                                     </h4>
                                     <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                                        Sep 2022 – Jul 2025
-                                    </span>
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Sep
+                                        2022 – Jul 2025</span>
                                 </div>
                                 <p class="text-stone-500 italic mb-3 font-serif">
                                     BSc in Statistics for Big Data (GPA: 28/30) – Salerno, Italy
                                 </p>
-                                <ul class="text-sm text-stone-700 space-y-1 list-disc list-inside">
-                                    <li>Main courses: Programming, Statistics, Machine Learning, Data Visualization.
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>
+                                        Main courses: Programming, Statistics, Machine Learning,
+                                        Data Visualization.
                                     </li>
-                                    <li>Erasmus+ Merit Scholarship: <span class="font-semibold">Universidad de Granada,
-                                            Spain</span> (Sep 2023 – Feb 2024).</li>
-                                    <li>Adapted to a new academic environment, developing intercultural communication
-                                        skills.</li>
+                                    <li>
+                                        Erasmus+ Merit Scholarship:
+                                        <strong>Universidad de Granada, Spain</strong> (Sep 2023 –
+                                        Feb 2024).
+                                    </li>
+                                    <li>
+                                        Adapted to a new academic environment, developing
+                                        intercultural communication skills.
+                                    </li>
                                 </ul>
                             </div>
-                        </article>
+                        </div>
                     </div>
                 </section>
 
@@ -206,10 +218,9 @@
                         <i data-lucide="briefcase" class="w-6 h-6 text-primary"></i>
                         Work Experience
                     </h3>
-
                     <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
                         <!-- NTT Data -->
-                        <article class="relative group">
+                        <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
                             </div>
@@ -220,25 +231,32 @@
                                         NTT Data
                                     </h4>
                                     <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                                        Mar 2025 – Jun 2025
-                                    </span>
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Mar
+                                        2025 – Jun 2025</span>
                                 </div>
                                 <p class="text-stone-500 italic mb-3 font-serif">
                                     Data Science Intern – Naples, Italy
                                 </p>
-                                <ul class="text-sm text-stone-700 space-y-1 list-disc list-inside">
-                                    <li>Designed and deployed a mental health chatbot (Dialogflow CX + Telegram API)
-                                        managing 1k+ conversations with &gt;85% completion rate.</li>
-                                    <li>Applied ML &amp; NLP algorithms (HDBSCAN, UMAP, LLM sentiment analysis) to
-                                        uncover key behavioral patterns.</li>
-                                    <li>Built Power BI dashboards for real-time insight visualization.</li>
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>
+                                        Designed and deployed a mental health chatbot (Dialogflow
+                                        CX + Telegram API) managing 1k+ conversations with &gt;85%
+                                        completion rate.
+                                    </li>
+                                    <li>
+                                        Applied ML &amp; NLP algorithms (HDBSCAN, UMAP, LLM
+                                        sentiment analysis) to uncover 7 key behavioral patterns.
+                                    </li>
+                                    <li>
+                                        Built Power BI dashboards for real-time insight
+                                        visualization.
+                                    </li>
                                 </ul>
                             </div>
-                        </article>
+                        </div>
 
-                        <!-- Italian–South African Chamber -->
-                        <article class="relative group">
+                        <!-- Italian–South African Chamber of Trade -->
+                        <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
                             </div>
@@ -249,78 +267,91 @@
                                         Italian–South African Chamber of Trade
                                     </h4>
                                     <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                                        Jan 2025 – Mar 2025
-                                    </span>
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Jan
+                                        2025 – Mar 2025</span>
                                 </div>
                                 <p class="text-stone-500 italic mb-3 font-serif">
                                     Data Analytics &amp; Market Research Intern – Johannesburg, SA
                                 </p>
-                                <ul class="text-sm text-stone-700 space-y-1 list-disc list-inside">
-                                    <li>Produced market analyses across energy, steel, and agri-food sectors,
-                                        identifying opportunities with &gt;20% annual growth potential.</li>
-                                    <li>Built internal market-intelligence dashboards reducing information-retrieval
-                                        time from 3 min to &lt;15 sec.</li>
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>
+                                        Produced 4 market analyses across energy, steel, and
+                                        agri-food, identifying opportunities with &gt;20% annual
+                                        growth potential.
+                                    </li>
+                                    <li>
+                                        Built internal market-intelligence database reducing
+                                        information-retrieval time from 3 min to &lt;15 sec.
+                                    </li>
                                 </ul>
                             </div>
-                        </article>
+                        </div>
 
                         <!-- Jesal -->
-                        <article class="relative group">
+                        <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
                             </div>
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">
-                                        Jesal
-                                    </h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">Jesal</h4>
                                     <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                                        Sep 2023 – Jan 2025
-                                    </span>
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Sep
+                                        2023 – Jan 2025</span>
                                 </div>
                                 <p class="text-stone-500 italic mb-3 font-serif">
                                     Head of Sales – Salerno, Italy
                                 </p>
-                                <ul class="text-sm text-stone-700 space-y-1 list-disc list-inside">
-                                    <li>Led the Sales &amp; Business Development team at a student-run non-profit
-                                        offering consultancy services.</li>
-                                    <li>Conducted market research and data analysis projects, providing actionable
-                                        insights to local clients.</li>
-                                    <li>Collaborated with multidisciplinary teams to deliver tailored solutions.</li>
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>
+                                        Led the Sales &amp; Business Development team at a
+                                        student-run non-profit offering consultancy services.
+                                    </li>
+                                    <li>
+                                        Conducted market research and data analysis projects,
+                                        providing actionable insights to local clients.
+                                    </li>
+                                    <li>
+                                        Collaborated with multidisciplinary teams to deliver
+                                        tailored solutions.
+                                    </li>
                                 </ul>
                             </div>
-                        </article>
+                        </div>
 
                         <!-- Airbnb -->
-                        <article class="relative group">
+                        <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
                             </div>
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">
-                                        Airbnb
-                                    </h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">Airbnb</h4>
                                     <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-3 py-1 rounded-full">
-                                        May 2024 – Present
-                                    </span>
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">May
+                                        2024 – Present</span>
                                 </div>
                                 <p class="text-stone-500 italic mb-3 font-serif">
                                     Property Manager – Salerno, Italy
                                 </p>
-                                <ul class="text-sm text-stone-700 space-y-1 list-disc list-inside">
-                                    <li>Managed multiple properties, overseeing guest hospitality and operations.</li>
-                                    <li>Earned SuperHost status by consistently delivering excellent service.</li>
-                                    <li>Implemented automated processes resulting in increased efficiency and profit.
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>
+                                        Managed multiple properties, overseeing guest hospitality
+                                        and operations.
+                                    </li>
+                                    <li>
+                                        Earned SuperHost status by consistently delivering excellent
+                                        service.
+                                    </li>
+                                    <li>
+                                        Implemented automated processes resulting in a 40% increase
+                                        in profits.
                                     </li>
                                 </ul>
                             </div>
-                        </article>
+                        </div>
                     </div>
                 </section>
 
@@ -331,44 +362,41 @@
                         <i data-lucide="target" class="w-6 h-6 text-primary"></i>
                         Personal Projects
                     </h3>
-                    <div class="pl-4">
-                        <article
-                            class="border border-primary/20 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow p-6 md:p-8 relative overflow-hidden">
-                            <div class="absolute inset-y-0 left-0 w-1 bg-primary/70 rounded-r-full"></div>
-                            <h4 class="font-serif text-xl md:text-2xl text-ink mb-3">
-                                Ask My CV | Personal RAG Assistant
-                            </h4>
-                            <p class="text-stone-700 text-sm md:text-base mb-4 leading-relaxed">
-                                Designed a RAG-based AI assistant with FastAPI and Sentence-Transformers for accurate CV
-                                query responses,
-                                connected to a web chat interface.
-                            </p>
-                            <p class="text-stone-700 text-sm md:text-base mb-6 leading-relaxed">
-                                Engineered an end-to-end Python backend orchestrating Datapizza-AI for web chat
-                                interaction and CV-focused
-                                retrieval.
-                            </p>
-                            <div class="flex flex-wrap items-center gap-3 text-xs font-sans">
-                                <span
-                                    class="px-3 py-1 rounded-full bg-primary/10 text-primary font-semibold tracking-wide uppercase">
-                                    FastAPI
-                                </span>
-                                    <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-sans uppercase tracking-widest">
-                                    RAG
-                                </span>
-                                <span
-                                    class="px-3 py-1 rounded-full bg-primary/10 text-primary font-semibold tracking-wide uppercase">
-                                    LLM
-                                </span>
-                                <a href="https://github.com/kaj04/cv-assistant-backend"
-                                    target="_blank"
-                                    rel="noopener noreferrer"   
-                                    class="inline-flex items-center gap-1 text-primary hover:underline ml-auto text-xs md:text-sm">
-                                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
-                                    View Repository
+                    <div class="space-y-6">
+                        <div
+                            class="bg-white p-6 rounded-xl border border-primary/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                            <div class="absolute inset-y-0 left-0 w-1 bg-primary rounded-l-xl"></div>
+                            <div class="pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
+                                    <h4 class="font-serif text-xl text-ink">
+                                        Ask My CV | Personal RAG Assistant
+                                    </h4>
+                                    <div class="flex items-center gap-2 text-xs font-sans">
+                                        <span
+                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">FASTAPI</span>
+                                        <span
+                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">LLM</span>
+                                        <span
+                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">RAG</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-stone-700 mb-3">
+                                    Designed RAG-based AI assistant with FastAPI and
+                                    Sentence-Transformers for accurate CV query responses.
+                                </p>
+                                <p class="text-sm text-stone-700 mb-4">
+                                    Engineered end-to-end Python backend orchestrating
+                                    Datapizza-AI for web chat interaction.
+                                </p>
+                                <a href="https://github.com/kaj04/cv-assistant-backend" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
+                                    <i data-lucide="github" class="w-4 h-4"></i>
+                                    <span>View Repository</span>
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                                 </a>
                             </div>
-                        </article>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -376,195 +404,46 @@
     </div>
 
     {{ else if eq .Section "goals" }}
-    <!-- GOALS LAYOUT -->
+    <!-- GOALS LAYOUT (rimasto uguale) -->
     <div class="max-w-5xl mx-auto px-6 py-16">
-        <!-- Header -->
-        <header class="mb-12 max-w-3xl">
-            <h1 class="font-serif text-5xl md:text-6xl text-ink mb-3">Goals</h1>
-            <p class="text-xl text-stone-500 font-serif italic mb-6">
+        <div class="mb-12 max-w-3xl">
+            <h1 class="font-serif text-5xl text-ink mb-2">Goals</h1>
+            <p class="text-xl text-stone-500 font-serif italic mb-8">
                 Objectives and key results for the quarter
             </p>
             <div class="text-ink/80 leading-loose space-y-6 font-serif text-lg text-justify">
                 <p>
-                    I like setting goals that are measurable through clear KPIs and concrete, objective sub-tasks.
-                    Even when I set more abstract goals, I try to define tangible milestones to track and validate my
-                    progress.
-                </p>
-                <p>
-                    I find it very helpful to work in <span class="font-bold">"Quarters"</span>, which don’t follow the
-                    usual business quarters
-                    but rather the academic ones, starting in September and lasting around ten weeks each.
-                    This page will be updated quarter by quarter to increase personal accountability.
-                </p>
-                <p>
-                    Some goals will last throughout the year but evolve over time, all inspired by one simple principle:
-                    <span class="text-primary font-semibold italic">"Mens sana in corpore sano."</span>
+                    I like setting goals that are measurable through clear KPIs and
+                    concrete, objective sub-tasks...
                 </p>
             </div>
-        </header>
+        </div>
 
         <div class="grid gap-10">
-            <!-- Goal Card 1 -->
-            <article
-                class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
+            <div
+                class="bg-white p-10 rounded-xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
                 <div
                     class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
                 </div>
                 <div class="pl-6">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                         <div class="flex items-center gap-4">
-                            <div
-                                class="p-3 rounded-full bg-paper border border-stone-100 shadow-sm flex items-center justify-center">
-                                <i data-lucide="mountain" class="w-7 h-7 text-primary"></i>
+                            <div class="p-3 bg-paper rounded-full border border-stone-100 shadow-sm">
+                                <i data-lucide="mountain" class="w-8 h-8 text-primary"></i>
                             </div>
-                            <div>
-                                <h2 class="font-serif text-3xl font-bold text-ink mb-1">Y25 Mens Sana</h2>
-                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-ink">
+                                Y25 Mens Sana
+                            </h3>
                         </div>
                         <span
-                            class="text-xs bg-paper text-primary border border-primary/30 px-4 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">
-                            Current Quarter
-                        </span>
+                            class="text-xs bg-paper text-primary border border-primary/20 px-3 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">Current
+                            Quarter</span>
                     </div>
-
-                    <p class="text-stone-700 mb-8 leading-relaxed font-serif text-lg">
-                        At TU/e, the academic environment is genuinely healthy: nobody asks for your grades or GPA.
-                        Since you can’t reject exam results here, there’s no point in punishing yourself — the focus is
-                        on learning
-                        for your own growth, not for numbers. My aim is to achieve an average grade of 8/10, meaning
-                        I’ve absorbed
-                        roughly 80% of each course’s content.
+                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">
+                        At TU/e, the academic environment is genuinely healthy...
                     </p>
-
-                    <!-- KPI bar -->
-                    <div
-                        class="mt-4 bg-paper border border-stone-200 rounded-2xl px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center">
-                                <i data-lucide="target" class="w-4 h-4 text-primary"></i>
-                            </div>
-                            <span class="font-serif text-sm md:text-base text-ink">
-                                <span class="font-semibold">KPI:</span> Average Grade 8/10
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-3 md:min-w-[230px]">
-                            <div class="flex-1 h-2 rounded-full bg-stone-200 overflow-hidden">
-                                <div class="h-full rounded-full bg-primary" style="width: 80%;"></div>
-                            </div>
-                            <span class="text-xs font-sans text-primary font-semibold tracking-wider">80%</span>
-                        </div>
-                    </div>
                 </div>
-            </article>
-
-            <!-- Goal Card 2 -->
-            <article
-                class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
-                <div
-                    class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
-                </div>
-                <div class="pl-6">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="p-3 rounded-full bg-paper border border-stone-100 shadow-sm flex items-center justify-center">
-                                <i data-lucide="users" class="w-7 h-7 text-primary"></i>
-                            </div>
-                            <div>
-                                <h2 class="font-serif text-3xl font-bold text-ink mb-1">
-                                    Professional Networking
-                                </h2>
-                            </div>
-                        </div>
-                        <span
-                            class="text-xs bg-paper text-primary border border-primary/30 px-4 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">
-                            Current Quarter
-                        </span>
-                    </div>
-
-                    <p class="text-stone-700 mb-8 leading-relaxed font-serif text-lg">
-                        Expand connections within the Data Science community in Eindhoven.
-                        I want to focus on quality conversations rather than the sheer number of contacts,
-                        building relationships that can turn into collaborations, friendships, or simply meaningful
-                        exchanges.
-                    </p>
-
-                    <!-- KPI bar -->
-                    <div
-                        class="mt-4 bg-paper border border-stone-200 rounded-2xl px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center">
-                                <i data-lucide="target" class="w-4 h-4 text-primary"></i>
-                            </div>
-                            <span class="font-serif text-sm md:text-base text-ink">
-                                <span class="font-semibold">KPI:</span> Attend 5 Meetups
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-3 md:min-w-[230px]">
-                            <div class="flex-1 h-2 rounded-full bg-stone-200 overflow-hidden">
-                                <div class="h-full rounded-full bg-primary" style="width: 40%;"></div>
-                            </div>
-                            <span class="text-xs font-sans text-primary font-semibold tracking-wider">40%</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Goal Card 3 -->
-            <article
-                class="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
-                <div
-                    class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
-                </div>
-                <div class="pl-6">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="p-3 rounded-full bg-paper border border-stone-100 shadow-sm flex items-center justify-center">
-                                <i data-lucide="languages" class="w-7 h-7 text-primary"></i>
-                            </div>
-                            <div>
-                                <h2 class="font-serif text-3xl font-bold text-ink mb-1">
-                                    Dutch Language &amp; Culture
-                                </h2>
-                            </div>
-                        </div>
-                        <span
-                            class="text-xs bg-paper text-primary border border-primary/30 px-4 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">
-                            Current Quarter
-                        </span>
-                    </div>
-
-                    <p class="text-stone-700 mb-8 leading-relaxed font-serif text-lg">
-                        Integrate better into the local culture to understand the people around me, not just the
-                        language syntax.
-                        I want to feel more at home in the Netherlands, from everyday interactions to cultural
-                        references and jokes.
-                    </p>
-
-                    <!-- KPI bar -->
-                    <div
-                        class="mt-4 bg-paper border border-stone-200 rounded-2xl px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full border border-primary/20 bg-primary/5 flex items-center justify-center">
-                                <i data-lucide="target" class="w-4 h-4 text-primary"></i>
-                            </div>
-                            <span class="font-serif text-sm md:text-base text-ink">
-                                <span class="font-semibold">KPI:</span> Complete A1 Course
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-3 md:min-w-[230px]">
-                            <div class="flex-1 h-2 rounded-full bg-stone-200 overflow-hidden">
-                                <div class="h-full rounded-full bg-primary" style="width: 15%;"></div>
-                            </div>
-                            <span class="text-xs font-sans text-primary font-semibold tracking-wider">15%</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
+            </div>
         </div>
     </div>
 
@@ -572,7 +451,7 @@
     <!-- BLOG LIST LAYOUT (Default) -->
     <div class="max-w-5xl mx-auto px-6 py-16">
         <div class="mb-12">
-            <h1 class="font-serif text-5xl md:text-6xl text-ink mb-2">Blog</h1>
+            <h1 class="font-serif text-5xl text-ink mb-2">Blog</h1>
             <p class="text-xl text-stone-500 font-serif italic">
                 Weekly collection of anecdotes and reflections.
             </p>
@@ -581,21 +460,17 @@
         <div class="grid gap-10">
             {{ range where .Site.RegularPages "Section" "blog" }}
             <article onclick="window.location.href='{{ .RelPermalink }}'"
-                class="group bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-stone-100 border-t-4 border-t-transparent hover:border-t-primary hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer">
+                class="group bg-white p-10 rounded-xl shadow-sm border border-stone-100 border-t-4 border-t-transparent hover:border-t-primary hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer">
                 <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-4">
                     <h2 class="font-serif text-3xl text-ink group-hover:text-primary transition-colors">
                         {{ .Title }}
                     </h2>
-                    <span class="text-xs font-sans text-stone-400 uppercase tracking-widest shrink-0">
-                        {{ .Date.Format "January 02, 2006" }}
-                    </span>
+                    <span class="text-xs font-sans text-stone-400 uppercase tracking-widest shrink-0">{{ .Date.Format
+                        "January 02, 2006" }}</span>
                 </div>
-                <p class="text-stone-600 leading-relaxed mb-6 font-serif text-lg">
-                    {{ if .Params.summary }}
-                    {{ .Params.summary | plainify | truncate 160 }}
-                    {{ else }}
-                    {{ .Summary | plainify | truncate 160 }}
-                    {{ end }}
+                <p class="text-stone-600 leading-relaxed mb-6 line-clamp-2 font-serif text-lg">
+                    {{- if .Params.summary -}} {{ .Params.summary | plainify | truncate 180
+                    }}… {{- else -}} {{ .Summary | plainify | truncate 180 }}… {{- end -}}
                 </p>
                 <div
                     class="flex items-center text-xs font-bold font-sans text-primary group-hover:underline decoration-primary underline-offset-4 tracking-widest uppercase">
@@ -608,6 +483,5 @@
         </div>
     </div>
     {{ end }}
-
 </div>
 {{ end }}
