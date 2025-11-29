@@ -1,16 +1,15 @@
-/* Base Styles & Reset */
+/* Base settings matching React app */
 body {
     cursor: none;
-    /* Hide default cursor for custom logic */
+    /* Hide default cursor for custom cursor logic */
     min-height: 100vh;
     background-color: #fcf8ed;
-    /* antique paper */
+    /* paper */
     color: #2c2825;
     /* ink */
-    overflow-x: hidden;
 }
 
-/* Texture Overlay */
+/* Noise Texture Overlay */
 .noise-bg::before {
     content: "";
     position: fixed;
@@ -38,7 +37,6 @@ body {
     z-index: 49;
 }
 
-/* Responsive Cursor Reset */
 @media (pointer: coarse) {
     body {
         cursor: auto;
@@ -53,7 +51,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Custom Cursor Elements */
+/* Custom Cursor Classes */
 .cursor-dot {
     width: 10px;
     height: 10px;
@@ -78,6 +76,7 @@ html {
     z-index: 9998;
     border-radius: 50%;
     border: 1px solid #a8a29e;
+    /* stone-400 */
     opacity: 0.6;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease-out, height 0.3s ease-out;
@@ -88,7 +87,7 @@ html {
     height: 60px;
 }
 
-/* Chat Pulse Animation */
+/* Chat Widget Animations */
 @keyframes pulse-custom {
 
     0%,
@@ -105,20 +104,7 @@ html {
     animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Chat Window Transitions */
-.chat-open {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    pointer-events: auto;
-}
-
-.chat-closed {
-    opacity: 0;
-    transform: scale(0.9) translateY(40px);
-    pointer-events: none;
-}
-
-/* Typography Helpers */
+/* Typography Overrides */
 .font-playfair {
     font-family: 'Playfair Display', serif;
 }
@@ -129,4 +115,15 @@ html {
 
 .font-sans {
     font-family: 'Inter', sans-serif;
+}
+
+/* Markdown Content Styling (Prose mirror) */
+.prose p {
+    margin-bottom: 1.5em;
+    line-height: 1.75;
+}
+
+.prose strong {
+    font-weight: 600;
+    color: #2c2825;
 }

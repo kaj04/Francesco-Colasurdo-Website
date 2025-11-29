@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ if .IsHome }}{{ .Site.Title }} | Personal Space{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    <!-- Meta Description -->
     <meta name="description"
         content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
@@ -13,6 +15,18 @@
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -25,29 +39,40 @@
                     colors: {
                         paper: '#fcf8ed',
                         ink: '#2c2825',
-                        stone: { 50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4', 300: '#d6d3d1', 400: '#a8a29e', 500: '#78716c', 800: '#292524', 900: '#1c1917' },
-                        primary: { DEFAULT: '#1b6e4b', light: '#4ade80', dark: '#14532d' } // Emerald
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        primary: {
+                            DEFAULT: '#1b6e4b',
+                            light: '#4ade80',
+                            dark: '#14532d',
+                        }
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-out forwards',
                         'fade-in-up': 'fadeInUp 0.7s ease-out forwards',
                     },
                     keyframes: {
-                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1' } }
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1' },
+                        }
                     }
                 }
             }
         }
     </script>
-
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="bg-paper text-ink antialiased selection:bg-primary/20 noise-bg vignette">
@@ -56,7 +81,7 @@
     <div id="cursor-dot" class="cursor-dot"></div>
     <div id="cursor-ring" class="cursor-ring"></div>
 
-    <div class="min-h-screen flex flex-col font-sans relative">
+    <div id="root" class="min-h-screen flex flex-col font-sans relative">
         {{ partial "navbar.html" . }}
 
         <main class="flex-grow">
@@ -65,7 +90,7 @@
 
         {{ partial "footer.html" . }}
 
-        <!-- Chat Widget (Vanilla JS Implementation) -->
+        <!-- Chat Widget -->
         <div id="chat-widget-container">
             <!-- Backdrop -->
             <div id="chat-backdrop" class="fixed inset-0 bg-black/5 z-30 hidden" onclick="toggleChat()"></div>
@@ -80,7 +105,7 @@
 
             <!-- Window -->
             <div id="chat-window"
-                class="fixed bottom-28 right-8 w-full max-w-[350px] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden transition-all duration-300 z-40 origin-bottom-right chat-closed">
+                class="fixed bottom-28 right-8 w-full max-w-[350px] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden transition-all duration-300 z-40 origin-bottom-right opacity-0 scale-90 translate-y-10 pointer-events-none">
                 <!-- Header -->
                 <div class="bg-paper p-5 border-b border-stone-100 flex items-center justify-between">
                     <div>
@@ -118,91 +143,119 @@
         </div>
     </div>
 
-    <!-- Scripts for Logic -->
+    <!-- Main Logic Script (Cursor, Chat, Icons) -->
     <script>
+        // 1. Initialize Lucide Icons
         lucide.createIcons();
 
-        // Custom Cursor
+        // 2. Custom Cursor Logic
         const dot = document.getElementById('cursor-dot');
         const ring = document.getElementById('cursor-ring');
         let mouseX = -100, mouseY = -100;
         let ringX = -100, ringY = -100;
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; mouseY = e.clientY;
-            if (dot) { dot.style.left = `${mouseX}px`; dot.style.top = `${mouseY}px`; }
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Instant dot movement
+            if (dot) dot.style.left = `${mouseX}px`;
+            if (dot) dot.style.top = `${mouseY}px`;
         });
 
+        // Ring Animation Loop (Lerp)
         function animateRing() {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
+            const ease = 0.15;
+            ringX += (mouseX - ringX) * ease;
+            ringY += (mouseY - ringY) * ease;
+
             if (ring) {
-                ring.style.left = `${ringX}px`; ring.style.top = `${ringY}px`;
+                ring.style.left = `${ringX}px`;
+                ring.style.top = `${ringY}px`;
             }
             requestAnimationFrame(animateRing);
         }
         requestAnimationFrame(animateRing);
 
+        // Hover Effect
         document.addEventListener('mouseover', (e) => {
-            const t = e.target;
-            if (ring && (t.closest('a') || t.closest('button') || t.tagName === 'INPUT' || t.classList.contains('cursor-pointer'))) {
+            const target = e.target;
+            const isClickable = target.closest('a') || target.closest('button') || target.tagName === 'INPUT' || target.classList.contains('cursor-pointer');
+            if (isClickable && ring) {
                 ring.classList.add('hovering');
             } else if (ring) {
                 ring.classList.remove('hovering');
             }
         });
 
-        // Chat Logic
+        // 3. Chat Logic
         let isChatOpen = false;
-        const chatWin = document.getElementById('chat-window');
-        const chatBtn = document.getElementById('chat-button');
-        const chatBg = document.getElementById('chat-backdrop');
+        const chatWindow = document.getElementById('chat-window');
+        const chatButton = document.getElementById('chat-button');
+        const chatBackdrop = document.getElementById('chat-backdrop');
+        const chatText = document.getElementById('chat-text');
         const iconOpen = document.getElementById('chat-icon-open');
         const iconClose = document.getElementById('chat-icon-close');
-        const chatTxt = document.getElementById('chat-text');
-        const msgs = document.getElementById('chat-messages');
+        const messagesContainer = document.getElementById('chat-messages');
 
         function toggleChat() {
             isChatOpen = !isChatOpen;
+
             if (isChatOpen) {
-                chatWin.classList.remove('chat-closed'); chatWin.classList.add('chat-open');
-                chatBtn.classList.replace('bg-primary', 'bg-ink'); chatBtn.classList.replace('text-white', 'text-paper');
-                chatBg.classList.remove('hidden');
-                iconOpen.classList.add('hidden'); iconClose.classList.remove('hidden');
-                chatTxt.innerText = 'Close Chat';
+                chatWindow.classList.remove('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
+                chatWindow.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+
+                chatButton.classList.remove('bg-primary', 'text-white');
+                chatButton.classList.add('bg-ink', 'text-paper');
+
+                chatBackdrop.classList.remove('hidden');
+
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+                chatText.innerText = 'Close Chat';
             } else {
-                chatWin.classList.remove('chat-open'); chatWin.classList.add('chat-closed');
-                chatBtn.classList.replace('bg-ink', 'bg-primary'); chatBtn.classList.replace('text-paper', 'text-white');
-                chatBg.classList.add('hidden');
-                iconOpen.classList.remove('hidden'); iconClose.classList.add('hidden');
-                chatTxt.innerText = 'Ask about ME';
+                chatWindow.classList.add('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
+                chatWindow.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+
+                chatButton.classList.add('bg-primary', 'text-white');
+                chatButton.classList.remove('bg-ink', 'text-paper');
+
+                chatBackdrop.classList.add('hidden');
+
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                chatText.innerText = 'Ask about ME';
             }
         }
 
-        function handleChatKey(e) { if (e.key === 'Enter') sendChatMessage(); }
+        function handleChatKey(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
 
         function sendChatMessage() {
-            const inp = document.getElementById('chat-input');
-            const txt = inp.value.trim();
-            if (!txt) return;
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
 
-            const d = document.createElement('div');
-            d.className = "flex justify-end";
-            d.innerHTML = `<div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">${txt}</div>`;
-            msgs.appendChild(d);
-            inp.value = '';
-            msgs.scrollTop = msgs.scrollHeight;
+            // Add User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = "flex justify-end";
+            userDiv.innerHTML = `<div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">${text}</div>`;
+            messagesContainer.appendChild(userDiv);
 
-            // Static response for Hugo
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Mock Response (Since we don't have backend/env here)
             setTimeout(() => {
-                const b = document.createElement('div');
-                b.className = "flex justify-start";
-                b.innerHTML = `<div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-              This is a static site demo. The real AI connection requires a backend service.
+                const botDiv = document.createElement('div');
+                botDiv.className = "flex justify-start";
+                botDiv.innerHTML = `<div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+              This is a static demo. In the React version, this connects to Google Gemini API.
             </div>`;
-                msgs.appendChild(b);
-                msgs.scrollTop = msgs.scrollHeight;
-            }, 800);
+                messagesContainer.appendChild(botDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
         }
     </script>
 </body>

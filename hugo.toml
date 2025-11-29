@@ -3,11 +3,6 @@ languageCode = "en-us"
 title = "Francesco Colasurdo"
 theme = []
 
-[params]
-  description = "A minimalist, personal portfolio and blog site with an integrated AI assistant."
-  # Immagine sfondo navbar (Stadio sfuocato/b&w)
-  navbar_bg_image = "https://images.unsplash.com/photo-1516972352878-a24982eb4e58?q=80&w=2070&auto=format&fit=crop"
-
 [menu]
   [[menu.main]]
     name = "home"
@@ -25,3 +20,9 @@ theme = []
     name = "goals"
     url = "/goals/"
     weight = 4
+
+[params]
+  description = "A minimalist, personal portfolio and blog site with an integrated AI assistant."
+  
+  # Immagini placeholder navbar (sostituisci con i tuoi path in static/assets/)
+  navbar_bg_image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeFvJGdRAxe6nT-XO0TwXmb6roe8SewnWt4g&s"
