@@ -2,7 +2,7 @@
 <div class="animate-fade-in-up">
 
     {{ if eq .Section "cv" }}
-    <!-- CV LAYOUT -->
+    <!-- ================= CV PAGE LAYOUT ================= -->
     <div class="max-w-5xl mx-auto px-6 py-16">
         <div
             class="mb-12 border-b border-stone-200 pb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-12">
-            <!-- Left Column: Contact & Skills -->
+            <!-- Sidebar -->
             <div class="md:col-span-1 space-y-12">
                 <div
                     class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm relative overflow-hidden group hover:border-primary/20 transition-colors">
@@ -31,7 +31,7 @@
                         <a href="mailto:francesco.colasurdo04@gmail.com"
                             class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="mail"
                                 class="w-4 h-4"></i> francesco...04@gmail.com</a>
-                        <a href="https://linkedin.com/in/francesco-colasurdo" target="_blank" rel="noopener noreferrer"
+                        <a href="https://linkedin.com/in/francesco-colasurdo" target="_blank"
                             class="flex items-center gap-3 hover:text-primary transition-colors"><i
                                 data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile</a>
                         <a href="#" class="flex items-center gap-3 hover:text-primary transition-colors"><i
@@ -41,34 +41,54 @@
                     </div>
                 </div>
 
-                <!-- Hardcoded skills to match React App (since we cannot generate MD for this structure easily) -->
                 <div>
                     <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
-                        <i data-lucide="code" class="w-4.5 h-4.5 text-primary"></i> Technical Skills
-                    </h3>
+                        <i data-lucide="code" class="w-4 h-4 text-primary"></i> Technical Skills</h3>
                     <div class="space-y-6 text-sm">
                         <div><span class="font-bold text-ink block mb-2 font-serif">Languages</span>
-                            <p class="text-stone-600 leading-relaxed">Python, R, SQL</p>
+                            <p class="text-stone-600">Python, R, SQL</p>
                         </div>
                         <div><span class="font-bold text-ink block mb-2 font-serif">Databases</span>
-                            <p class="text-stone-600 leading-relaxed">MySQL, PostgreSQL, MongoDB, BigQuery</p>
+                            <p class="text-stone-600">MySQL, PostgreSQL, MongoDB, BigQuery</p>
                         </div>
-                        <div><span class="font-bold text-ink block mb-2 font-serif">Machine Learning & AI</span>
-                            <p class="text-stone-600 leading-relaxed">Scikit-learn, XGBoost, TensorFlow, PyTorch, OpenAI
-                                API, Hugging Face</p>
+                        <div><span class="font-bold text-ink block mb-2 font-serif">Machine Learning</span>
+                            <p class="text-stone-600">Scikit-learn, XGBoost, TensorFlow, PyTorch</p>
+                        </div>
+                        <div><span class="font-bold text-ink block mb-2 font-serif">Tools</span>
+                            <p class="text-stone-600">Power BI, Dialogflow CX, Excel, Google Sheets, LaTeX</p>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
+                        <i data-lucide="award" class="w-4 h-4 text-primary"></i> Certificates</h3>
+                    <ul class="text-sm text-stone-600 space-y-3 font-sans">
+                        <li><strong class="text-ink font-serif">IELTS 7.5</strong>: C1 Proficiency</li>
+                        <li><strong class="text-ink font-serif">Summer School</strong>: Data Science & AI (SAS &
+                            Cambridge)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
+                        <i data-lucide="users" class="w-4 h-4 text-primary"></i> Extra-Career</h3>
+                    <ul class="text-sm text-stone-600 space-y-3 font-sans list-disc list-inside">
+                        <li>Volunteer with AGESCI Scout Association</li>
+                        <li>Executive producer of short film</li>
+                        <li>Event Organizer</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Right Column: Experience & Education -->
+            <!-- Main Timeline -->
             <div class="md:col-span-2 space-y-16">
                 <section>
                     <h3
                         class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
-                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i> Education
-                    </h3>
+                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i> Education</h3>
                     <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
+                        <!-- TU/e -->
                         <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
@@ -76,16 +96,107 @@
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                                    <h4 className="font-bold text-lg text-ink font-serif">Eindhoven University of
-                                        Technology (TU/e)</h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">Eindhoven University of Technology
+                                        (TU/e)</h4>
                                     <span
-                                        className="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Aug
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Aug
                                         2025 – Expected Jul 2027</span>
                                 </div>
-                                <p className="text-stone-500 italic mb-3 font-serif">MSc in Data Science & AI -
-                                    Eindhoven, Netherlands</p>
+                                <p class="text-stone-500 italic mb-3 font-serif">MSc in Data Science & AI - Eindhoven,
+                                    Netherlands</p>
+                                <ul class="list-disc list-inside text-sm text-stone-600 space-y-2">
+                                    <li>Main courses: Foundations & Ethics of AI, Big Data Management, Gen AI Models.
+                                    </li>
+                                    <li>Honors Master Program participant (Leadership track).</li>
+                                </ul>
                             </div>
                         </div>
+                        <!-- Salerno -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-stone-300 border-4 border-paper shadow-sm group-hover:bg-stone-400 transition-colors">
+                            </div>
+                            <div
+                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                    <h4 class="font-bold text-lg text-ink font-serif">University of Salerno</h4>
+                                    <span class="text-xs font-sans text-stone-500 bg-stone-100 px-2 py-1 rounded">Sep
+                                        2022 – Jul 2025</span>
+                                </div>
+                                <p class="text-stone-500 italic mb-3 font-serif">BSc in Statistics for Big Data (GPA:
+                                    28/30)</p>
+                                <ul class="list-disc list-inside text-sm text-stone-600 space-y-2">
+                                    <li>Erasmus+ Scholarship: <strong>Universidad de Granada, Spain</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3
+                        class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
+                        <i data-lucide="briefcase" class="w-6 h-6 text-primary"></i> Work Experience</h3>
+                    <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
+                        <!-- NTT -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-ink border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
+                            </div>
+                            <div
+                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                    <h4 class="font-bold text-lg text-ink font-serif">NTT Data</h4>
+                                    <span class="text-xs font-sans text-stone-500 bg-stone-100 px-2 py-1 rounded">Mar
+                                        2025 – Jun 2025</span>
+                                </div>
+                                <p class="text-stone-500 italic mb-3 font-serif">Data Science Intern - Naples, Italy</p>
+                                <ul class="list-disc list-inside text-sm text-stone-600 space-y-2">
+                                    <li>Designed mental health chatbot (Dialogflow CX + Telegram) managing 1k+
+                                        conversations.</li>
+                                    <li>Applied ML & NLP algorithms to uncover 7 key behavioral patterns.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Other jobs omitted for brevity in template but follow same structure... -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-stone-300 border-4 border-paper shadow-sm">
+                            </div>
+                            <div class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                                    <h4 class="font-bold text-lg text-ink font-serif">Jesal / Airbnb / Chamber of Trade
+                                    </h4>
+                                    <span class="text-xs font-sans text-stone-500 bg-stone-100 px-2 py-1 rounded">2023 –
+                                        2025</span>
+                                </div>
+                                <p class="text-stone-500 italic mb-3 font-serif">Various Roles</p>
+                                <p class="text-sm text-stone-600">See full PDF for details.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3
+                        class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
+                        <i data-lucide="target" class="w-6 h-6 text-primary"></i> Personal Projects</h3>
+                    <div
+                        class="bg-white p-8 rounded-xl border-l-4 border-primary shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
+                            <h4 class="font-bold text-xl text-ink font-serif">Ask My CV | Personal RAG Assistant</h4>
+                            <div class="flex gap-2">
+                                <span
+                                    class="text-[10px] font-sans border border-stone-200 bg-stone-50 px-2 py-1 rounded text-stone-500 uppercase tracking-wider">FastAPI</span>
+                                <span
+                                    class="text-[10px] font-sans border border-stone-200 bg-stone-50 px-2 py-1 rounded text-stone-500 uppercase tracking-wider">LLM</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-600 mb-6">Designed RAG-based AI assistant for accurate CV query
+                            responses.</p>
+                        <a href="https://github.com/francesco/ask-my-cv" target="_blank"
+                            class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-ink transition-colors font-serif italic"><i
+                                data-lucide="github" class="w-4 h-4"></i> View Repository</a>
                     </div>
                 </section>
             </div>
@@ -93,18 +204,20 @@
     </div>
 
     {{ else if eq .Section "goals" }}
-    <!-- GOALS LAYOUT -->
+    <!-- ================= GOALS PAGE LAYOUT ================= -->
     <div class="max-w-5xl mx-auto px-6 py-16">
         <div class="mb-12 max-w-3xl">
             <h1 class="font-serif text-5xl text-ink mb-2">Goals</h1>
-            <p className="text-xl text-stone-500 font-serif italic mb-8">Objectives and key results for the quarter</p>
+            <p class="text-xl text-stone-500 font-serif italic mb-8">Objectives and key results for the quarter</p>
             <div class="text-ink/80 leading-loose space-y-6 font-serif text-lg text-justify">
-                <p>I like setting goals that are measurable through clear KPIs and concrete, objective sub-tasks...</p>
+                <p>I like setting goals that are measurable through clear KPIs and concrete, objective sub-tasks. I work
+                    in <span class="font-semibold">"Quarters"</span> following academic schedules. Inspired by: <span
+                        class="italic text-primary">"Mens sana in corpore sano."</span></p>
             </div>
         </div>
 
         <div class="grid gap-10">
-            <!-- Mockup of Goals Grid - In a real Hugo app, these would be pages in content/goals/ -->
+            <!-- Goal 1 -->
             <div
                 class="bg-white p-10 rounded-xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
                 <div
@@ -121,16 +234,56 @@
                             class="text-xs bg-paper text-primary border border-primary/20 px-3 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">Current
                             Quarter</span>
                     </div>
-                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">
-                        At TU/e, the academic environment is genuinely healthy...
-                    </p>
+                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">At TU/e, the focus is on
+                        learning. Aiming for grade average 8/10 to ensure 80% content absorption.</p>
+                    <div
+                        class="bg-paper rounded-xl p-6 border border-stone-100 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
+                        <div class="flex items-center gap-3 text-sm font-semibold text-ink font-serif italic"><i
+                                data-lucide="target" class="w-5 h-5 text-primary"></i> KPI: Avg Grade 8/10</div>
+                        <div class="flex items-center gap-4 w-full sm:w-1/2">
+                            <div class="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                                <div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                            <span class="text-sm font-sans font-bold text-primary">80%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goal 2 -->
+            <div
+                class="bg-white p-10 rounded-xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
+                <div
+                    class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
+                </div>
+                <div class="pl-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-paper rounded-full border border-stone-100 shadow-sm"><i
+                                    data-lucide="users" class="w-8 h-8 text-primary"></i></div>
+                            <h3 class="font-serif text-3xl font-bold text-ink">Networking</h3>
+                        </div>
+                    </div>
+                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">Expand connections within
+                        DS community in Eindhoven.</p>
+                    <div
+                        class="bg-paper rounded-xl p-6 border border-stone-100 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
+                        <div class="flex items-center gap-3 text-sm font-semibold text-ink font-serif italic"><i
+                                data-lucide="target" class="w-5 h-5 text-primary"></i> KPI: 5 Meetups</div>
+                        <div class="flex items-center gap-4 w-full sm:w-1/2">
+                            <div class="w-full bg-stone-200 rounded-full h-3 overflow-hidden">
+                                <div class="bg-primary h-full rounded-full" style="width: 40%"></div>
+                            </div>
+                            <span class="text-sm font-sans font-bold text-primary">40%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     {{ else }}
-    <!-- BLOG LIST LAYOUT (Default) -->
+    <!-- ================= BLOG LIST LAYOUT ================= -->
     <div class="max-w-5xl mx-auto px-6 py-16">
         <div class="mb-12">
             <h1 class="font-serif text-5xl text-ink mb-2">Blog</h1>
