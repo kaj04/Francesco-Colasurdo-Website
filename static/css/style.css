@@ -127,3 +127,42 @@ html {
     font-weight: 600;
     color: #2c2825;
 }
+
+/* --- NAVBAR ARTISTICA A PUNTINI --- */
+.navbar-halftone-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    /* Bianco e nero + contrasto */
+    filter: grayscale(100%) contrast(140%) brightness(1.1);
+
+    /* Più visibile ma ancora soft */
+    opacity: 0.65;
+
+    /* Si fonde col beige della pagina */
+    mix-blend-mode: multiply;
+
+    /* Maschera a puntini + sfumatura verso il basso */
+    mask-image:
+        radial-gradient(circle, black 1.5px, transparent 1.6px),
+        linear-gradient(to bottom, black 20%, transparent 100%);
+    mask-size:
+        5px 5px,
+        100% 100%;
+    mask-repeat: repeat, no-repeat;
+    mask-composite: intersect;
+
+    /* Versione WebKit (Chrome/Safari) */
+    -webkit-mask-image:
+        radial-gradient(circle, black 1.5px, transparent 1.6px),
+        linear-gradient(to bottom, black 20%, transparent 100%);
+    -webkit-mask-size:
+        5px 5px,
+        100% 100%;
+    -webkit-mask-repeat: repeat, no-repeat;
+    -webkit-mask-composite: source-in;
+
+    pointer-events: none;
+}
