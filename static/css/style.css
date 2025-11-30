@@ -128,35 +128,36 @@ html {
     color: #2c2825;
 }
 
-/* --- NAVBAR ARTISTICA A PUNTINI --- */
-.navbar-halftone-art {
+/* --- NAVBAR TEXTURE A PUNTINI (FOTO + MOIRÉ) --- */
+.navbar-texture {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+
+    /* 1) Foto di sfondo (presa da una CSS var) */
+    /* 2) Puntini */
+    /* 3) Sfumatura verso il basso */
+    background-image:
+        radial-gradient(circle, rgba(0, 0, 0, 0.35) 1px, transparent 1.6px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 80%),
+        var(--navbar-image);
+    background-size:
+        5px 5px,
+        100% 100%,
+        cover;
+    background-position:
+        center,
+        center,
+        center;
+    background-repeat:
+        repeat,
+        no-repeat,
+        no-repeat;
 
     /* B/N + contrasto */
-    filter: grayscale(100%) contrast(140%) brightness(1.1);
-
-    /* Visibile ma non aggressiva */
-    opacity: 0.5;
-
-    /* Si fonde con lo sfondo sabbia */
-    mix-blend-mode: multiply;
-
-    /* Puntini + sfumatura verso il basso */
-    -webkit-mask-image:
-        radial-gradient(circle, black 1.5px, transparent 1.6px),
-        linear-gradient(to bottom, black 20%, transparent 100%);
-    mask-image:
-        radial-gradient(circle, black 1.5px, transparent 1.6px),
-        linear-gradient(to bottom, black 20%, transparent 100%);
-
-    -webkit-mask-size: 5px 5px, 100% 100%;
-    mask-size: 5px 5px, 100% 100%;
-
-    -webkit-mask-repeat: repeat, no-repeat;
-    mask-repeat: repeat, no-repeat;
-
-    pointer-events: none;
+    filter: grayscale(100%) contrast(140%) brightness(1.05);
 }
