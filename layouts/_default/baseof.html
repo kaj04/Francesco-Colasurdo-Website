@@ -132,11 +132,36 @@
 
                 <!-- Messages -->
                 <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4 bg-white/50">
+                    <!-- Messaggio di benvenuto -->
                     <div class="flex justify-start">
                         <div
                             class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-                            Ciao! I'm Francesco's virtual assistant. Ask me anything about
-                            his skills, projects, or background.
+                            Ciao! I'm Francesco's virtual assistant. Ask me anything about my skills, projects, or background.
+                        </div>
+                    </div>
+                
+                    <!-- Quick start + suggerimenti -->
+                    <div class="flex justify-start">
+                        <div
+                            class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+                            <p class="font-semibold mb-1">Quick start</p>
+                            <p class="mb-2">
+                                Ask me about Francesco's career, university work, personal projects, results, or current goals.
+                            </p>
+                            <p class="text-[11px] italic text-stone-500 mb-3">
+                                PS: The first reply may take a bit longer if the server is waking up — even AI assistants need a rest
+                                sometimes ;)
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-1">
+                                <button type="button"
+                                    class="chat-suggestion px-3 py-1 rounded-full text-xs border border-stone-200 bg-white hover:bg-primary hover:text-paper transition-colors cursor-pointer">
+                                    What are you currently studying?
+                                </button>
+                                <button type="button"
+                                    class="chat-suggestion px-3 py-1 rounded-full text-xs border border-stone-200 bg-white hover:bg-primary hover:text-paper transition-colors cursor-pointer">
+                                    What skills do you have with Python?
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
