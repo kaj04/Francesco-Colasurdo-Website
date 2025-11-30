@@ -135,26 +135,14 @@ html {
     object-fit: cover;
     object-position: center;
 
-    /* B/N fisso */
-    filter: grayscale(100%) contrast(130%);
+    /* Effetto pulito, elegante */
+    filter: grayscale(100%) brightness(0.9) contrast(120%);
 
-    /* fusione con beige */
+    /* Nessun hover */
+    transition: none !important;
+
+    opacity: 0.35;
     mix-blend-mode: multiply;
-    opacity: 0.45;
-
-    /* Maschera puntinata */
-    -webkit-mask-image:
-        radial-gradient(circle, black 1.4px, transparent 1.5px),
-        linear-gradient(to bottom, black 40%, transparent 100%);
-    mask-image:
-        radial-gradient(circle, black 1.4px, transparent 1.5px),
-        linear-gradient(to bottom, black 40%, transparent 100%);
-
-    -webkit-mask-size: 4px 4px, 100% 100%;
-    mask-size: 4px 4px, 100% 100%;
-
-    -webkit-mask-repeat: repeat, no-repeat;
-    mask-repeat: repeat, no-repeat;
 
     pointer-events: none;
 }
