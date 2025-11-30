@@ -291,10 +291,10 @@
             if (e.key === "Enter") sendChatMessage();
         }
 
-        async function sendChatMessage() {
-            const input = document.getElementById("chat-input");
-            const text = input.value.trim();
-            if (!text) return;
+        async function sendChatMessage(presetText) {
+                const input = document.getElementById("chat-input");
+                const text = (presetText ?? input.value.trim());
+                if (!text) return;
 
             // Messaggio utente
             const userDiv = document.createElement("div");
@@ -390,6 +390,13 @@
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
         }
+        // Bottoni "quick start" cliccabili
+            document.querySelectorAll(".chat-suggestion").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const q = btn.textContent.trim();
+                    sendChatMessage(q);
+                });
+            });
     </script>
 </body>
 
