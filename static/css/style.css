@@ -135,41 +135,26 @@ html {
     object-fit: cover;
     object-position: center;
 
-    /* B&W e Contrasto alto */
-    filter: grayscale(100%) contrast(140%) brightness(1.1);
+    /* B/N fisso */
+    filter: grayscale(100%) contrast(130%);
 
-    /* Resi più scuri/visibili */
-    opacity: 0.65;
-
-    /* Fusione color sabbia */
+    /* fusione con beige */
     mix-blend-mode: multiply;
+    opacity: 0.45;
 
-    /* MASCHERA SINGOLA (Griglia perfetta) */
-    mask-image:
-        radial-gradient(circle, black 1.5px, transparent 1.6px),
-        /* Puntini netti */
-        linear-gradient(to bottom, black 20%, transparent 100%);
-    /* Sfumatura */
-
-    mask-size:
-        5px 5px,
-        /* Griglia uniforme */
-        100% 100%;
-    /* Sfumatura */
-
-    mask-repeat: repeat, no-repeat;
-    mask-composite: intersect;
-
-    /* Webkit per Chrome/Safari */
+    /* Maschera puntinata */
     -webkit-mask-image:
-        radial-gradient(circle, black 1.5px, transparent 1.6px),
-        linear-gradient(to bottom, black 20%, transparent 100%);
-    -webkit-mask-size:
-        5px 5px,
-        100% 100%;
+        radial-gradient(circle, black 1.4px, transparent 1.5px),
+        linear-gradient(to bottom, black 40%, transparent 100%);
+    mask-image:
+        radial-gradient(circle, black 1.4px, transparent 1.5px),
+        linear-gradient(to bottom, black 40%, transparent 100%);
+
+    -webkit-mask-size: 4px 4px, 100% 100%;
+    mask-size: 4px 4px, 100% 100%;
+
     -webkit-mask-repeat: repeat, no-repeat;
-    -webkit-mask-composite: source-in;
-    /* Importante per Webkit */
+    mask-repeat: repeat, no-repeat;
 
     pointer-events: none;
 }
