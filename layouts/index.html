@@ -17,7 +17,9 @@
                     <div
                         class="relative aspect-video w-full bg-stone-200 rounded-xl overflow-hidden shadow-lg border border-stone-200 group">
 
-                        <video class="w-full h-full object-cover" controls playsinline>
+                        <video
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+                            controls playsinline>
                             <source src="{{ "Video-Introduction Prova.mp4" | relURL }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
