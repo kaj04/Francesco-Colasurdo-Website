@@ -1,12 +1,10 @@
 <nav
     class="sticky top-0 z-30 w-full bg-paper/90 backdrop-blur-md border-b border-stone-200/50 transition-all duration-300 relative overflow-hidden h-24 group">
-    <!-- Background Watermark (Halftone Art Style) -->
+
     <div class="absolute inset-0 w-full h-full z-0 pointer-events-none select-none overflow-hidden">
-
         <div class="absolute inset-0 bg-gradient-to-b from-paper/20 to-paper z-10"></div>
-
         <img src="{{ .Site.Params.navbar_bg_image }}" alt="Stadium Crowd"
-            class="w-full h-full object-cover object-center grayscale blur-[2px] opacity-[0.15] mix-blend-multiply transition-all duration-700 ease-in-out group-hover:grayscale-0 group-hover:blur-0 group-hover:opacity-30"
+            class="w-full h-full object-cover object-center grayscale blur-[2px] opacity-[0.15] mix-blend-multiply transition-all duration-700 ease-in-out"
             style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%);" />
     </div>
 
