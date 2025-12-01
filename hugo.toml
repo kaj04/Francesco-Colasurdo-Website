@@ -19,11 +19,6 @@ theme = []
     url = "/blog/"
     weight = 3
 
-  [[menu.main]]
-    name = "goals"
-    url = "/goals/"
-    weight = 4
-
 [params]
   description = "A minimalist, personal portfolio and blog site with an integrated AI assistant."
 

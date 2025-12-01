@@ -30,45 +30,60 @@
         </div>
 
         <!-- Mobile placeholder -->
-        <button id="mobile-menu-toggle" class="md:hidden text-stone-500 font-serif italic text-lg z-50 focus:outline-none">
-            [Menu]
-        </button>
-        </div>
+        <div class="md:hidden relative" id="mobile-menu-container">
+            <button id="mobile-menu-toggle"
+                class="text-stone-500 font-serif italic text-lg focus:outline-none hover:text-ink transition-colors">
+                [Menu]
+            </button>
         
-        <div id="mobile-menu-overlay"
-            class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300">
-            {{ range .Site.Menus.main }}
-            <a href="{{ .URL | relURL }}" onclick="closeMobileMenu()"
-                class="text-3xl font-serif text-ink hover:text-primary transition-colors">
-                {{ .Name }}
-            </a>
-            {{ end }}
+            <div id="mobile-dropdown"
+                class="absolute right-0 top-full mt-2 w-48 bg-paper border border-stone-200 rounded-lg shadow-xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-50 flex flex-col overflow-hidden">
+        
+                {{ range .Site.Menus.main }}
+                {{ $isActive := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+                <a href="{{ .URL | relURL }}"
+                    class="block px-5 py-3 text-base font-serif hover:bg-stone-100 transition-colors {{ if $isActive }}text-primary font-semibold{{ else }}text-ink{{ end }}">
+                    {{ .Name }}
+                </a>
+                {{ end }}
+            </div>
+        </div>
         </div>
         
         <script>
             const btn = document.getElementById('mobile-menu-toggle');
-            const overlay = document.getElementById('mobile-menu-overlay');
-            const body = document.body;
+            const dropdown = document.getElementById('mobile-dropdown');
+            const container = document.getElementById('mobile-menu-container');
             let isOpen = false;
 
             function toggleMenu() {
                 isOpen = !isOpen;
                 if (isOpen) {
-                    overlay.classList.remove('opacity-0', 'pointer-events-none');
+                    // Apri: rendi visibile e sposta in posizione originale
+                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
+                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
                     btn.textContent = "[Close]";
-                    body.style.overflow = 'hidden'; // Blocca lo scroll del sito
+                    btn.classList.add('text-ink');
                 } else {
-                    closeMobileMenu();
+                    // Chiudi: nascondi e sposta leggermente in alto
+                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                    btn.textContent = "[Menu]";
+                    btn.classList.remove('text-ink');
                 }
             }
 
-            function closeMobileMenu() {
-                isOpen = false;
-                overlay.classList.add('opacity-0', 'pointer-events-none');
-                btn.textContent = "[Menu]";
-                body.style.overflow = '';
-            }
+            // Click sul bottone
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
 
-            btn.addEventListener('click', toggleMenu);
+            // Chiudi se clicchi fuori
+            document.addEventListener('click', (e) => {
+                if (isOpen && !container.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
         </script>
         </nav>
