@@ -1,5 +1,6 @@
 ---
 title: "Goals"
+draft: true
 ---
 <style>
 /* Callout "annuale" con barra laterale */

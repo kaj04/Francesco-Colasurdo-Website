@@ -1,13 +1,11 @@
 <nav
     class="sticky top-0 z-30 w-full bg-paper/90 backdrop-blur-md border-b border-stone-200/50 transition-all duration-300 relative overflow-hidden h-24 group">
 
-    <!-- Background Watermark (Halftone Art Style) -->
     <div class="absolute inset-0 w-full h-full z-0 pointer-events-none select-none overflow-hidden">
-        <!-- Sfumatura di base per uniformare lo sfondo -->
         <div class="absolute inset-0 bg-gradient-to-b from-paper/20 to-paper z-10"></div>
-
-        <!-- Immagine stilizzata a puntini/sabbia -->
-        <img src="{{ .Site.Params.navbar_bg_image }}" alt="Navbar Texture" class="navbar-halftone-art" />
+        <img src="{{ .Site.Params.navbar_bg_image }}" alt="Stadium Crowd"
+            class="w-full h-full object-cover object-center grayscale blur-[2px] opacity-[0.15] mix-blend-multiply transition-all duration-700 ease-in-out"
+            style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%);" />
     </div>
 
     <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between relative z-20">
@@ -32,6 +30,45 @@
         </div>
 
         <!-- Mobile placeholder -->
-        <div class="md:hidden text-stone-500 font-serif italic">[Menu]</div>
-    </div>
-</nav>
+        <button id="mobile-menu-toggle" class="md:hidden text-stone-500 font-serif italic text-lg z-50 focus:outline-none">
+            [Menu]
+        </button>
+        </div>
+        
+        <div id="mobile-menu-overlay"
+            class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300">
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL | relURL }}" onclick="closeMobileMenu()"
+                class="text-3xl font-serif text-ink hover:text-primary transition-colors">
+                {{ .Name }}
+            </a>
+            {{ end }}
+        </div>
+        
+        <script>
+            const btn = document.getElementById('mobile-menu-toggle');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const body = document.body;
+            let isOpen = false;
+
+            function toggleMenu() {
+                isOpen = !isOpen;
+                if (isOpen) {
+                    overlay.classList.remove('opacity-0', 'pointer-events-none');
+                    btn.textContent = "[Close]";
+                    body.style.overflow = 'hidden'; // Blocca lo scroll del sito
+                } else {
+                    closeMobileMenu();
+                }
+            }
+
+            function closeMobileMenu() {
+                isOpen = false;
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                btn.textContent = "[Menu]";
+                body.style.overflow = '';
+            }
+
+            btn.addEventListener('click', toggleMenu);
+        </script>
+        </nav>
