@@ -16,80 +16,30 @@
         </a>
 
         <!-- Menu Items -->
-        <div class="hidden md:flex gap-10">
+        <div class="flex items-center gap-6 md:gap-10 overflow-x-auto max-w-full pb-1 md:pb-0 no-scrollbar">
             {{ $current := . }}
             {{ range .Site.Menus.main }}
             {{ $isActive := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+        
             <a href="{{ .URL | relURL }}"
-                class="text-lg font-serif tracking-wide transition-all duration-300 relative py-1 hover:text-ink cursor-pointer {{ if $isActive }}text-primary{{ else }}text-stone-500{{ end }}">
+                class="text-base md:text-lg font-serif tracking-wide transition-all duration-300 relative py-1 hover:text-ink shrink-0 cursor-pointer {{ if $isActive }}text-primary font-semibold{{ else }}text-stone-500{{ end }}">
                 {{ .Name }}
+        
                 <span
-                    class="absolute bottom-0 left-0 w-full h-[2px] bg-primary transform origin-left transition-transform duration-300 {{ if $isActive }}scale-x-100{{ else }}scale-x-0{{ end }}"></span>
+                    class="absolute bottom-0 left-0 w-full h-[2px] bg-primary transform origin-left transition-transform duration-300 {{ if $isActive }}scale-x-100{{ else }}scale-x-0 group-hover:scale-x-100{{ end }}"></span>
             </a>
             {{ end }}
         </div>
-
-        <!-- Mobile placeholder -->
-        <div class="md:hidden relative" id="mobile-menu-container">
-        
-            <button id="mobile-menu-toggle"
-                class="text-stone-500 font-serif italic text-lg focus:outline-none hover:text-ink transition-colors px-2 py-1 select-none">
-                [Menu]
-            </button>
-        
-            <div id="mobile-dropdown"
-                class="absolute right-0 top-12 w-48 bg-paper border border-stone-200/60 rounded-xl shadow-2xl opacity-0 invisible transform -translate-y-2 scale-95 transition-all duration-200 origin-top-right z-50 flex flex-col overflow-hidden ring-1 ring-black/5">
-        
-                {{ range .Site.Menus.main }}
-                {{ $isActive := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
-                <a href="{{ .URL | relURL }}"
-                    class="block px-5 py-3 text-base font-serif hover:bg-stone-100/80 transition-colors border-b border-stone-100 last:border-0 {{ if $isActive }}text-primary font-bold bg-primary/5{{ else }}text-ink{{ end }}">
-                    {{ .Name }}
-                </a>
-                {{ end }}
-            </div>
         </div>
-        </div>
-        
-        <script>
-            const btn = document.getElementById('mobile-menu-toggle');
-            const dropdown = document.getElementById('mobile-dropdown');
-            const container = document.getElementById('mobile-menu-container');
-            let isOpen = false;
-
-            function toggleMenu() {
-                isOpen = !isOpen;
-                if (isOpen) {
-                    // APERTURA
-                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2', 'scale-95');
-                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0', 'scale-100');
-                    btn.textContent = "[Close]";
-                    btn.classList.add('text-ink', 'font-medium');
-                } else {
-                    // CHIUSURA
-                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0', 'scale-100');
-                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2', 'scale-95');
-                    btn.textContent = "[Menu]";
-                    btn.classList.remove('text-ink', 'font-medium');
-                }
-            }
-
-            // Click sul bottone
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleMenu();
-            });
-
-            // Chiudi se clicchi fuori
-            document.addEventListener('click', (e) => {
-                if (isOpen && !container.contains(e.target)) {
-                    toggleMenu();
-                }
-            });
-
-            // Chiudi se si scrolla la pagina (opzionale, migliora la UX)
-            window.addEventListener('scroll', () => {
-                if (isOpen) toggleMenu();
-            }, { passive: true });
-        </script>
         </nav>
+        
+        <style>
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+        
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
