@@ -31,18 +31,19 @@
 
         <!-- Mobile placeholder -->
         <div class="md:hidden relative" id="mobile-menu-container">
+        
             <button id="mobile-menu-toggle"
-                class="text-stone-500 font-serif italic text-lg focus:outline-none hover:text-ink transition-colors px-2 py-1">
+                class="text-stone-500 font-serif italic text-lg focus:outline-none hover:text-ink transition-colors px-2 py-1 select-none">
                 [Menu]
             </button>
         
             <div id="mobile-dropdown"
-                class="absolute right-0 top-12 mt-2 w-56 bg-paper border border-stone-200 rounded-lg shadow-2xl opacity-0 invisible transform -translate-y-2 transition-all duration-200 flex flex-col overflow-hidden max-h-[80vh] overflow-y-auto ring-1 ring-black/5">
+                class="absolute right-0 top-12 w-48 bg-paper border border-stone-200/60 rounded-xl shadow-2xl opacity-0 invisible transform -translate-y-2 scale-95 transition-all duration-200 origin-top-right z-50 flex flex-col overflow-hidden ring-1 ring-black/5">
         
                 {{ range .Site.Menus.main }}
                 {{ $isActive := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
                 <a href="{{ .URL | relURL }}"
-                    class="block px-6 py-4 text-lg font-serif hover:bg-stone-100 transition-colors border-b border-stone-100 last:border-0 {{ if $isActive }}text-primary font-bold italic{{ else }}text-ink{{ end }}">
+                    class="block px-5 py-3 text-base font-serif hover:bg-stone-100/80 transition-colors border-b border-stone-100 last:border-0 {{ if $isActive }}text-primary font-bold bg-primary/5{{ else }}text-ink{{ end }}">
                     {{ .Name }}
                 </a>
                 {{ end }}
@@ -60,16 +61,16 @@
                 isOpen = !isOpen;
                 if (isOpen) {
                     // APERTURA
-                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2');
-                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                    dropdown.classList.remove('opacity-0', 'invisible', '-translate-y-2', 'scale-95');
+                    dropdown.classList.add('opacity-100', 'visible', 'translate-y-0', 'scale-100');
                     btn.textContent = "[Close]";
-                    btn.classList.add('text-ink', 'font-bold');
+                    btn.classList.add('text-ink', 'font-medium');
                 } else {
                     // CHIUSURA
-                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
-                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                    dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0', 'scale-100');
+                    dropdown.classList.add('opacity-0', 'invisible', '-translate-y-2', 'scale-95');
                     btn.textContent = "[Menu]";
-                    btn.classList.remove('text-ink', 'font-bold');
+                    btn.classList.remove('text-ink', 'font-medium');
                 }
             }
 
@@ -86,7 +87,7 @@
                 }
             });
 
-            // Chiudi se scrolli la pagina (opzionale, per pulizia)
+            // Chiudi se si scrolla la pagina (opzionale, migliora la UX)
             window.addEventListener('scroll', () => {
                 if (isOpen) toggleMenu();
             }, { passive: true });
