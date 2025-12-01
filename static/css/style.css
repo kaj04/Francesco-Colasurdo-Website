@@ -146,3 +146,21 @@ html {
 
     pointer-events: none;
 }
+
+/* ===== NAVBAR DOTTED EFFECT ===== */
+.navbar-dots-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+
+    /* Griglia di puntini grigi */
+    background-image: radial-gradient(circle, #a8a29e 1.5px, transparent 1.5px);
+    background-size: 6px 6px;
+    /* Distanza tra i puntini */
+    opacity: 0.35;
+
+    /* Sfumatura: visibile in alto, trasparente in basso */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+}
