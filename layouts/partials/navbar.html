@@ -1,22 +1,23 @@
 <nav
-    class="sticky top-0 z-30 w-full bg-paper/90 backdrop-blur-md border-b border-stone-200/50 transition-all duration-300 relative overflow-hidden h-24 group">
+    class="sticky top-0 z-50 w-full bg-paper/95 backdrop-blur-md border-b border-stone-200/50 transition-all duration-300 group">
 
     <div class="absolute inset-0 w-full h-full z-0 pointer-events-none select-none overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-paper/20 to-paper z-10"></div>
-        <img src="{{ .Site.Params.navbar_bg_image }}" alt="Stadium Crowd"
-            class="w-full h-full object-cover object-center grayscale blur-[2px] opacity-[0.15] mix-blend-multiply transition-all duration-700 ease-in-out"
+        <div class="absolute inset-0 bg-gradient-to-b from-paper/30 to-paper/90 z-10"></div>
+        <img src="{{ .Site.Params.navbar_bg_image }}" alt="Texture"
+            class="w-full h-full object-cover object-center grayscale blur-[1px] opacity-[0.04] mix-blend-multiply"
             style="mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%);" />
     </div>
 
     <div
-        class="max-w-6xl mx-auto px-6 py-3 md:py-0 md:h-24 flex flex-col md:flex-row items-center justify-between relative z-20 gap-3 md:gap-0">
+        class="max-w-6xl mx-auto px-6 h-20 md:h-24 flex flex-row items-center justify-between relative z-20 gap-4 md:gap-0">
 
-        <a href="{{ "" | absURL }}" class="cursor-pointer group/logo">
+        <a href="{{ "" | absURL }}" class="cursor-pointer group/logo shrink-0">
             <span
                 class="font-serif text-3xl font-bold text-ink hover:text-primary transition-colors duration-300">FC.</span>
         </a>
 
-        <div class="flex items-center gap-6 md:gap-10 overflow-x-auto max-w-full pb-1 md:pb-0 no-scrollbar">
+        <div
+            class="flex items-center gap-6 md:gap-10 overflow-x-auto max-w-full pb-1 md:pb-0 no-scrollbar min-w-0 justify-end">
             {{ $current := . }}
             {{ range .Site.Menus.main }}
             {{ $isActive := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
