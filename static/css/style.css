@@ -128,48 +128,28 @@ html {
     color: #2c2825;
 }
 
-/* --- NUOVO STILE NAVBAR ARTISTICA (Uniforme & Geometrico) --- */
+/* --- STILE NAVBAR TEXTURE --- */
 .navbar-halftone-art {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 
-    /* B&W e Contrasto alto */
-    filter: grayscale(100%) contrast(140%) brightness(1.1);
+    /* Rende l'immagine bianco e nero */
+    filter: grayscale(100%);
 
-    /* Resi più scuri/visibili */
-    opacity: 0.65;
+    /* Nessuna transizione sull'immagine stessa */
+    transition: none !important;
 
-    /* Fusione color sabbia */
+    /* Opacità bassa: prova 0.15 o 0.2. 
+       Se è troppo scura, abbassa questo valore. */
+    opacity: 0.15;
+
+    /* Fonde il grigio dell'immagine con il beige (paper) sotto */
     mix-blend-mode: multiply;
 
-    /* MASCHERA SINGOLA (Griglia perfetta) */
-    mask-image:
-        radial-gradient(circle, black 1.5px, transparent 1.6px),
-        /* Puntini netti */
-        linear-gradient(to bottom, black 20%, transparent 100%);
-    /* Sfumatura */
-
-    mask-size:
-        5px 5px,
-        /* Griglia uniforme */
-        100% 100%;
-    /* Sfumatura */
-
-    mask-repeat: repeat, no-repeat;
-    mask-composite: intersect;
-
-    /* Webkit per Chrome/Safari */
-    -webkit-mask-image:
-        radial-gradient(circle, black 1.5px, transparent 1.6px),
-        linear-gradient(to bottom, black 20%, transparent 100%);
-    -webkit-mask-size:
-        5px 5px,
-        100% 100%;
-    -webkit-mask-repeat: repeat, no-repeat;
-    -webkit-mask-composite: source-in;
-    /* Importante per Webkit */
-
     pointer-events: none;
+
+    /* Aggiungo un leggero blur come avevi nell'HTML per ammorbidire la grana */
+    filter: grayscale(100%) blur(0.5px);
 }
