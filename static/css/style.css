@@ -120,24 +120,48 @@ html {
     color: #2c2825;
 }
 
-/* --- NAVBAR ARTISTICA (Versione Pulita senza Maschere) --- */
+/* --- NUOVO STILE NAVBAR ARTISTICA (Uniforme & Geometrico) --- */
 .navbar-halftone-art {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 
-    /* Effetto B&W pulito */
-    filter: grayscale(100%) blur(0.5px);
+    /* B&W e Contrasto alto */
+    filter: grayscale(100%) contrast(140%) brightness(1.1);
 
-    /* Nessuna transizione */
-    transition: none !important;
+    /* Resi più scuri/visibili */
+    opacity: 0.65;
 
-    /* Opacità leggera per texture elegante */
-    opacity: 0.05;
-
-    /* Fusione con lo sfondo beige */
+    /* Fusione color sabbia */
     mix-blend-mode: multiply;
+
+    /* MASCHERA SINGOLA (Griglia perfetta) */
+    mask-image:
+        radial-gradient(circle, black 1.5px, transparent 1.6px),
+        /* Puntini netti */
+        linear-gradient(to bottom, black 20%, transparent 100%);
+    /* Sfumatura */
+
+    mask-size:
+        5px 5px,
+        /* Griglia uniforme */
+        100% 100%;
+    /* Sfumatura */
+
+    mask-repeat: repeat, no-repeat;
+    mask-composite: intersect;
+
+    /* Webkit per Chrome/Safari */
+    -webkit-mask-image:
+        radial-gradient(circle, black 1.5px, transparent 1.6px),
+        linear-gradient(to bottom, black 20%, transparent 100%);
+    -webkit-mask-size:
+        5px 5px,
+        100% 100%;
+    -webkit-mask-repeat: repeat, no-repeat;
+    -webkit-mask-composite: source-in;
+    /* Importante per Webkit */
 
     pointer-events: none;
 }
