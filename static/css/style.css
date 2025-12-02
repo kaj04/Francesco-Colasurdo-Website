@@ -67,22 +67,39 @@ html {
     transform: translate(-50%, -50%);
 }
 
+/* --- CUSTOM CURSOR --- */
+
+/* Il punto centrale (rimane invertito per visibilità) */
+.cursor-dot {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    backdrop-filter: invert(1) grayscale(1);
+    -webkit-backdrop-filter: invert(1) grayscale(1);
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* Il cerchio esterno (ORA SOLO CONTORNO) */
 .cursor-ring {
     width: 30px;
     height: 30px;
-    
+
     /* Sfondo trasparente e NESSUN filtro di inversione */
     background-color: transparent;
-    
+
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     border-radius: 50%;
-    
+
     /* Bordo visibile */
-    border: 1px solid #a8a29e; /* stone-400 */
-    
+    border: 1px solid #a8a29e;
+    /* stone-400 */
+
     opacity: 0.6;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s;
@@ -91,7 +108,8 @@ html {
 .cursor-ring.hovering {
     width: 60px;
     height: 60px;
-    border-color: #1b6e4b; /* primary color on hover */
+    border-color: #1b6e4b;
+    /* primary color on hover */
 }
 
 /* Chat Widget Animations */
