@@ -149,7 +149,7 @@ html {
     filter: grayscale(100%) contrast(140%) brightness(1.1);
 
     /* Resi più scuri/visibili */
-    opacity: 0.65;
+    opacity: 0.35;
 
     /* Fusione color sabbia */
     mix-blend-mode: multiply;
