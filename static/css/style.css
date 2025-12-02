@@ -71,19 +71,18 @@ html {
 .cursor-ring {
     width: 30px;
     height: 30px;
-
+    
     /* Sfondo trasparente e NESSUN filtro di inversione */
     background-color: transparent;
-
+    
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     border-radius: 50%;
-
+    
     /* Bordo visibile */
-    border: 1px solid #a8a29e;
-    /* stone-400 */
-
+    border: 1px solid #a8a29e; /* stone-400 */
+    
     opacity: 0.6;
     transform: translate(-50%, -50%);
     transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s;
@@ -92,21 +91,13 @@ html {
 .cursor-ring.hovering {
     width: 60px;
     height: 60px;
-    border-color: #1b6e4b;
-    /* primary color on hover */
+    border-color: #1b6e4b; /* primary color on hover */
 }
 
 /* Chat Widget Animations */
 @keyframes pulse-custom {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: .5;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
 }
 
 .animate-pulse-custom {
@@ -114,17 +105,9 @@ html {
 }
 
 /* Typography Overrides */
-.font-playfair {
-    font-family: 'Playfair Display', serif;
-}
-
-.font-serif {
-    font-family: 'Lora', serif;
-}
-
-.font-sans {
-    font-family: 'Inter', sans-serif;
-}
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-serif { font-family: 'Lora', serif; }
+.font-sans { font-family: 'Inter', sans-serif; }
 
 /* Markdown Content Styling (Prose mirror) */
 .prose p {
