@@ -79,6 +79,11 @@
                             <span class="font-bold text-ink block mb-2 font-serif">Big Data</span>
                             <p class="text-stone-600 leading-relaxed">Hadoop, Spark, Sparklyr</p>
                         </div>
+                        <div>
+                            <span class="font-bold text-ink block mb-2 font-serif">Statistical Concepts</span>
+                            <p class="text-stone-600 leading-relaxed">EDA, Statistical Inference, Predictive Analytics,
+                                Data Modeling, Data Visualization</p>
+                        </div>
                     </div>
                 </div>
 
@@ -89,6 +94,17 @@
                     <p class="text-sm text-stone-700"><strong>IELTS 7.5:</strong> C1 Proficiency (British Council)</p>
                     <p class="text-sm text-stone-700"><strong>Summer School:</strong> Data Science &amp; AI for Life
                         Sciences (SAS &amp; Cambridge)</p>
+                </div>
+
+                <div class="space-y-4 mt-8">
+                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
+                        <i data-lucide="user-round" class="w-4.5 h-4.5 text-primary"></i> Extra-Career
+                    </h3>
+                    <ul class="list-disc list-inside text-sm text-stone-700 space-y-2">
+                        <li>Volunteer with AGESCI Scout Association (Jamboree 2019, USA)</li>
+                        <li>Executive producer of a short, self-produced film project</li>
+                        <li>Organizer of private and public events</li>
+                    </ul>
                 </div>
             </div>
 
@@ -197,6 +213,46 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
+                            </div>
+                            <div
+                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
+                                    <h4 class="font-bold text-lg text-ink font-serif">Jesal</h4>
+                                    <span
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Sep
+                                        2023 – Jan 2025</span>
+                                </div>
+                                <p class="text-stone-500 italic mb-3 font-serif">Head of Sales – Salerno, Italy</p>
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>Led the Sales &amp; Business Development team at a student-run non-profit.</li>
+                                    <li>Conducted market research and data analysis projects.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <div
+                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
+                            </div>
+                            <div
+                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
+                                    <h4 class="font-bold text-lg text-ink font-serif">Airbnb</h4>
+                                    <span
+                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">May
+                                        2024 – Present</span>
+                                </div>
+                                <p class="text-stone-500 italic mb-3 font-serif">Property Manager – Salerno, Italy</p>
+                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
+                                    <li>Managed multiple properties, earned SuperHost status.</li>
+                                    <li>Implemented automated processes increasing profits by 40%.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -253,10 +309,8 @@
                         <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 mb-3">
                             <h4 class="font-serif text-xl text-ink">Spend Smart, Learn Fast | Safe RL</h4>
                             <div class="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-sans">
-                                <span
-                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Research</span>
-                                <span
-                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Python</span>
+                                <span class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Research</span>
+                                <span class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Python</span>
                                 <span
                                     class="px-2 py-1 rounded-full border-primary/50 border bg-primary text-white font-bold shadow-sm whitespace-nowrap">Grade:
                                     10/10</span>
@@ -274,7 +328,7 @@
                         </p>
                     </div>
                     <div class="pl-4 mt-auto">
-                        <a href="{{ "Spend Smart Learn Fast.pdf" | absURL }}" target="_blank" rel="noopener noreferrer"
+                        <a href="{{ " Spend Smart Learn Fast.pdf" | absURL }}" target="_blank" rel="noopener noreferrer"
                             class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
                             <i data-lucide="file-text" class="w-4 h-4"></i>
                             <span>Read Research Paper (PDF)</span>
@@ -317,13 +371,49 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
 
     {{ else if eq .Section "goals" }}
     <div class="max-w-5xl mx-auto px-6 py-16">
+        <div class="mb-12 max-w-3xl">
+            <h1 class="font-serif text-5xl text-ink mb-2">Goals</h1>
+            <p class="text-xl text-stone-500 font-serif italic mb-8">
+                Objectives and key results for the quarter
+            </p>
+            <div class="text-ink/80 leading-loose space-y-6 font-serif text-lg text-justify">
+                <p>
+                    I like setting goals that are measurable through clear KPIs and
+                    concrete, objective sub-tasks...
+                </p>
+            </div>
+        </div>
+
+        <div class="grid gap-10">
+            <div
+                class="bg-white p-10 rounded-xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
+                <div
+                    class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
+                </div>
+                <div class="pl-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-paper rounded-full border border-stone-100 shadow-sm">
+                                <i data-lucide="mountain" class="w-8 h-8 text-primary"></i>
+                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-ink">Y25 Mens Sana</h3>
+                        </div>
+                        <span
+                            class="text-xs bg-paper text-primary border border-primary/20 px-3 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">Current
+                            Quarter</span>
+                    </div>
+                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">
+                        At TU/e, the academic environment is genuinely healthy...
+                    </p>
+                </div>
+            </div>
+        </div>
         {{ .Content }}
     </div>
 
@@ -335,6 +425,7 @@
                 Weekly collection of anecdotes and reflections.
             </p>
         </div>
+
         <div class="grid gap-10">
             {{ range where .Site.RegularPages "Section" "blog" }}
             <article onclick="window.location.href='{{ .RelPermalink }}'"
