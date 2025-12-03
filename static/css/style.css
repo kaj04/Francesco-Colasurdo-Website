@@ -159,13 +159,13 @@ html {
         radial-gradient(circle, black 1.5px, transparent 1.6px),
         /* Puntini netti */
         linear-gradient(to bottom, black 20%, transparent 100%);
-    /* Sfumatura */
+        /* Sfumatura */
 
     mask-size:
         5px 5px,
         /* Griglia uniforme */
         100% 100%;
-    /* Sfumatura */
+       /* Sfumatura */
 
     mask-repeat: repeat, no-repeat;
     mask-composite: intersect;
