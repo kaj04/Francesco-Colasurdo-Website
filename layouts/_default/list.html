@@ -1,7 +1,6 @@
 {{ define "main" }}
 <div class="animate-fade-in-up">
     {{ if eq .Section "cv" }}
-    <!-- CV LAYOUT -->
     <div class="max-w-5xl mx-auto px-6 py-16">
         <div
             class="mb-12 border-b border-stone-200 pb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -12,15 +11,15 @@
                     internship ; )
                 </p>
             </div>
-            <a href="{{ "Francesco Colasurdo CV.pdf" | absURL }}" download="Francesco Colasurdo CV.pdf"
+            <a href="{{ " Francesco Colasurdo CV.pdf" | absURL }}" download="Francesco Colasurdo CV.pdf"
                 class="inline-flex items-center gap-2 px-8 py-3 bg-ink text-paper rounded-full hover:bg-primary transition-all duration-300 text-sm font-medium font-serif italic shadow-lg hover:shadow-xl group cursor-pointer">
                 <i data-lucide="download" class="w-4 h-4 group-hover:-translate-y-1 transition-transform"></i>
                 <span>Download CV (PDF)</span>
             </a>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-12">
-            <!-- Left Column: Contact & Skills -->
+        <div class="grid md:grid-cols-3 gap-12 mb-16">
+
             <div class="md:col-span-1 space-y-12">
                 <div
                     class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm relative overflow-hidden group hover:border-primary/20 transition-colors">
@@ -30,28 +29,27 @@
                     <h2 class="font-serif text-xl mb-6 text-primary italic">Contacts</h2>
                     <div class="space-y-4 text-sm text-stone-600 font-sans">
                         <a href="mailto:francesco.colasurdo04@gmail.com"
-                            class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="mail"
-                                class="w-4 h-4"></i>
-                            francesco.colasurdo04@gmail.com</a>
+                            class="flex items-center gap-3 hover:text-primary transition-colors">
+                            <i data-lucide="mail" class="w-4 h-4"></i> francesco.colasurdo04@gmail.com
+                        </a>
                         <a href="https://linkedin.com/in/francesco-colasurdo" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center gap-3 hover:text-primary transition-colors"><i
-                                data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
-                            Profile</a>
+                            class="flex items-center gap-3 hover:text-primary transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile
+                        </a>
                         <a href="https://github.com/kaj04" target="_blank" rel="noopener noreferrer"
-                            class="flex items-center gap-3 hover:text-primary transition-colors"><i data-lucide="github"
-                                class="w-4 h-4"></i>
-                            github.com/kaj04</a>
-                        <a href="{{ "" | absURL }}" class="flex items-center gap-3 hover:text-primary transition-colors">
+                            class="flex items-center gap-3 hover:text-primary transition-colors">
+                            <i data-lucide="github" class="w-4 h-4"></i> github.com/kaj04
+                        </a>
+                        <a href="{{ "" | absURL }}"
+                            class="flex items-center gap-3 hover:text-primary transition-colors">
                             <i data-lucide="globe" class="w-4 h-4"></i> Personal Website
                         </a>
                     </div>
                 </div>
 
-                <!-- Skills (come prima) -->
                 <div>
                     <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
-                        <i data-lucide="code" class="w-4.5 h-4.5 text-primary"></i>
-                        Technical Skills
+                        <i data-lucide="code" class="w-4.5 h-4.5 text-primary"></i> Technical Skills
                     </h3>
                     <div class="space-y-6 text-sm">
                         <div>
@@ -60,89 +58,48 @@
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Databases</span>
-                            <p class="text-stone-600 leading-relaxed">
-                                MySQL, PostgreSQL, MongoDB, BigQuery
-                            </p>
+                            <p class="text-stone-600 leading-relaxed">MySQL, PostgreSQL, MongoDB, BigQuery</p>
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Machine Learning &amp; AI</span>
-                            <p class="text-stone-600 leading-relaxed">
-                                Scikit-learn, XGBoost, TensorFlow, PyTorch, OpenAI API, Hugging
-                                Face
-                            </p>
+                            <p class="text-stone-600 leading-relaxed">Scikit-learn, XGBoost, TensorFlow, PyTorch, OpenAI
+                                API, Hugging Face</p>
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Libraries</span>
-                            <p class="text-stone-600 leading-relaxed">
-                                NumPy, Pandas, Matplotlib, Seaborn, Plotly, SciPy
+                            <p class="text-stone-600 leading-relaxed">NumPy, Pandas, Matplotlib, Seaborn, Plotly, SciPy
                             </p>
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Tools</span>
-                            <p class="text-stone-600 leading-relaxed">
-                                Power BI, Dialogflow CX, Excel, Google Sheets, LaTeX
-                            </p>
+                            <p class="text-stone-600 leading-relaxed">Power BI, Dialogflow CX, Excel, Google Sheets,
+                                LaTeX</p>
                         </div>
                         <div>
                             <span class="font-bold text-ink block mb-2 font-serif">Big Data</span>
-                            <p class="text-stone-600 leading-relaxed">
-                                Hadoop, Spark, Sparklyr
-                            </p>
-                        </div>
-                        <div>
-                            <span class="font-bold text-ink block mb-2 font-serif">Statistical Concepts</span>
-                            <p class="text-stone-600 leading-relaxed">
-                                EDA, Statistical Inference, Predictive Analytics, Data
-                                Modeling, Data Visualization
-                            </p>
+                            <p class="text-stone-600 leading-relaxed">Hadoop, Spark, Sparklyr</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Certificates -->
                 <div class="space-y-6 mt-8">
                     <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
-                        <i data-lucide="award" class="w-4.5 h-4.5 text-primary"></i>
-                        Certificates
+                        <i data-lucide="award" class="w-4.5 h-4.5 text-primary"></i> Certificates
                     </h3>
-                    <p class="text-sm text-stone-700">
-                        <strong>IELTS 7.5:</strong> C1 Proficiency (British Council)
-                    </p>
-                    <p class="text-sm text-stone-700">
-                        <strong>Summer School:</strong> Data Science &amp; AI for Life
-                        Sciences (SAS &amp; Cambridge)
-                    </p>
-                </div>
-
-                <!-- Extra-Career -->
-                <div class="space-y-4 mt-8">
-                    <h3 class="font-serif text-lg border-b border-stone-200 pb-2 mb-4 flex items-center gap-2 text-ink">
-                        <i data-lucide="user-round" class="w-4.5 h-4.5 text-primary"></i>
-                        Extra-Career
-                    </h3>
-                    <ul class="list-disc list-inside text-sm text-stone-700 space-y-2">
-                        <li>
-                            Volunteer with AGESCI Scout Association (Jamboree 2019, USA)
-                        </li>
-                        <li>
-                            Executive producer of a short, self-produced film project
-                        </li>
-                        <li>Organizer of private and public events</li>
-                    </ul>
+                    <p class="text-sm text-stone-700"><strong>IELTS 7.5:</strong> C1 Proficiency (British Council)</p>
+                    <p class="text-sm text-stone-700"><strong>Summer School:</strong> Data Science &amp; AI for Life
+                        Sciences (SAS &amp; Cambridge)</p>
                 </div>
             </div>
 
-            <!-- Right Column: Education, Work Experience, Projects (come da mock) -->
             <div class="md:col-span-2 space-y-16">
-                <!-- Education -->
+
                 <section>
                     <h3
                         class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
-                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i>
-                        Education
+                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i> Education
                     </h3>
                     <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
-                        <!-- TU/e -->
                         <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
@@ -150,30 +107,23 @@
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">
-                                        Eindhoven University of Technology (TU/e)
-                                    </h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">Eindhoven University of Technology
+                                        (TU/e)</h4>
                                     <span
                                         class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Aug
                                         2025 – Expected Jul 2027</span>
                                 </div>
-                                <p class="text-stone-500 italic mb-3 font-serif">
-                                    MSc in Data Science &amp; AI – Eindhoven, Netherlands
-                                </p>
+                                <p class="text-stone-500 italic mb-3 font-serif">MSc in Data Science &amp; AI –
+                                    Eindhoven, Netherlands</p>
                                 <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
-                                    <li>
-                                        Main courses: Foundations &amp; Ethics of AI, Big Data
-                                        Management, Gen AI Models, Visual Analytics, Time series.
-                                    </li>
-                                    <li>
-                                        Participant in the Honors Master Program, an additional
-                                        20-credit track on leadership and personal development.
-                                    </li>
+                                    <li>Main courses: Foundations &amp; Ethics of AI, Big Data Management, Gen AI
+                                        Models, Visual Analytics, Time series.</li>
+                                    <li>Participant in the Honors Master Program, an additional 20-credit track on
+                                        leadership and personal development.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Salerno -->
                         <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
@@ -181,45 +131,30 @@
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">
-                                        University of Salerno
-                                    </h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">University of Salerno</h4>
                                     <span
                                         class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Sep
                                         2022 – Jul 2025</span>
                                 </div>
-                                <p class="text-stone-500 italic mb-3 font-serif">
-                                    BSc in Statistics for Big Data (GPA: 28/30) – Salerno, Italy
-                                </p>
+                                <p class="text-stone-500 italic mb-3 font-serif">BSc in Statistics for Big Data (GPA:
+                                    28/30) – Salerno, Italy</p>
                                 <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
-                                    <li>
-                                        Main courses: Programming, Statistics, Machine Learning,
-                                        Data Visualization.
+                                    <li>Main courses: Programming, Statistics, Machine Learning, Data Visualization.
                                     </li>
-                                    <li>
-                                        Erasmus+ Merit Scholarship:
-                                        <strong>Universidad de Granada, Spain</strong> (Sep 2023 –
-                                        Feb 2024).
-                                    </li>
-                                    <li>
-                                        Adapted to a new academic environment, developing
-                                        intercultural communication skills.
-                                    </li>
+                                    <li>Erasmus+ Merit Scholarship: <strong>Universidad de Granada, Spain</strong> (Sep
+                                        2023 – Feb 2024).</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Work Experience -->
                 <section>
                     <h3
                         class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
-                        <i data-lucide="briefcase" class="w-6 h-6 text-primary"></i>
-                        Work Experience
+                        <i data-lucide="briefcase" class="w-6 h-6 text-primary"></i> Work Experience
                     </h3>
                     <div class="space-y-10 pl-8 border-l-2 border-dashed border-stone-300 ml-3">
-                        <!-- NTT Data -->
                         <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
@@ -227,35 +162,20 @@
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">
-                                        NTT Data
-                                    </h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">NTT Data</h4>
                                     <span
                                         class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Mar
                                         2025 – Jun 2025</span>
                                 </div>
-                                <p class="text-stone-500 italic mb-3 font-serif">
-                                    Data Science Intern – Naples, Italy
-                                </p>
+                                <p class="text-stone-500 italic mb-3 font-serif">Data Science Intern – Naples, Italy</p>
                                 <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
-                                    <li>
-                                        Designed and deployed a mental health chatbot (Dialogflow
-                                        CX + Telegram API) managing 1k+ conversations with &gt;85%
-                                        completion rate.
+                                    <li>Designed and deployed a mental health chatbot (Dialogflow CX + Telegram API).
                                     </li>
-                                    <li>
-                                        Applied ML &amp; NLP algorithms (HDBSCAN, UMAP, LLM
-                                        sentiment analysis) to uncover 7 key behavioral patterns.
-                                    </li>
-                                    <li>
-                                        Built Power BI dashboards for real-time insight
-                                        visualization.
-                                    </li>
+                                    <li>Applied ML &amp; NLP algorithms (HDBSCAN, UMAP, LLM sentiment analysis).</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Italian–South African Chamber of Trade -->
                         <div class="relative group">
                             <div
                                 class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
@@ -263,227 +183,151 @@
                             <div
                                 class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">
-                                        Italian–South African Chamber of Trade
-                                    </h4>
+                                    <h4 class="font-bold text-lg text-ink font-serif">Italian–South African Chamber of
+                                        Trade</h4>
                                     <span
                                         class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Jan
                                         2025 – Mar 2025</span>
                                 </div>
-                                <p class="text-stone-500 italic mb-3 font-serif">
-                                    Data Analytics &amp; Market Research Intern – Johannesburg, SA
-                                </p>
+                                <p class="text-stone-500 italic mb-3 font-serif">Data Analytics &amp; Market Research
+                                    Intern – Johannesburg, SA</p>
                                 <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
-                                    <li>
-                                        Produced 4 market analyses across energy, steel, and
-                                        agri-food, identifying opportunities with &gt;20% annual
-                                        growth potential.
-                                    </li>
-                                    <li>
-                                        Built internal market-intelligence database reducing
-                                        information-retrieval time from 3 min to &lt;15 sec.
-                                    </li>
+                                    <li>Produced 4 market analyses across energy, steel, and agri-food.</li>
+                                    <li>Built internal market-intelligence database reducing retrieval time.</li>
                                 </ul>
-                            </div>
-                        </div>
-
-                        <!-- Jesal -->
-                        <div class="relative group">
-                            <div
-                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
-                            </div>
-                            <div
-                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">Jesal</h4>
-                                    <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">Sep
-                                        2023 – Jan 2025</span>
-                                </div>
-                                <p class="text-stone-500 italic mb-3 font-serif">
-                                    Head of Sales – Salerno, Italy
-                                </p>
-                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
-                                    <li>
-                                        Led the Sales &amp; Business Development team at a
-                                        student-run non-profit offering consultancy services.
-                                    </li>
-                                    <li>
-                                        Conducted market research and data analysis projects,
-                                        providing actionable insights to local clients.
-                                    </li>
-                                    <li>
-                                        Collaborated with multidisciplinary teams to deliver
-                                        tailored solutions.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Airbnb -->
-                        <div class="relative group">
-                            <div
-                                class="absolute -left-[39px] top-2 w-4 h-4 rounded-full bg-primary border-4 border-paper shadow-sm group-hover:scale-125 transition-transform">
-                            </div>
-                            <div
-                                class="p-6 bg-white border border-stone-100 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-2">
-                                    <h4 class="font-bold text-lg text-ink font-serif">Airbnb</h4>
-                                    <span
-                                        class="text-xs font-sans text-primary font-medium bg-primary/10 px-2 py-1 rounded">May
-                                        2024 – Present</span>
-                                </div>
-                                <p class="text-stone-500 italic mb-3 font-serif">
-                                    Property Manager – Salerno, Italy
-                                </p>
-                                <ul class="list-disc list-inside text-sm text-stone-700 space-y-1">
-                                    <li>
-                                        Managed multiple properties, overseeing guest hospitality
-                                        and operations.
-                                    </li>
-                                    <li>
-                                        Earned SuperHost status by consistently delivering excellent
-                                        service.
-                                    </li>
-                                    <li>
-                                        Implemented automated processes resulting in a 40% increase
-                                        in profits.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Personal Projects -->
-                <section>
-                    <h3 class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
-                        <i data-lucide="target" class="w-6 h-6 text-primary"></i>
-                        Personal Projects & Research
-                    </h3>
-                    <div class="space-y-6">
-                
-                        <div
-                            class="bg-white p-6 rounded-xl border border-primary/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-                            <div class="absolute inset-y-0 left-0 w-1 bg-primary rounded-l-xl"></div>
-                            <div class="pl-4">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
-                                    <h4 class="font-serif text-xl text-ink">
-                                        Spend Smart, Learn Fast | Safe RL Research
-                                    </h4>
-                                    <div class="flex items-center gap-2 text-xs font-sans">
-                                        <span class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">TU/e
-                                            Research</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Python</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full border-primary/50 border bg-primary text-white font-bold shadow-sm">Grade:
-                                            10/10</span>
-                                    </div>
-                                </div>
-                                <p class="text-sm text-stone-700 mb-3">
-                                    Authored a research paper on <strong>Safe Reinforcement Learning</strong> using Budgeted Markov
-                                    Decision Processes (BMDPs). We introduced novel "budget curricula" strategies to dynamically
-                                    schedule safety constraints during agent training.
-                                </p>
-                                <p class="text-sm text-stone-700 mb-4">
-                                    Tested on autonomous driving and dialogue environments, our approach significantly enhanced agent
-                                    robustness and learning efficiency compared to standard baselines.
-                                </p>
-                                <a href="{{ "Spend Smart Learn Fast.pdf" | absURL }}" target="_blank" rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
-                                    <i data-lucide="file-text" class="w-4 h-4"></i>
-                                    <span>Read Research Paper (PDF)</span>
-                                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-                                </a>
-                            </div>
-                        </div>
-                
-                        <div
-                            class="bg-white p-6 rounded-xl border border-primary/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-                            <div class="absolute inset-y-0 left-0 w-1 bg-primary rounded-l-xl"></div>
-                            <div class="pl-4">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
-                                    <h4 class="font-serif text-xl text-ink">
-                                        Ask My CV | Personal RAG Assistant
-                                    </h4>
-                                    <div class="flex items-center gap-2 text-xs font-sans">
-                                        <span
-                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">FASTAPI</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">LLM</span>
-                                        <span
-                                            class="px-3 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">RAG</span>
-                                    </div>
-                                </div>
-                                <p class="text-sm text-stone-700 mb-3">
-                                    Designed RAG-based AI assistant with FastAPI and
-                                    Sentence-Transformers for accurate CV query responses.
-                                </p>
-                                <p class="text-sm text-stone-700 mb-4">
-                                    Engineered end-to-end Python backend orchestrating
-                                    Datapizza-AI for web chat interaction.
-                                </p>
-                                <a href="https://github.com/kaj04/cv-assistant-backend" target="_blank" rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
-                                    <i data-lucide="github" class="w-4 h-4"></i>
-                                    <span>View Repository</span>
-                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
+
+        <section class="mt-16 pt-8 border-t border-stone-200">
+            <h3 class="font-serif text-2xl border-b border-stone-200 pb-3 mb-8 flex items-center gap-3 text-ink">
+                <i data-lucide="target" class="w-6 h-6 text-primary"></i>
+                Personal Projects & Research
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <div
+                    class="bg-white p-6 rounded-xl border border-primary/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col">
+                    <div class="absolute inset-y-0 left-0 w-1 bg-primary rounded-l-xl"></div>
+                    <div class="pl-4 flex-grow">
+                        <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 mb-3">
+                            <h4 class="font-serif text-xl text-ink">Solitario Klondike | Python GUI</h4>
+                            <div class="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-sans">
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">OOP</span>
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Pygame</span>
+                                <span
+                                    class="px-2 py-1 rounded-full border-primary/50 border bg-primary text-white font-bold shadow-sm whitespace-nowrap">Grade:
+                                    30L/30</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-700 mb-3 text-justify">
+                            Developed a full-featured desktop version of classic Klondike Solitaire.
+                            Designed a robust <strong>Object-Oriented (OOP)</strong> architecture to handle game logic,
+                            card interactions, and rendering via <strong>Pygame</strong>.
+                        </p>
+                        <p class="text-sm text-stone-700 mb-4 text-justify">
+                            Features include custom asset loading, drag-and-drop mechanics, move validation logic,
+                            and a responsive graphical interface.
+                        </p>
+                    </div>
+                    <div class="pl-4 mt-auto">
+                        <a href="https://github.com/kaj04/Solitario-Klondike" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
+                            <i data-lucide="github" class="w-4 h-4"></i>
+                            <span>View Repository</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl border border-primary/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col">
+                    <div class="absolute inset-y-0 left-0 w-1 bg-primary rounded-l-xl"></div>
+                    <div class="pl-4 flex-grow">
+                        <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 mb-3">
+                            <h4 class="font-serif text-xl text-ink">Spend Smart, Learn Fast | Safe RL</h4>
+                            <div class="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-sans">
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Research</span>
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">Python</span>
+                                <span
+                                    class="px-2 py-1 rounded-full border-primary/50 border bg-primary text-white font-bold shadow-sm whitespace-nowrap">Grade:
+                                    10/10</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-700 mb-3 text-justify">
+                            Authored a research paper on <strong>Safe Reinforcement Learning</strong> using Budgeted
+                            Markov
+                            Decision Processes (BMDPs). Introduced novel "budget curricula" strategies to dynamically
+                            schedule safety constraints.
+                        </p>
+                        <p class="text-sm text-stone-700 mb-4 text-justify">
+                            Tested on autonomous driving and dialogue environments, enhancing agent robustness
+                            significantly.
+                        </p>
+                    </div>
+                    <div class="pl-4 mt-auto">
+                        <a href="{{ "Spend Smart Learn Fast.pdf" | absURL }}" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
+                            <i data-lucide="file-text" class="w-4 h-4"></i>
+                            <span>Read Research Paper (PDF)</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl border border-primary/30 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col">
+                    <div class="absolute inset-y-0 left-0 w-1 bg-primary rounded-l-xl"></div>
+                    <div class="pl-4 flex-grow">
+                        <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 mb-3">
+                            <h4 class="font-serif text-xl text-ink">Ask My CV | Personal RAG Assistant</h4>
+                            <div class="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-sans">
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">FastAPI</span>
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">LLM</span>
+                                <span
+                                    class="px-2 py-1 rounded-full border border-primary/30 text-primary bg-primary/5">RAG</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-700 mb-3 text-justify">
+                            Designed RAG-based AI assistant with FastAPI and Sentence-Transformers for accurate CV query
+                            responses.
+                        </p>
+                        <p class="text-sm text-stone-700 mb-4 text-justify">
+                            Engineered end-to-end Python backend orchestrating LLM for web chat interaction (the one you
+                            see on this site!).
+                        </p>
+                    </div>
+                    <div class="pl-4 mt-auto">
+                        <a href="https://github.com/kaj04/cv-assistant-backend" target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-sm font-serif text-primary hover:underline underline-offset-4">
+                            <i data-lucide="github" class="w-4 h-4"></i>
+                            <span>View Repository</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </div>
 
     {{ else if eq .Section "goals" }}
-    <!-- GOALS LAYOUT (rimasto uguale) -->
     <div class="max-w-5xl mx-auto px-6 py-16">
-        <div class="mb-12 max-w-3xl">
-            <h1 class="font-serif text-5xl text-ink mb-2">Goals</h1>
-            <p class="text-xl text-stone-500 font-serif italic mb-8">
-                Objectives and key results for the quarter
-            </p>
-            <div class="text-ink/80 leading-loose space-y-6 font-serif text-lg text-justify">
-                <p>
-                    I like setting goals that are measurable through clear KPIs and
-                    concrete, objective sub-tasks...
-                </p>
-            </div>
-        </div>
-
-        <div class="grid gap-10">
-            <div
-                class="bg-white p-10 rounded-xl shadow-sm border border-stone-200 relative overflow-hidden group hover:shadow-lg transition-all duration-500">
-                <div
-                    class="absolute top-0 left-0 w-2 h-full bg-stone-200 group-hover:bg-primary transition-colors duration-500">
-                </div>
-                <div class="pl-6">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="p-3 bg-paper rounded-full border border-stone-100 shadow-sm">
-                                <i data-lucide="mountain" class="w-8 h-8 text-primary"></i>
-                            </div>
-                            <h3 class="font-serif text-3xl font-bold text-ink">
-                                Y25 Mens Sana
-                            </h3>
-                        </div>
-                        <span
-                            class="text-xs bg-paper text-primary border border-primary/20 px-3 py-1 rounded-full font-sans uppercase tracking-wider font-semibold">Current
-                            Quarter</span>
-                    </div>
-                    <p class="text-stone-600 mb-8 leading-loose max-w-4xl font-serif text-lg">
-                        At TU/e, the academic environment is genuinely healthy...
-                    </p>
-                </div>
-            </div>
-        </div>
+        {{ .Content }}
     </div>
 
     {{ else }}
-    <!-- BLOG LIST LAYOUT (Default) -->
     <div class="max-w-5xl mx-auto px-6 py-16">
         <div class="mb-12">
             <h1 class="font-serif text-5xl text-ink mb-2">Blog</h1>
@@ -491,7 +335,6 @@
                 Weekly collection of anecdotes and reflections.
             </p>
         </div>
-
         <div class="grid gap-10">
             {{ range where .Site.RegularPages "Section" "blog" }}
             <article onclick="window.location.href='{{ .RelPermalink }}'"
@@ -504,8 +347,8 @@
                         "January 02, 2006" }}</span>
                 </div>
                 <p class="text-stone-600 leading-relaxed mb-6 line-clamp-2 font-serif text-lg">
-                    {{- if .Params.summary -}} {{ .Params.summary | plainify | truncate 180
-                    }}… {{- else -}} {{ .Summary | plainify | truncate 180 }}… {{- end -}}
+                    {{- if .Params.summary -}} {{ .Params.summary | plainify | truncate 180 }}… {{- else -}} {{ .Summary
+                    | plainify | truncate 180 }}… {{- end -}}
                 </p>
                 <div
                     class="flex items-center text-xs font-bold font-sans text-primary group-hover:underline decoration-primary underline-offset-4 tracking-widest uppercase">
