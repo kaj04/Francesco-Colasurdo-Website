@@ -39,7 +39,7 @@
                     colors: {
                         paper: "#fcf8ed",
                         ink: "#2c2825",
-                        milk: "#fdfcf8", /* Colore Bianco Latte */
+                        milk: "#fdfcf8",
                         stone: {
                             50: "#fafaf9",
                             100: "#f5f5f4",
@@ -74,6 +74,25 @@
             },
         };
     </script>
+
+    <style>
+        /* Se il dispositivo è touch (coarse pointer) o larghezza < 768px */
+        @media (pointer: coarse),
+        (max-width: 768px) {
+
+            #cursor-dot,
+            #cursor-ring {
+                display: none !important;
+            }
+
+            body,
+            a,
+            button,
+            input {
+                cursor: auto !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-paper text-ink antialiased selection:bg-primary/20 noise-bg vignette">
@@ -93,7 +112,8 @@
             <div id="chat-backdrop" class="fixed inset-0 bg-black/5 z-30 hidden" onclick="toggleChat()"></div>
 
             <button onclick="toggleChat()" id="chat-button"
-                class="fixed bottom-8 right-8 z-50 flex items-center justify-center gap-3 px-8 py-4 rounded-full shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-primary text-white group cursor-pointer">
+                class="fixed bottom-8 right-8 z-50 flex items-center justify-center gap-3 px-8 py-4 rounded-full shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-primary text-white group cursor-pointer {{ if and (eq .Section "
+                blog") .IsPage }}hidden{{ end }}">
                 <i data-lucide="message-circle" class="w-5 h-5" id="chat-icon-open"></i>
                 <i data-lucide="x" class="w-5 h-5 hidden" id="chat-icon-close"></i>
                 <span class="font-serif italic font-medium tracking-wide text-base" id="chat-text">Ask about ME</span>
@@ -235,7 +255,7 @@
             try {
                 const state = JSON.parse(saved);
 
-                // Controllo scadenza sessione (es. 5 minuti)
+                // Controllo scadenza sessione
                 const now = Date.now();
                 if (state.timestamp && (now - state.timestamp > RECOVERY_TIMEOUT_MS)) {
                     sessionStorage.removeItem('fc_chat_state');
@@ -247,8 +267,10 @@
                     messagesContainer.innerHTML = state.html;
                 }
 
-                // 2. Ripristina stato apertura
-                if (state.isOpen) {
+                // 2. Ripristina stato apertura (solo se il bottone è visibile nella pagina corrente)
+                // Se siamo in un articolo del blog, il bottone è hidden, quindi evitiamo di aprire il popup "a vuoto"
+                const buttonVisible = !chatButton.classList.contains("hidden");
+                if (state.isOpen && buttonVisible) {
                     toggleChat(true);
                 }
 
@@ -256,14 +278,13 @@
                 if (state.isWaiting && state.lastMsg) {
                     console.log("🔄 Chatbot: Ripristino richiesta interrotta...");
 
-                    // Pulisci vecchi indicatori di typing congelati
                     const oldTypingIndicators = messagesContainer.querySelectorAll("#typing-label");
                     oldTypingIndicators.forEach(el => {
                         const container = el.closest(".flex.justify-start");
                         if (container) container.remove();
                     });
 
-                    // Rilancia la richiesta in modo invisibile (senza ristampare la domanda)
+                    // Rilancia la richiesta (invisibile)
                     sendChatMessage(state.lastMsg, false);
                 }
 
@@ -348,7 +369,6 @@
                 input.value = "";
             }
 
-            // SALVA: "Sto aspettando"
             saveChatState();
 
             // Typing indicator
@@ -366,7 +386,6 @@
             messagesContainer.appendChild(typingDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Salva anche col typing visibile
             saveChatState();
 
             let phase = "retrieving";
@@ -387,12 +406,8 @@
 
                 if (!res.ok) {
                     typingDiv.remove();
-                    // Messaggio aggiornato per mobile
                     addBotMessage("Sorry, connection interrupted. If you are on mobile, please try not to switch pages while I am typing. Try again?");
-
-                    // CRUCIALE PER IL FIX MOBILE:
-                    // Se c'è un errore, mostriamo il messaggio a video MA NON salviamo lo stato di errore nel taccuino.
-                    // In questo modo, se l'errore è causato dal cambio pagina, la nuova pagina leggerà ancora "Sto aspettando" e riproverà.
+                    // NON salviamo lo stato di errore, così se si ricarica la pagina riprova
                     return;
                 }
 
@@ -402,7 +417,6 @@
                 const answer = data && typeof data.answer === "string" ? data.answer : "No answer.";
                 addBotMessage(answer);
 
-                // Successo: smettiamo di aspettare e salviamo
                 isWaitingResponse = false;
                 saveChatState();
 
@@ -411,12 +425,8 @@
                 clearTimeout(switchToTyping);
                 typingDiv.remove();
 
-                // Messaggio aggiornato per mobile
                 addBotMessage("Sorry, connection lost. If on mobile, please stay on the page while I reply. Try again?");
-
-                // CRUCIALE: NON salviamo lo stato qui.
-                // Se la pagina sta morendo, non vogliamo sovrascrivere il flag "waiting" con un errore.
-                // Se l'utente resta sulla pagina, vede l'errore. Se ricarica/naviga, il bot riprova.
+                // NON salviamo lo stato qui.
             }
         }
 
