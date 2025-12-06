@@ -53,50 +53,35 @@
   border-radius: .35rem;
 }
 
+/* =========================================
+   EFFECT: Marker Highlight on Hover
+   ========================================= */
 .marker-highlight {
     position: relative;
     text-decoration: none;
     display: inline;
-    background-image: linear-gradient(120deg, rgba(27, 110, 75, 0.3) 0%, rgba(27, 110, 75, 0.3) 100%);
+    /* Giallo evidenziatore */
+    background-image: linear-gradient(120deg, rgba(255, 225, 0, 0.6) 0%, rgba(255, 225, 0, 0.4) 100%);
     background-repeat: no-repeat;
     background-size: 0% 100%;
-    /* Inizialmente larghezza 0 (invisibile) */
+    /* Inizialmente invisibile */
     background-position: 0 88%;
-    /* Posizionato in basso come un vero evidenziatore */
-
-    /* Animazione fluida */
+    /* Posizione in basso */
     transition: background-size 0.4s ease-in-out;
-
-    /* Arrotondamento bordi per effetto "pennarello" */
     border-radius: 2px;
+    cursor: text;
+    /* Mantiene il cursore testo */
 }
 
-/* LOGICA "RETTANGOLO": 
-   Quando passo col mouse sopra il PARAGRAFO contenitore (p),
-   tutti gli evidenziatori al suo interno si attivano.
-*/
+/* Quando passi sopra il PARAGRAFO (p), attiva l'evidenziatore */
 p:hover .marker-highlight {
     background-size: 100% 100%;
 }
 
-/* Opzionale: Se vuoi che si attivi anche passando SOLO sulla parola */
-.marker-highlight:hover {
-    background-size: 100% 100%;
-    cursor: help;
-    /* Cambia cursore per indicare interattività */
-}
-
-/* =========================================
-   MOBILE TWEAK
-   Su mobile non esiste l'hover. 
-   Possiamo decidere di lasciarli sempre evidenziati o solo al tocco.
-   Qui li rendiamo sempre visibili per UX migliore su schermi touch.
-   ========================================= */
+/* Su mobile è sempre attivo (non c'è hover) */
 @media (pointer: coarse) {
     .marker-highlight {
         background-size: 100% 100%;
-        /* Sempre attivo su mobile */
-        background-image: linear-gradient(120deg, rgba(27, 110, 75, 0.3) 0%, rgba(27, 110, 75, 0.3) 100%);
-        /* Più leggero */
+        background-image: linear-gradient(120deg, rgba(255, 225, 0, 0.3) 0%, rgba(255, 225, 0, 0.2) 100%);
     }
 }
