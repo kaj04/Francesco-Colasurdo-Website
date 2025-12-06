@@ -15,7 +15,7 @@
     <meta name="description"
         content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 
-    <link rel="stylesheet" href="{{ " css/style.css" | relURL }}" />
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
 
     <script>
         window.FC_API_URL =
@@ -195,10 +195,14 @@
         });
 
         // ==========================================
-        // 3. Chat Logic (PERSISTENT MEMORY VERSION)
+        // 3. Chat Logic (PERSISTENT & RESILIENT)
         // ==========================================
 
         let isChatOpen = false;
+        // Nuove variabili di stato per gestire i refresh
+        let isWaitingResponse = false;
+        let lastUserMessageText = "";
+
         const chatWindow = document.getElementById("chat-window");
         const chatButton = document.getElementById("chat-button");
         const chatBackdrop = document.getElementById("chat-backdrop");
@@ -208,17 +212,19 @@
         const messagesContainer = document.getElementById("chat-messages");
         const inputField = document.getElementById("chat-input");
 
-        // *** Funzione per salvare lo stato nel browser ***
+        // *** SAVE STATE ***
         function saveChatState() {
             const state = {
                 isOpen: isChatOpen,
                 html: messagesContainer.innerHTML,
+                isWaiting: isWaitingResponse,          // Salviamo se stiamo aspettando
+                lastMsg: lastUserMessageText,          // Salviamo cosa abbiamo chiesto
                 timestamp: Date.now()
             };
             sessionStorage.setItem('fc_chat_state', JSON.stringify(state));
         }
 
-        // *** Funzione per ripristinare lo stato ***
+        // *** LOAD STATE ***
         function loadChatState() {
             const saved = sessionStorage.getItem('fc_chat_state');
             if (!saved) return;
@@ -226,20 +232,36 @@
             try {
                 const state = JSON.parse(saved);
 
-                // 1. Ripristina i messaggi
+                // 1. Ripristina messaggi
                 if (state.html && state.html.trim() !== "") {
                     messagesContainer.innerHTML = state.html;
                 }
 
-                // 2. Ripristina apertura finestra se era aperta
+                // 2. Ripristina apertura chat
                 if (state.isOpen) {
-                    toggleChat(true); // true forza l'apertura senza invertire
+                    toggleChat(true);
                 }
 
-                // 3. Scrolla in basso
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                // 3. RECUPERO RICHIESTA INTERROTTA
+                // Se stavamo aspettando una risposta e abbiamo cambiato pagina...
+                if (state.isWaiting && state.lastMsg) {
+                    console.log("Ripristino richiesta interrotta per:", state.lastMsg);
 
-                // 4. Riattacca gli event listeners ai suggerimenti
+                    // Rimuovi eventuali indicatori "Typing..." vecchi/morti dall'HTML ripristinato
+                    // (L'HTML ripristinato contiene il vecchio indicatore che ormai non si muove più)
+                    const deadTyping = messagesContainer.querySelector("#typing-label");
+                    if (deadTyping) {
+                        // Risaliamo al container genitore per rimuoverlo
+                        // La struttura è: div > div > span#typing-label
+                        const parentContainer = deadTyping.closest(".flex.justify-start");
+                        if (parentContainer) parentContainer.remove();
+                    }
+
+                    // Rilanciamo la richiesta SENZA mostrare di nuovo il messaggio utente (è già lì)
+                    sendChatMessage(state.lastMsg, false);
+                }
+
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 attachSuggestionListeners();
 
             } catch (e) {
@@ -248,9 +270,8 @@
             }
         }
 
-        // Modificata per accettare un parametro opzionale 'forceOpen'
+        // *** TOGGLE CHAT ***
         function toggleChat(forceOpen = null) {
-            // Se forceOpen è boolean, usalo. Altrimenti inverti il corrente.
             if (typeof forceOpen === "boolean") {
                 isChatOpen = forceOpen;
             } else {
@@ -269,7 +290,6 @@
                 iconClose.classList.remove("hidden");
                 chatText.innerText = "Close Chat";
 
-                // Focus sull'input quando si apre
                 setTimeout(() => document.getElementById("chat-input").focus(), 300);
             } else {
                 chatWindow.classList.add("opacity-0", "scale-90", "translate-y-10", "pointer-events-none");
@@ -283,8 +303,6 @@
                 iconClose.classList.add("hidden");
                 chatText.innerText = "Ask about ME";
             }
-
-            // Salva stato ogni volta che si apre/chiude
             saveChatState();
         }
 
@@ -292,37 +310,41 @@
             if (e.key === "Enter") sendChatMessage();
         }
 
-        // Helper per riattaccare i listener ai bottoni suggeriti
         function attachSuggestionListeners() {
             document.querySelectorAll(".chat-suggestion").forEach((btn) => {
-                // Clona per pulire vecchi listener
                 const newBtn = btn.cloneNode(true);
                 btn.parentNode.replaceChild(newBtn, btn);
-
                 newBtn.addEventListener("click", () => {
-                    const q = newBtn.textContent.trim();
-                    sendChatMessage(q);
+                    sendChatMessage(newBtn.textContent.trim());
                 });
             });
         }
 
-        async function sendChatMessage(presetText) {
+        // *** SEND MESSAGE (Modified) ***
+        // showUserMessage = true (default): mostra il fumetto utente
+        // showUserMessage = false: invia solo la richiesta (usato per il ripristino automatico)
+        async function sendChatMessage(presetText, showUserMessage = true) {
             const input = document.getElementById("chat-input");
             const text = (presetText ?? input.value.trim());
             if (!text) return;
 
-            // Messaggio utente
-            const userDiv = document.createElement("div");
-            userDiv.className = "flex justify-end";
-            userDiv.innerHTML = `
-              <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
-                ${text}
-              </div>`;
-            messagesContainer.appendChild(userDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            input.value = "";
+            // 1. Aggiorna stato: stiamo aspettando
+            isWaitingResponse = true;
+            lastUserMessageText = text;
 
-            // Salva stato (mostra domanda utente anche se navighi via subito)
+            if (showUserMessage) {
+                const userDiv = document.createElement("div");
+                userDiv.className = "flex justify-end";
+                userDiv.innerHTML = `
+                  <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
+                    ${text}
+                  </div>`;
+                messagesContainer.appendChild(userDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                input.value = "";
+            }
+
+            // Salva SUBITO lo stato con isWaiting=true
             saveChatState();
 
             const url = typeof window !== "undefined" && window.FC_API_URL
@@ -344,6 +366,9 @@
             messagesContainer.appendChild(typingDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
+            // Salva anche col typing indicator visibile
+            saveChatState();
+
             let phase = "retrieving";
             const labelSpan = typingDiv.querySelector("#typing-label");
             const switchToTyping = setTimeout(() => {
@@ -359,14 +384,13 @@
                 });
 
                 clearTimeout(switchToTyping);
-                if (phase !== "typing" && labelSpan) {
-                    labelSpan.textContent = "Typing…";
-                }
+                if (phase !== "typing" && labelSpan) labelSpan.textContent = "Typing…";
 
                 if (!res.ok) {
                     typingDiv.remove();
                     addBotMessage("Sorry, backend not reachable right now.");
-                    saveChatState(); // Salva errore
+                    isWaitingResponse = false; // Fine attesa (con errore)
+                    saveChatState();
                     return;
                 }
 
@@ -376,17 +400,21 @@
                 const answer = data && typeof data.answer === "string" ? data.answer : "No answer.";
 
                 addBotMessage(answer);
-                saveChatState(); // Salva la risposta del bot
+
+                // Fine attesa con successo
+                isWaitingResponse = false;
+                saveChatState();
 
             } catch (e) {
                 clearTimeout(switchToTyping);
                 typingDiv.remove();
                 addBotMessage("Sorry, something went wrong. Please try again.");
+
+                isWaitingResponse = false; // Fine attesa (con errore)
                 saveChatState();
             }
         }
 
-        // Helper per aggiungere messaggi bot
         function addBotMessage(htmlContent) {
             const botDiv = document.createElement("div");
             botDiv.className = "flex justify-start";
@@ -398,7 +426,7 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // *** INIT: Ripristina stato al caricamento e attacca i listener iniziali
+        // Init
         loadChatState();
         attachSuggestionListeners();
     </script>
