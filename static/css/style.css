@@ -191,28 +191,30 @@ html {
     position: relative;
     text-decoration: none;
     display: inline;
-    /* Giallo evidenziatore */
-    background-image: linear-gradient(120deg, rgba(255, 225, 0, 0.6) 0%, rgba(255, 225, 0, 0.4) 100%);
+
+    /* Verde #1b6e4b con trasparenza (0.4 e 0.2) */
+    background-image: linear-gradient(120deg, rgba(27, 110, 75, 0.4) 0%, rgba(27, 110, 75, 0.25) 100%);
+
     background-repeat: no-repeat;
     background-size: 0% 100%;
-    /* Inizialmente invisibile */
     background-position: 0 88%;
-    /* Posizione in basso */
     transition: background-size 0.4s ease-in-out;
     border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
     cursor: text;
-    /* Mantiene il cursore testo */
 }
 
-/* Quando passi sopra il PARAGRAFO (p), attiva l'evidenziatore */
+/* Attiva l'effetto al passaggio sul paragrafo */
 p:hover .marker-highlight {
     background-size: 100% 100%;
 }
 
-/* Su mobile è sempre attivo (non c'è hover) */
+/* Mobile: sempre visibile ma più leggero */
 @media (pointer: coarse) {
     .marker-highlight {
         background-size: 100% 100%;
-        background-image: linear-gradient(120deg, rgba(255, 225, 0, 0.3) 0%, rgba(255, 225, 0, 0.2) 100%);
+        /* Verde ancora più tenue per non disturbare la lettura su mobile */
+        background-image: linear-gradient(120deg, rgba(27, 110, 75, 0.25) 0%, rgba(27, 110, 75, 0.15) 100%);
     }
 }
