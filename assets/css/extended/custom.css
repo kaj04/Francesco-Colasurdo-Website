@@ -52,3 +52,51 @@
   border: 1px solid var(--border);
   border-radius: .35rem;
 }
+
+.marker-highlight {
+    position: relative;
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(120deg, rgba(27, 110, 75, 0.3) 0%, rgba(27, 110, 75, 0.3) 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    /* Inizialmente larghezza 0 (invisibile) */
+    background-position: 0 88%;
+    /* Posizionato in basso come un vero evidenziatore */
+
+    /* Animazione fluida */
+    transition: background-size 0.4s ease-in-out;
+
+    /* Arrotondamento bordi per effetto "pennarello" */
+    border-radius: 2px;
+}
+
+/* LOGICA "RETTANGOLO": 
+   Quando passo col mouse sopra il PARAGRAFO contenitore (p),
+   tutti gli evidenziatori al suo interno si attivano.
+*/
+p:hover .marker-highlight {
+    background-size: 100% 100%;
+}
+
+/* Opzionale: Se vuoi che si attivi anche passando SOLO sulla parola */
+.marker-highlight:hover {
+    background-size: 100% 100%;
+    cursor: help;
+    /* Cambia cursore per indicare interattività */
+}
+
+/* =========================================
+   MOBILE TWEAK
+   Su mobile non esiste l'hover. 
+   Possiamo decidere di lasciarli sempre evidenziati o solo al tocco.
+   Qui li rendiamo sempre visibili per UX migliore su schermi touch.
+   ========================================= */
+@media (pointer: coarse) {
+    .marker-highlight {
+        background-size: 100% 100%;
+        /* Sempre attivo su mobile */
+        background-image: linear-gradient(120deg, rgba(27, 110, 75, 0.3) 0%, rgba(27, 110, 75, 0.3) 100%);
+        /* Più leggero */
+    }
+}
