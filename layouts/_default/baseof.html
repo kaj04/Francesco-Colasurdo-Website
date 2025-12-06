@@ -17,11 +17,6 @@
 
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
 
-    <script>
-        window.FC_API_URL =
-            "https://cv-assistant-backend-jb20.onrender.com/api/chat";
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +39,7 @@
                     colors: {
                         paper: "#fcf8ed",
                         ink: "#2c2825",
-                        milk: "#fdfcf8",
+                        milk: "#fdfcf8", /* Colore Bianco Latte */
                         stone: {
                             50: "#fafaf9",
                             100: "#f5f5f4",
@@ -158,6 +153,10 @@
     </div>
 
     <script>
+        // CONFIGURAZIONE: URL backend
+        const FC_API_URL = "https://cv-assistant-backend-jb20.onrender.com/api/chat";
+        const RECOVERY_TIMEOUT_MS = 5 * 60 * 1000; // 5 minuti di validità sessione
+
         // 1. Initialize Lucide Icons
         lucide.createIcons();
 
@@ -196,11 +195,10 @@
         });
 
         // ==========================================
-        // 3. Chat Logic (PERSISTENT & RESILIENT)
+        // 3. Chat Logic (MOBILE FIX & ROBUST)
         // ==========================================
 
         let isChatOpen = false;
-        // Nuove variabili di stato per gestire i refresh
         let isWaitingResponse = false;
         let lastUserMessageText = "";
 
@@ -213,19 +211,23 @@
         const messagesContainer = document.getElementById("chat-messages");
         const inputField = document.getElementById("chat-input");
 
-        // *** SAVE STATE ***
+        // --- SALVATAGGIO ---
         function saveChatState() {
             const state = {
                 isOpen: isChatOpen,
                 html: messagesContainer.innerHTML,
-                isWaiting: isWaitingResponse,          // Salviamo se stiamo aspettando
-                lastMsg: lastUserMessageText,          // Salviamo cosa abbiamo chiesto
+                isWaiting: isWaitingResponse,
+                lastMsg: lastUserMessageText,
                 timestamp: Date.now()
             };
-            sessionStorage.setItem('fc_chat_state', JSON.stringify(state));
+            try {
+                sessionStorage.setItem('fc_chat_state', JSON.stringify(state));
+            } catch (e) {
+                console.warn("Storage pieno o disabilitato");
+            }
         }
 
-        // *** LOAD STATE ***
+        // --- CARICAMENTO ---
         function loadChatState() {
             const saved = sessionStorage.getItem('fc_chat_state');
             if (!saved) return;
@@ -233,32 +235,35 @@
             try {
                 const state = JSON.parse(saved);
 
-                // 1. Ripristina messaggi
+                // Controllo scadenza sessione (es. 5 minuti)
+                const now = Date.now();
+                if (state.timestamp && (now - state.timestamp > RECOVERY_TIMEOUT_MS)) {
+                    sessionStorage.removeItem('fc_chat_state');
+                    return;
+                }
+
+                // 1. Ripristina HTML
                 if (state.html && state.html.trim() !== "") {
                     messagesContainer.innerHTML = state.html;
                 }
 
-                // 2. Ripristina apertura chat
+                // 2. Ripristina stato apertura
                 if (state.isOpen) {
                     toggleChat(true);
                 }
 
-                // 3. RECUPERO RICHIESTA INTERROTTA
-                // Se stavamo aspettando una risposta e abbiamo cambiato pagina...
+                // 3. LOGICA DI RECUPERO
                 if (state.isWaiting && state.lastMsg) {
-                    console.log("Ripristino richiesta interrotta per:", state.lastMsg);
+                    console.log("🔄 Chatbot: Ripristino richiesta interrotta...");
 
-                    // Rimuovi eventuali indicatori "Typing..." vecchi/morti dall'HTML ripristinato
-                    // (L'HTML ripristinato contiene il vecchio indicatore che ormai non si muove più)
-                    const deadTyping = messagesContainer.querySelector("#typing-label");
-                    if (deadTyping) {
-                        // Risaliamo al container genitore per rimuoverlo
-                        // La struttura è: div > div > span#typing-label
-                        const parentContainer = deadTyping.closest(".flex.justify-start");
-                        if (parentContainer) parentContainer.remove();
-                    }
+                    // Pulisci vecchi indicatori di typing congelati
+                    const oldTypingIndicators = messagesContainer.querySelectorAll("#typing-label");
+                    oldTypingIndicators.forEach(el => {
+                        const container = el.closest(".flex.justify-start");
+                        if (container) container.remove();
+                    });
 
-                    // Rilanciamo la richiesta SENZA mostrare di nuovo il messaggio utente (è già lì)
+                    // Rilancia la richiesta in modo invisibile (senza ristampare la domanda)
                     sendChatMessage(state.lastMsg, false);
                 }
 
@@ -266,12 +271,12 @@
                 attachSuggestionListeners();
 
             } catch (e) {
-                console.error("Errore ripristino chat", e);
+                console.error("Errore ripristino:", e);
                 sessionStorage.removeItem('fc_chat_state');
             }
         }
 
-        // *** TOGGLE CHAT ***
+        // --- APERTURA/CHIUSURA ---
         function toggleChat(forceOpen = null) {
             if (typeof forceOpen === "boolean") {
                 isChatOpen = forceOpen;
@@ -321,15 +326,13 @@
             });
         }
 
-        // *** SEND MESSAGE (Modified) ***
-        // showUserMessage = true (default): mostra il fumetto utente
-        // showUserMessage = false: invia solo la richiesta (usato per il ripristino automatico)
+        // --- INVIO MESSAGGIO ---
         async function sendChatMessage(presetText, showUserMessage = true) {
             const input = document.getElementById("chat-input");
             const text = (presetText ?? input.value.trim());
             if (!text) return;
 
-            // 1. Aggiorna stato: stiamo aspettando
+            // 1. Segna che stiamo aspettando
             isWaitingResponse = true;
             lastUserMessageText = text;
 
@@ -345,12 +348,8 @@
                 input.value = "";
             }
 
-            // Salva SUBITO lo stato con isWaiting=true
+            // SALVA: "Sto aspettando"
             saveChatState();
-
-            const url = typeof window !== "undefined" && window.FC_API_URL
-                ? window.FC_API_URL
-                : "/api/chat";
 
             // Typing indicator
             let typingDiv = document.createElement("div");
@@ -367,7 +366,7 @@
             messagesContainer.appendChild(typingDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Salva anche col typing indicator visibile
+            // Salva anche col typing visibile
             saveChatState();
 
             let phase = "retrieving";
@@ -378,20 +377,22 @@
             }, 700);
 
             try {
-                const res = await fetch(url, {
+                const res = await fetch(FC_API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ question: text }),
                 });
 
                 clearTimeout(switchToTyping);
-                if (phase !== "typing" && labelSpan) labelSpan.textContent = "Typing…";
 
                 if (!res.ok) {
                     typingDiv.remove();
-                    addBotMessage("Sorry, backend not reachable right now.");
-                    isWaitingResponse = false; // Fine attesa (con errore)
-                    saveChatState();
+                    // Messaggio aggiornato per mobile
+                    addBotMessage("Sorry, connection interrupted. If you are on mobile, please try not to switch pages while I am typing. Try again?");
+
+                    // CRUCIALE PER IL FIX MOBILE:
+                    // Se c'è un errore, mostriamo il messaggio a video MA NON salviamo lo stato di errore nel taccuino.
+                    // In questo modo, se l'errore è causato dal cambio pagina, la nuova pagina leggerà ancora "Sto aspettando" e riproverà.
                     return;
                 }
 
@@ -399,20 +400,23 @@
                 typingDiv.remove();
 
                 const answer = data && typeof data.answer === "string" ? data.answer : "No answer.";
-
                 addBotMessage(answer);
 
-                // Fine attesa con successo
+                // Successo: smettiamo di aspettare e salviamo
                 isWaitingResponse = false;
                 saveChatState();
 
             } catch (e) {
+                console.error("Fetch error:", e);
                 clearTimeout(switchToTyping);
                 typingDiv.remove();
-                addBotMessage("Sorry, something went wrong. Please try again.");
 
-                isWaitingResponse = false; // Fine attesa (con errore)
-                saveChatState();
+                // Messaggio aggiornato per mobile
+                addBotMessage("Sorry, connection lost. If on mobile, please stay on the page while I reply. Try again?");
+
+                // CRUCIALE: NON salviamo lo stato qui.
+                // Se la pagina sta morendo, non vogliamo sovrascrivere il flag "waiting" con un errore.
+                // Se l'utente resta sulla pagina, vede l'errore. Se ricarica/naviga, il bot riprova.
             }
         }
 
@@ -427,7 +431,7 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // Init
+        // Avvio iniziale
         loadChatState();
         attachSuggestionListeners();
     </script>
