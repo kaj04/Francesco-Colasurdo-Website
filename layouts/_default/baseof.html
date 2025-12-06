@@ -112,8 +112,7 @@
             <div id="chat-backdrop" class="fixed inset-0 bg-black/5 z-30 hidden" onclick="toggleChat()"></div>
 
             <button onclick="toggleChat()" id="chat-button"
-                class="fixed bottom-8 right-8 z-50 flex items-center justify-center gap-3 px-8 py-4 rounded-full shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-primary text-white group cursor-pointer {{ if and (eq .Section "
-                blog") .IsPage }}hidden{{ end }}">
+                class='fixed bottom-8 right-8 z-50 flex items-center justify-center gap-3 px-8 py-4 rounded-full shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-primary text-white group cursor-pointer {{ if and (eq .Section "blog") .IsPage }}hidden{{ end }}'>
                 <i data-lucide="message-circle" class="w-5 h-5" id="chat-icon-open"></i>
                 <i data-lucide="x" class="w-5 h-5 hidden" id="chat-icon-close"></i>
                 <span class="font-serif italic font-medium tracking-wide text-base" id="chat-text">Ask about ME</span>
@@ -267,7 +266,7 @@
                     messagesContainer.innerHTML = state.html;
                 }
 
-                // 2. Ripristina stato apertura (solo se il bottone è visibile nella pagina corrente)
+                // 2. Ripristina stato apertura
                 // Se siamo in un articolo del blog, il bottone è hidden, quindi evitiamo di aprire il popup "a vuoto"
                 const buttonVisible = !chatButton.classList.contains("hidden");
                 if (state.isOpen && buttonVisible) {
@@ -407,7 +406,7 @@
                 if (!res.ok) {
                     typingDiv.remove();
                     addBotMessage("Sorry, connection interrupted. If you are on mobile, please try not to switch pages while I am typing. Try again?");
-                    // NON salviamo lo stato di errore, così se si ricarica la pagina riprova
+                    // NON salviamo lo stato di errore
                     return;
                 }
 
@@ -426,7 +425,6 @@
                 typingDiv.remove();
 
                 addBotMessage("Sorry, connection lost. If on mobile, please stay on the page while I reply. Try again?");
-                // NON salviamo lo stato qui.
             }
         }
 
