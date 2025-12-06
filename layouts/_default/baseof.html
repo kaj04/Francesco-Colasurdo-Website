@@ -12,33 +12,26 @@
         {{ end }}
     </title>
 
-    <!-- Meta Description -->
     <meta name="description"
         content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
+    <link rel="stylesheet" href="{{ " css/style.css" | relURL }}" />
 
-    <!-- Backend URL per il Personal Assistant -->
     <script>
         window.FC_API_URL =
             "https://cv-assistant-backend-jb20.onrender.com/api/chat";
     </script>
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -88,7 +81,6 @@
 </head>
 
 <body class="bg-paper text-ink antialiased selection:bg-primary/20 noise-bg vignette">
-    <!-- Custom Cursor -->
     <div id="cursor-dot" class="cursor-dot"></div>
     <div id="cursor-ring" class="cursor-ring"></div>
 
@@ -101,12 +93,9 @@
 
         {{ partial "footer.html" . }}
 
-        <!-- Chat Widget -->
         <div id="chat-widget-container">
-            <!-- Backdrop -->
             <div id="chat-backdrop" class="fixed inset-0 bg-black/5 z-30 hidden" onclick="toggleChat()"></div>
 
-            <!-- Button -->
             <button onclick="toggleChat()" id="chat-button"
                 class="fixed bottom-8 right-8 z-50 flex items-center justify-center gap-3 px-8 py-4 rounded-full shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-primary text-white group cursor-pointer">
                 <i data-lucide="message-circle" class="w-5 h-5" id="chat-icon-open"></i>
@@ -114,20 +103,17 @@
                 <span class="font-serif italic font-medium tracking-wide text-base" id="chat-text">Ask about ME</span>
             </button>
 
-            <!-- Window -->
             <div id="chat-window"
                 class="fixed bottom-28 right-8 w-full max-w-[350px] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden transition-all duration-300 z-40 origin-bottom-right opacity-0 scale-90 translate-y-10 pointer-events-none">
-                <!-- Header -->
                 <div class="bg-paper p-5 border-b border-stone-100 flex items-center justify-between">
                     <div>
                         <h3 class="font-serif font-bold text-xl text-ink">Francesco's Virtual Assistant</h3>
-                        <p class="text-xs text-stone-500 font-sans">(Personal Assistant and Knowledge about Francesco)</p>
+                        <p class="text-xs text-stone-500 font-sans">(Personal Assistant and Knowledge about Francesco)
+                        </p>
                     </div>
                 </div>
 
-                <!-- Messages -->
                 <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4 bg-white/50">
-                    <!-- Quick start + suggerimenti -->
                     <div class="flex justify-start">
                         <div
                             class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
@@ -136,7 +122,8 @@
                                 Ask me about my career, university work, personal projects, results, or current goals.
                             </p>
                             <p class="text-[11px] italic text-stone-500 mb-3">
-                                PS: The first reply may take up to ~2 minute if the server is resting, after all, we all need a little
+                                PS: The first reply may take up to ~2 minute if the server is resting, after all, we all
+                                need a little
                                 rest, right?
                             </p>
                             <div class="flex flex-wrap gap-2 mt-1">
@@ -153,7 +140,6 @@
                     </div>
                 </div>
 
-                <!-- Input -->
                 <div class="p-4 bg-paper border-t border-stone-100">
                     <div
                         class="flex items-center gap-2 bg-white rounded-full border border-stone-200 px-4 py-3 focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
@@ -170,7 +156,6 @@
         </div>
     </div>
 
-    <!-- Main Logic Script (Cursor, Chat, Icons) -->
     <script>
         // 1. Initialize Lucide Icons
         lucide.createIcons();
@@ -178,15 +163,12 @@
         // 2. Custom Cursor Logic
         const dot = document.getElementById("cursor-dot");
         const ring = document.getElementById("cursor-ring");
-        let mouseX = -100,
-            mouseY = -100;
-        let ringX = -100,
-            ringY = -100;
+        let mouseX = -100, mouseY = -100;
+        let ringX = -100, ringY = -100;
 
         document.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-
             if (dot) {
                 dot.style.left = `${mouseX}px`;
                 dot.style.top = `${mouseY}px`;
@@ -197,7 +179,6 @@
             const ease = 0.15;
             ringX += (mouseX - ringX) * ease;
             ringY += (mouseY - ringY) * ease;
-
             if (ring) {
                 ring.style.left = `${ringX}px`;
                 ring.style.top = `${ringY}px`;
@@ -208,19 +189,15 @@
 
         document.addEventListener("mouseover", (e) => {
             const target = e.target;
-            const isClickable =
-                target.closest("a") ||
-                target.closest("button") ||
-                target.tagName === "INPUT" ||
-                target.classList.contains("cursor-pointer");
-            if (isClickable && ring) {
-                ring.classList.add("hovering");
-            } else if (ring) {
-                ring.classList.remove("hovering");
-            }
+            const isClickable = target.closest("a") || target.closest("button") || target.tagName === "INPUT" || target.classList.contains("cursor-pointer");
+            if (isClickable && ring) ring.classList.add("hovering");
+            else if (ring) ring.classList.remove("hovering");
         });
 
-        // 3. Chat Logic
+        // ==========================================
+        // 3. Chat Logic (PERSISTENT MEMORY VERSION)
+        // ==========================================
+
         let isChatOpen = false;
         const chatWindow = document.getElementById("chat-window");
         const chatButton = document.getElementById("chat-button");
@@ -229,89 +206,141 @@
         const iconOpen = document.getElementById("chat-icon-open");
         const iconClose = document.getElementById("chat-icon-close");
         const messagesContainer = document.getElementById("chat-messages");
+        const inputField = document.getElementById("chat-input");
 
-        function toggleChat() {
-            isChatOpen = !isChatOpen;
+        // *** Funzione per salvare lo stato nel browser ***
+        function saveChatState() {
+            const state = {
+                isOpen: isChatOpen,
+                html: messagesContainer.innerHTML,
+                timestamp: Date.now()
+            };
+            sessionStorage.setItem('fc_chat_state', JSON.stringify(state));
+        }
+
+        // *** Funzione per ripristinare lo stato ***
+        function loadChatState() {
+            const saved = sessionStorage.getItem('fc_chat_state');
+            if (!saved) return;
+
+            try {
+                const state = JSON.parse(saved);
+
+                // 1. Ripristina i messaggi
+                if (state.html && state.html.trim() !== "") {
+                    messagesContainer.innerHTML = state.html;
+                }
+
+                // 2. Ripristina apertura finestra se era aperta
+                if (state.isOpen) {
+                    toggleChat(true); // true forza l'apertura senza invertire
+                }
+
+                // 3. Scrolla in basso
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                // 4. Riattacca gli event listeners ai suggerimenti
+                attachSuggestionListeners();
+
+            } catch (e) {
+                console.error("Errore ripristino chat", e);
+                sessionStorage.removeItem('fc_chat_state');
+            }
+        }
+
+        // Modificata per accettare un parametro opzionale 'forceOpen'
+        function toggleChat(forceOpen = null) {
+            // Se forceOpen è boolean, usalo. Altrimenti inverti il corrente.
+            if (typeof forceOpen === "boolean") {
+                isChatOpen = forceOpen;
+            } else {
+                isChatOpen = !isChatOpen;
+            }
 
             if (isChatOpen) {
-                chatWindow.classList.remove(
-                    "opacity-0",
-                    "scale-90",
-                    "translate-y-10",
-                    "pointer-events-none"
-                );
+                chatWindow.classList.remove("opacity-0", "scale-90", "translate-y-10", "pointer-events-none");
                 chatWindow.classList.add("opacity-100", "scale-100", "translate-y-0");
 
                 chatButton.classList.remove("bg-primary", "text-white");
                 chatButton.classList.add("bg-ink", "text-paper");
-
                 chatBackdrop.classList.remove("hidden");
 
                 iconOpen.classList.add("hidden");
                 iconClose.classList.remove("hidden");
                 chatText.innerText = "Close Chat";
+
+                // Focus sull'input quando si apre
+                setTimeout(() => document.getElementById("chat-input").focus(), 300);
             } else {
-                chatWindow.classList.add(
-                    "opacity-0",
-                    "scale-90",
-                    "translate-y-10",
-                    "pointer-events-none"
-                );
-                chatWindow.classList.remove(
-                    "opacity-100",
-                    "scale-100",
-                    "translate-y-0"
-                );
+                chatWindow.classList.add("opacity-0", "scale-90", "translate-y-10", "pointer-events-none");
+                chatWindow.classList.remove("opacity-100", "scale-100", "translate-y-0");
 
                 chatButton.classList.add("bg-primary", "text-white");
                 chatButton.classList.remove("bg-ink", "text-paper");
-
                 chatBackdrop.classList.add("hidden");
 
                 iconOpen.classList.remove("hidden");
                 iconClose.classList.add("hidden");
                 chatText.innerText = "Ask about ME";
             }
+
+            // Salva stato ogni volta che si apre/chiude
+            saveChatState();
         }
 
         function handleChatKey(e) {
             if (e.key === "Enter") sendChatMessage();
         }
 
+        // Helper per riattaccare i listener ai bottoni suggeriti
+        function attachSuggestionListeners() {
+            document.querySelectorAll(".chat-suggestion").forEach((btn) => {
+                // Clona per pulire vecchi listener
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
+
+                newBtn.addEventListener("click", () => {
+                    const q = newBtn.textContent.trim();
+                    sendChatMessage(q);
+                });
+            });
+        }
+
         async function sendChatMessage(presetText) {
-                const input = document.getElementById("chat-input");
-                const text = (presetText ?? input.value.trim());
-                if (!text) return;
+            const input = document.getElementById("chat-input");
+            const text = (presetText ?? input.value.trim());
+            if (!text) return;
 
             // Messaggio utente
             const userDiv = document.createElement("div");
             userDiv.className = "flex justify-end";
             userDiv.innerHTML = `
-          <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
-            ${text}
-          </div>`;
+              <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-ink text-white rounded-br-none">
+                ${text}
+              </div>`;
             messagesContainer.appendChild(userDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
             input.value = "";
 
-            // URL backend (FastAPI su Render)
-            const url =
-                typeof window !== "undefined" && window.FC_API_URL
-                    ? window.FC_API_URL
-                    : "/api/chat";
+            // Salva stato (mostra domanda utente anche se navighi via subito)
+            saveChatState();
+
+            const url = typeof window !== "undefined" && window.FC_API_URL
+                ? window.FC_API_URL
+                : "/api/chat";
 
             // Typing indicator
             let typingDiv = document.createElement("div");
             typingDiv.className = "flex justify-start";
             typingDiv.innerHTML = `
-          <div class="max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed font-sans bg-paper border border-stone-100 text-stone-500 rounded-bl-none">
-            <span id="typing-label">Retrieving information</span>
-            <span class="inline-flex gap-1 ml-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.15s"></span>
-              <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.3s"></span>
-            </span>
-          </div>`;
+              <div class="max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed font-sans bg-paper border border-stone-100 text-stone-500 rounded-bl-none">
+                <span id="typing-label">Retrieving information</span>
+                <span class="inline-flex gap-1 ml-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.15s"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-stone-300 animate-pulse" style="animation-delay:0.3s"></span>
+                </span>
+              </div>`;
             messagesContainer.appendChild(typingDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
@@ -336,54 +365,42 @@
 
                 if (!res.ok) {
                     typingDiv.remove();
-                    const botDiv = document.createElement("div");
-                    botDiv.className = "flex justify-start";
-                    botDiv.innerHTML = `
-              <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-                Sorry, backend not reachable right now. Please try again in a moment.
-              </div>`;
-                    messagesContainer.appendChild(botDiv);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    addBotMessage("Sorry, backend not reachable right now.");
+                    saveChatState(); // Salva errore
                     return;
                 }
 
                 const data = await res.json();
                 typingDiv.remove();
 
-                const answer =
-                    data && typeof data.answer === "string"
-                        ? data.answer
-                        : "No answer.";
+                const answer = data && typeof data.answer === "string" ? data.answer : "No answer.";
 
-                const botDiv = document.createElement("div");
-                botDiv.className = "flex justify-start";
-                botDiv.innerHTML = `
-            <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-              ${answer}
-            </div>`;
-                messagesContainer.appendChild(botDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                addBotMessage(answer);
+                saveChatState(); // Salva la risposta del bot
+
             } catch (e) {
                 clearTimeout(switchToTyping);
                 typingDiv.remove();
-
-                const botDiv = document.createElement("div");
-                botDiv.className = "flex justify-start";
-                botDiv.innerHTML = `
-            <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
-              Sorry, something went wrong. Please try again.
-            </div>`;
-                messagesContainer.appendChild(botDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                addBotMessage("Sorry, something went wrong. Please try again.");
+                saveChatState();
             }
         }
-        // Bottoni "quick start" cliccabili
-            document.querySelectorAll(".chat-suggestion").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const q = btn.textContent.trim();
-                    sendChatMessage(q);
-                });
-            });
+
+        // Helper per aggiungere messaggi bot
+        function addBotMessage(htmlContent) {
+            const botDiv = document.createElement("div");
+            botDiv.className = "flex justify-start";
+            botDiv.innerHTML = `
+            <div class="max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed font-sans bg-paper border border-stone-100 text-ink rounded-bl-none">
+              ${htmlContent}
+            </div>`;
+            messagesContainer.appendChild(botDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // *** INIT: Ripristina stato al caricamento e attacca i listener iniziali
+        loadChatState();
+        attachSuggestionListeners();
     </script>
 </body>
 
