@@ -46,7 +46,7 @@ Aspettando questo momento, probabilmente l'azione non verrà mai eseguita (per p
 
 Come accennato prima, la mia opinione è che **AGIRE** (preferibilmente adesso) sia più potente e ci porti più ritorno rispetto all’aspettare la combinazione perfetta di variabili.
 
-Agire adesso ci permette di iniziare, impegnarci in attività e, come ho comunicato in un mio articolo precedente ([autotrappola](/blog/autotrappola)), ci *autocommittiamo* in un nuovo impegno che vogliamo realizzare.
+Agire adesso ci permette di iniziare, impegnarci in attività e, come ho comunicato in un mio articolo precedente ([autotrappola](https://kaj04.github.io/Francesco-Colasurdo-Website/blog/autotrappola/)), ci *autocommittiamo* in un nuovo impegno che vogliamo realizzare.
 
 Una volta iniziato sarà molto più facile capire dove migliorare, cosa stiamo sbagliando e come proseguire con il lavoro.
 
