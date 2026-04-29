@@ -16,14 +16,21 @@ During the hackathon I also had fun filming a few clips to keep the memory alive
 
 {{< youtube aXJtrmfu8bk >}}
 
+<div style="margin-top: 2rem;">
+
 If you're more interested in the technical side:
-- here's the [GitHub repo](https://github.com/kaj04/Bunq-hackathon)
+- here's the GitHub repo: https://github.com/kaj04/Bunq-hackathon
 - and the demo + pitch video:
+
+</div>
+
 {{< youtube ad1d_dnG3_s >}}
+
+<div style="margin-top: 2rem;"></div>
 
 ---
 
-## Keep It Simple
+
 
 There's always a downside, and this one is worth pointing out.
 
